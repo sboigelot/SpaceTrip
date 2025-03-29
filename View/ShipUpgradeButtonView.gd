@@ -44,7 +44,7 @@ func update_ui() -> void:
 		data.increase_value.toMetricSymbol(true),
 		data.ore_cost.toMetricSymbol(true)
 	]
-	buy_button.disabled = ship.ore.isLessThan(data.ore_cost)
+	buy_button.disabled = ship.mining.ore.isLessThan(data.ore_cost)
 
 func on_buy() -> void:
 	assert(ship != null)

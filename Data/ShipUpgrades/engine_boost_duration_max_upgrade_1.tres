@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ShipUpgrade" load_steps=3 format=3 uid="uid://10vx701yb4ji"]
 
-[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrade.gd" id="1_ps0if"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="1_ps0if"]
 [ext_resource type="PackedScene" uid="uid://5f3evw36yhrq" path="res://View/ShipUpgradeButtonView.tscn" id="2_m70cy"]
 
 [resource]
 script = ExtResource("1_ps0if")
-ship_module_name = ""
+ship_module = "engine"
 parent_purchases = Array[String](["engine_boost_upgrade_1"])
 ore_cost_mantissa = 10.0
 ore_cost_exponent = 0

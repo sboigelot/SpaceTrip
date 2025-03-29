@@ -2,7 +2,8 @@ class_name ShipUpgrade
 extends Resource
 
 @export_group("Requirements")
-@export var ship_module_name: String
+
+@export var ship_module: String
 @export var parent_purchases: Array[String]
 @export var ore_cost_mantissa: float
 @export var ore_cost_exponent: int

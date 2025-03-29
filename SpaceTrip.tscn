@@ -1,27 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=6 format=3 uid="uid://clw4hwx1ukirp"]
 
-[ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://SpaceTrip.gd" id="1_tp0y5"]
+[ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship.gd" id="1_tp0y5"]
+[ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://ShipModules/CoreShipModule.gd" id="2_i2c18"]
+[ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://EngineModule.gd" id="3_wqs7w"]
+[ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://MiningModule.gd" id="4_qkquj"]
 
-[sub_resource type="Curve" id="Curve_tp0y5"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0531154, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_wqs7w"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="SpaceTrip" type="Control" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label", "ui_acceleration_label", "ui_boost_button", "ui_boost_progress", "ui_ore_label", "ui_shop_container")]
+[node name="SpaceTrip" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Ship" type="Node" parent="." node_paths=PackedStringArray("ui_shop_container", "core", "engine", "mining")]
 script = ExtResource("1_tp0y5")
-ui_distance_label = NodePath("BoxContainer/DistanceLabel")
-ui_speed_label = NodePath("BoxContainer/SpeedLabel")
-ui_acceleration_label = NodePath("BoxContainer/AccelerationLabel")
-ui_boost_button = NodePath("BoxContainer/MarginContainer/BoostEngineButton")
-ui_boost_progress = NodePath("BoxContainer/MarginContainer/BoostEngineProgressBar")
-ui_ore_label = NodePath("BoxContainer/OreLabel")
-ui_shop_container = NodePath("BoxContainer/ShopBoxContainer")
-engine_boost_curve = SubResource("Curve_tp0y5")
+ui_shop_container = NodePath("../BoxContainer/ShopBoxContainer")
+core = NodePath("CoreModule")
+engine = NodePath("EngineModule")
+mining = NodePath("MiningModule")
+
+[node name="CoreModule" type="Node" parent="Ship" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label")]
+script = ExtResource("2_i2c18")
+ui_distance_label = NodePath("../../BoxContainer/DistanceLabel")
+ui_speed_label = NodePath("../../BoxContainer/SpeedLabel")
+
+[node name="EngineModule" type="Node" parent="Ship" node_paths=PackedStringArray("ui_acceleration_label", "ui_boost_button", "ui_boost_progress")]
+script = ExtResource("3_wqs7w")
+ui_acceleration_label = NodePath("../../BoxContainer/AccelerationLabel")
+ui_boost_button = NodePath("../../BoxContainer/BoostContainer/BoostEngineButton")
+ui_boost_progress = NodePath("../../BoxContainer/BoostContainer/BoostEngineProgressBar")
+engine_boost_curve = SubResource("Curve_wqs7w")
+
+[node name="MiningModule" type="Node" parent="Ship" node_paths=PackedStringArray("ui_ore_label")]
+script = ExtResource("4_qkquj")
+ui_ore_label = NodePath("../../BoxContainer/OreLabel")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 0
@@ -45,14 +62,14 @@ text = "Acceleration: 0.0"
 layout_mode = 2
 text = "Scrap: 0.0"
 
-[node name="MarginContainer" type="MarginContainer" parent="BoxContainer"]
+[node name="BoostContainer" type="MarginContainer" parent="BoxContainer"]
 layout_mode = 2
 
-[node name="BoostEngineButton" type="Button" parent="BoxContainer/MarginContainer"]
+[node name="BoostEngineButton" type="Button" parent="BoxContainer/BoostContainer"]
 layout_mode = 2
 text = "Boost Engine"
 
-[node name="BoostEngineProgressBar" type="ProgressBar" parent="BoxContainer/MarginContainer"]
+[node name="BoostEngineProgressBar" type="ProgressBar" parent="BoxContainer/BoostContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
@@ -66,5 +83,5 @@ text = "Asteroid"
 layout_mode = 2
 vertical = true
 
-[connection signal="pressed" from="BoxContainer/MarginContainer/BoostEngineButton" to="." method="_on_engine_button_pressed"]
-[connection signal="pressed" from="BoxContainer/AsteroidButton" to="." method="_on_asteroid_button_pressed"]
+[connection signal="pressed" from="BoxContainer/BoostContainer/BoostEngineButton" to="Ship/EngineModule" method="_on_boost_engine_button_pressed"]
+[connection signal="pressed" from="BoxContainer/AsteroidButton" to="Ship/MiningModule" method="_on_asteroid_button_pressed"]
