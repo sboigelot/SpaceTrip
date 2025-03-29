@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=5 format=3 uid="uid://bixbepkks8mp"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_xoxx3"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_pvd8t"]
+[ext_resource type="PackedScene" uid="uid://5f3evw36yhrq" path="res://View/ShipUpgradeButtonView.tscn" id="3_8kgcb"]
+
+[sub_resource type="Resource" id="Resource_1fx3x"]
+script = ExtResource("1_xoxx3")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "auto_mine_asteroid_count"
+impact_method = 4
+impact_value = 2.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[resource]
+script = ExtResource("2_pvd8t")
+titanium_cost_mantissa = 250.0
+titanium_cost_exponent = 0
+parent_purchases = Array[String](["Multi Miner I"])
+impacts = Array[ExtResource("1_xoxx3")]([SubResource("Resource_1fx3x")])
+display_name = "Auto Miner II"
+lore_descripton = ""
+shop_item_button_view = ExtResource("3_8kgcb")
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

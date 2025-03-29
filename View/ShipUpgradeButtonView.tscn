@@ -1,11 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://5f3evw36yhrq"]
+[gd_scene load_steps=3 format=3 uid="uid://5f3evw36yhrq"]
 
 [ext_resource type="Script" uid="uid://beoauneavc0r7" path="res://View/ShipUpgradeButtonView.gd" id="1_4cr3g"]
 
-[node name="ShipUpgradeButtonView" type="MarginContainer" node_paths=PackedStringArray("buy_button")]
-script = ExtResource("1_4cr3g")
-buy_button = NodePath("BuyShipUpgradeButton")
+[sub_resource type="LabelSettings" id="LabelSettings_0sm0c"]
+font_size = 24
 
-[node name="BuyShipUpgradeButton" type="Button" parent="."]
+[node name="ShipUpgradeButtonView" type="MarginContainer" node_paths=PackedStringArray("ui_buy_button", "ui_price_label")]
+size_flags_horizontal = 3
+script = ExtResource("1_4cr3g")
+ui_buy_button = NodePath("BoxContainer/BuyShipUpgradeButton")
+ui_price_label = NodePath("BoxContainer/PriceLabel")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 2
-text = "Buy better engine"
+theme_override_constants/separation = 8
+
+[node name="BuyShipUpgradeButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "buy"
+alignment = 0
+
+[node name="PriceLabel" type="Label" parent="BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "12 Titanium"
+label_settings = SubResource("LabelSettings_0sm0c")

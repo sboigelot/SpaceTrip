@@ -258,17 +258,6 @@ static func add(x, y) -> Big:
 static func subtract(x, y) -> Big:
 	var negated_y := Big.new(-y.mantissa, y.exponent)
 	return add(negated_y, x)
-
-## Equivalent of [code]Big * n[/code]
-func multiplyBy(n) -> Big:
-	return Big.multiply(self, n)
-	
-## Equivalent of [code]Big *= n[/code]
-func multiplyByEquals(n) -> Big:
-	var new_value = Big.multiply(self, n)
-	mantissa = new_value.mantissa
-	exponent = new_value.exponent
-	return self
 	
 ## Multiplies two numbers and returns the Big number result
 static func multiply(x, y) -> Big:
@@ -435,6 +424,16 @@ static func maxValue(m, n) -> Big:
 	else:
 		return n
 
+func clear() -> Big:
+	mantissa = 0.0
+	exponent = 0
+	return self
+
+func replace(m) -> Big:
+	m = Big._typeCheck(m)
+	mantissa = m.mantissa
+	exponent = m.exponent
+	return self
 
 ## Equivalent of [code]Big + n[/code]
 func plus(n) -> Big:
@@ -982,8 +981,3 @@ func toAA(no_decimals_on_small_values = false, use_thousand_symbol = true, force
 	var prefix = toPrefix(no_decimals_on_small_values, use_thousand_symbol, force_decimals)
 
 	return prefix + options.suffix_separator + suffix
-
-func clear() -> Big:
-	mantissa = 0.0
-	exponent = 0
-	return self

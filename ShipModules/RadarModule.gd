@@ -11,7 +11,7 @@ var asteroids: Array[Asteroid]
 
 var max_asteroids: int = 3
 var asteroid_spawn_min_distance: Big = Big.new(50.0)
-var last_asteroid_spawn_distance: Big = Big.ONE().multiplyByEquals(-25.0)
+var last_asteroid_spawn_distance: Big = Big.ONE().timesEquals(-25.0)
 
 var asteroid_spawn_min_mining_time_available: float = 20.0
 var asteroid_spawn_max_mining_time_available: float = 30.0

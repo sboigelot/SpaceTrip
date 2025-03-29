@@ -21,10 +21,10 @@ var engine_boost_duration_max: float = 3.0
 var engine_boost_duration_cooldown_max: float = 5.0
 var engine_boost_duration_left: float = 0.0
 var engine_boost_duration_cooldown: float = 0.0
-var engine_boost := Big.ONE().multiplyBy(0.10)
+var engine_boost := Big.ONE().timesEquals(0.10)
 @export var engine_boost_curve: Curve
 
-var engine_auto_boost_cooldown_max: float = 15.0
+var engine_auto_boost_cooldown_max: float = 0.0
 var engine_auto_boost_cooldown: float = 0.0
 
 var boosted_acceleration := Big.ZERO().setSuffixSeparatorOverride(" ")
@@ -53,19 +53,19 @@ func update_stats(delta: float) -> void:
 	if engine_boost_duration_left > 0.0:
 		engine_boost_duration_left -= delta
 		var boost_strength = get_boost_strength()
-		var boost = engine_boost.multiplyBy(boost_strength)
+		var boost = engine_boost.times(boost_strength)
 		boosted_acceleration.plusEquals(boost)
 	elif engine_boost_duration_cooldown > 0.0:
 		engine_boost_duration_cooldown -= delta
 	
 	# add current_acceleration to speed
 	if boosted_acceleration.isGreaterThan(0.0):
-		ship.core.speed.plusEquals(boosted_acceleration.multiplyBy(delta))
+		ship.core.speed.plusEquals(boosted_acceleration.times(delta))
 		
 	# drag acceleration --> WARNING NOT TESTED
 	if current_acceleration.isGreaterThan(base_acceleration):
 		var base_accleration_drag = 1.0 - base_acceleration_drag_factor_per_second * delta
-		current_acceleration.multiplyByEquals(base_accleration_drag)
+		current_acceleration.timesEquals(base_accleration_drag)
 	
 func update_ui():
 	super.update_ui()

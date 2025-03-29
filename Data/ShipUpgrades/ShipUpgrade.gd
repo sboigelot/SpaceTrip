@@ -13,19 +13,10 @@ var titanium_cost: Big:
 			_titanium_cost = Big.new(titanium_cost_mantissa, titanium_cost_exponent)
 		return _titanium_cost
 		
-@export_group("Impact")
-@export var ship_module: String
-@export var property_to_increase: String
-@export var increase_mantissa: float
-@export var increase_exponent: int
-@export var increase_is_percent: bool
-
-var _increase_value: Big
-var increase_value: Big:
-	get():
-		if _increase_value == null:
-			_increase_value = Big.new(increase_mantissa, increase_exponent)
-		return _increase_value
+@export_group("Impacts")
+@export var impacts: Array[ShipUpgradeImpact]
 
 @export_group("Visual")
+@export var display_name: String
+@export_multiline var lore_descripton: String
 @export var shop_item_button_view: PackedScene

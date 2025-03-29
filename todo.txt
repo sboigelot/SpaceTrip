@@ -1,0 +1,22 @@
+add mode ADD / REPLACE / PERCENT to shop item value impact
+-20 y pixel on target center asteroids due to laser size
+resource pictures and display
+mining other ore
+asteroid variety
+change background on speed breakthrough
+begining animation and mini text
+
+shop sorted by module
+better shop purchase display
+
+maybe use slow version of grim music
+add sfx
+
+add main menu + pause menu (same?)
+add savegame / loadgame / reset progress
+save settings, allow option sound volume + fullscreen on /off
+
+add "check out our other games"
+
+add achievements? (take wake cup achievemnt layer)
+

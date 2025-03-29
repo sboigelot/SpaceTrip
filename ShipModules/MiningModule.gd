@@ -48,8 +48,8 @@ func mine_asteroid(asteroid: Asteroid, delta: float) -> void:
 	
 	if asteroid.titanium_richness > 0:
 		titanium.plusEquals(titanium_per_second_factor.
-					multiplyBy(delta).
-					multiplyBy(asteroid.titanium_richness))
+					times(delta).
+					times(asteroid.titanium_richness))
 	
 func update_ui():
 	ui_mining_laser_label.text = "Mining laser: %d / %d%s" % [
