@@ -39,7 +39,7 @@ func update_ui() -> void:
 	if not visible:
 		return
 	
-	buy_button.text = "Increase %s by %s for %s ore" % [
+	buy_button.text = "%s +%s for %s titanium" % [
 		data.property_to_increase,
 		data.increase_value.toMetricSymbol(true),
 		data.titanium_cost.toMetricSymbol(true)

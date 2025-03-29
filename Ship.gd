@@ -11,8 +11,8 @@ extends Node2D
 @export_group("Ship Modules")
 @export var core: CoreShipModule
 @export var engine: EngineShipModule
-@export var mining: MiningShipModule
 @export var radar: RadarShipModule
+@export var mining: MiningShipModule
 
 #####################
 #		SIGNALS		#

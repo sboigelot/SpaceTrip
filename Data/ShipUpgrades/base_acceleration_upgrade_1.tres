@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_c3qkc")
-ship_module = "engine"
-parent_purchases = Array[String]([""])
 titanium_cost_mantissa = 10.0
 titanium_cost_exponent = 0
+parent_purchases = Array[String]([])
+ship_module = "engine"
 property_to_increase = "base_acceleration"
 increase_mantissa = 1.0
 increase_exponent = 0

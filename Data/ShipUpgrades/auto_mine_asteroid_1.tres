@@ -5,12 +5,12 @@
 
 [resource]
 script = ExtResource("1_dcl8b")
-ship_module = "miner"
-parent_purchases = Array[String](["base_acceleration_upgrade_1"])
-titanium_cost_mantissa = 100.0
+titanium_cost_mantissa = 30.0
 titanium_cost_exponent = 0
-property_to_increase = "auto_catch_asteroid_chance"
-increase_mantissa = 0.1
+parent_purchases = Array[String](["base_acceleration_upgrade_1"])
+ship_module = "mining"
+property_to_increase = "auto_mine_asteroid_count"
+increase_mantissa = 1.0
 increase_exponent = 0
 increase_is_percent = false
 shop_item_button_view = ExtResource("2_k8g5a")

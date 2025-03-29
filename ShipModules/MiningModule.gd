@@ -2,6 +2,7 @@ class_name MiningShipModule
 extends ShipModule
 
 @export_group("UI elements")
+@export var ui_mining_laser_label: Label
 @export var ui_titanium_label: Label
 @export var mining_ray_placeholder: Node2D
 
@@ -10,17 +11,37 @@ extends ShipModule
 var titanium := Big.ZERO()
 var titanium_per_second_factor := Big.ONE()
 
-var max_targeted_asteroids: int = 2
-var auto_catch_asteroid_chance := 0.0
+var auto_mine_asteroid_count: int = 0
 
+var max_targeted_asteroids: int = 1
 var targeted_asteroids: Array[Asteroid]
 
 func update_stats(delta: float) -> void:
+	auto_mine_asteroids()
+	
 	for targeted_asteroid in targeted_asteroids:
 		mine_asteroid(targeted_asteroid, delta)
-			
-func mine_asteroid(asteroid: Asteroid, delta: float) -> void:
 	
+func auto_mine_asteroids():
+	var asteroid_request_count = max(0, auto_mine_asteroid_count - targeted_asteroids.size())
+	if asteroid_request_count == 0:
+		return
+		
+	var new_targets: Array[Asteroid] = []
+	for asteroid in ship.radar.asteroids:
+		if not asteroid.can_be_auto_mined():
+			continue
+			
+		if targeted_asteroids.has(asteroid):
+			continue
+			
+		new_targets.append(asteroid)
+		if new_targets.size() >= asteroid_request_count:
+			break
+			
+	targeted_asteroids.append_array(new_targets)
+		
+func mine_asteroid(asteroid: Asteroid, delta: float) -> void:
 	asteroid.mining_time_available -= delta
 	if asteroid.mining_time_available <= 0.0:
 		return
@@ -31,6 +52,12 @@ func mine_asteroid(asteroid: Asteroid, delta: float) -> void:
 					multiplyBy(asteroid.titanium_richness))
 	
 func update_ui():
+	ui_mining_laser_label.text = "Mining laser: %d / %d%s" % [
+		targeted_asteroids.size(),
+		max_targeted_asteroids,
+		(" (%d auto)" % auto_mine_asteroid_count) if auto_mine_asteroid_count > 0 else ""
+	]
+	
 	ui_titanium_label.text = "Titanium: %s" % titanium.toMetricSymbol(true)
 	target_mining_rays()
 	

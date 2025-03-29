@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=27 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
@@ -18,6 +18,23 @@
 [ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/mining.png" id="14_20yo5"]
 [ext_resource type="PackedScene" uid="uid://br5g34mdxpnvq" path="res://View/MiningRay.tscn" id="14_g7nme"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20yo5"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 0.294118, 1, 0.419608)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.29, 1, 0.65098)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+
 [sub_resource type="LabelSettings" id="LabelSettings_su33w"]
 font_size = 32
 
@@ -26,6 +43,11 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxo1i"]
 font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfmqu"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+bg_color = Color(0.65098, 0.188235, 0.65098, 1)
 
 [sub_resource type="Animation" id="Animation_8aiju"]
 resource_name = "Bop"
@@ -89,66 +111,130 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="HUDContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UIContainer" type="MarginContainer" parent="."]
+z_index = 4096
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="HUD" type="BoxContainer" parent="HUDContainer"]
+[node name="HUDContainer" type="PanelContainer" parent="UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="HUD" type="BoxContainer" parent="UIContainer/HUDContainer"]
 layout_mode = 2
 vertical = true
 
-[node name="DistanceLabel" type="Label" parent="HUDContainer/HUD"]
+[node name="DistanceLabel" type="Label" parent="UIContainer/HUDContainer/HUD"]
 layout_mode = 2
 text = "Distance: 0.0"
 label_settings = SubResource("LabelSettings_su33w")
 
-[node name="SpeedLabel" type="Label" parent="HUDContainer/HUD"]
+[node name="SpeedLabel" type="Label" parent="UIContainer/HUDContainer/HUD"]
 layout_mode = 2
 text = "Speed: 0.0"
 label_settings = SubResource("LabelSettings_ahis8")
 
-[node name="AccelerationLabel" type="Label" parent="HUDContainer/HUD"]
+[node name="AccelerationLabel" type="Label" parent="UIContainer/HUDContainer/HUD"]
 layout_mode = 2
 text = "Acceleration: 0.0"
 label_settings = SubResource("LabelSettings_ahis8")
 
-[node name="BoostContainer" type="MarginContainer" parent="HUDContainer/HUD"]
+[node name="BoostContainer" type="MarginContainer" parent="UIContainer/HUDContainer/HUD"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 
-[node name="BoostEngineButton" type="Button" parent="HUDContainer/HUD/BoostContainer"]
+[node name="BoostEngineButton" type="Button" parent="UIContainer/HUDContainer/HUD/BoostContainer"]
 layout_mode = 2
 text = "Boost Engine"
 
-[node name="BoostEngineProgressBar" type="ProgressBar" parent="HUDContainer/HUD/BoostContainer"]
+[node name="BoostEngineProgressBar" type="ProgressBar" parent="UIContainer/HUDContainer/HUD/BoostContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
 show_percentage = false
 
-[node name="TitaniumLabel" type="Label" parent="HUDContainer/HUD"]
+[node name="AutoBoostContainer" type="MarginContainer" parent="UIContainer/HUDContainer/HUD"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="AutoBoostLabel" type="Label" parent="UIContainer/HUDContainer/HUD/AutoBoostContainer"]
+layout_mode = 2
+text = "Auto boost"
+horizontal_alignment = 1
+
+[node name="AutoBoostEngineProgressBar" type="ProgressBar" parent="UIContainer/HUDContainer/HUD/AutoBoostContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+value = 50.0
+show_percentage = false
+
+[node name="ResourcesContainer" type="PanelContainer" parent="UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="Resources" type="BoxContainer" parent="UIContainer/ResourcesContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="MiningLaserLabel" type="Label" parent="UIContainer/ResourcesContainer/Resources"]
+layout_mode = 2
+text = "Mining Laser: 1 / 1 (1 auto)"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="TitaniumLabel" type="Label" parent="UIContainer/ResourcesContainer/Resources"]
 layout_mode = 2
 text = "Titanium: 0.0"
 label_settings = SubResource("LabelSettings_gxo1i")
 
-[node name="ShopBoxContainer" type="BoxContainer" parent="HUDContainer/HUD"]
+[node name="ShopContainer" type="PanelContainer" parent="UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="Shop" type="BoxContainer" parent="UIContainer/ShopContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="ShopTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_su33w")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cfmqu")
+
+[node name="ShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
 layout_mode = 2
 vertical = true
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 material = ExtResource("3_v47jd")
 
-[node name="Ship" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("ui_shop_container", "core", "engine", "mining", "radar")]
+[node name="Ship" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("ui_shop_container", "core", "engine", "radar", "mining")]
 position = Vector2(960, 540)
 script = ExtResource("1_tp0y5")
-ui_shop_container = NodePath("../../HUDContainer/HUD/ShopBoxContainer")
+ui_shop_container = NodePath("../../UIContainer/ShopContainer/Shop/ShopBoxContainer")
 core = NodePath("CoreModule")
 engine = NodePath("EngineModule")
-mining = NodePath("MiningModule")
 radar = NodePath("RadarModule")
+mining = NodePath("MiningModule")
 metadata/_custom_type_script = "uid://cb1uogjndktfp"
 
 [node name="AutoStartAnimationPlayer" type="AnimationPlayer" parent="CanvasGroup/Ship"]
@@ -162,21 +248,23 @@ metadata/_custom_type_script = "uid://0epgfa68wioe"
 
 [node name="CoreModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label")]
 script = ExtResource("2_i2c18")
-ui_distance_label = NodePath("../../../HUDContainer/HUD/DistanceLabel")
-ui_speed_label = NodePath("../../../HUDContainer/HUD/SpeedLabel")
+ui_distance_label = NodePath("../../../UIContainer/HUDContainer/HUD/DistanceLabel")
+ui_speed_label = NodePath("../../../UIContainer/HUDContainer/HUD/SpeedLabel")
 metadata/_custom_type_script = "uid://bf3mh7sr0282d"
 
 [node name="HullSprite2D" type="Sprite2D" parent="CanvasGroup/Ship/CoreModule"]
 texture = ExtResource("3_i5j76")
 
-[node name="EngineModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_engine_sprite", "ui_engine_fireballs", "ui_engine_smoke", "ui_acceleration_label", "ui_boost_button", "ui_boost_progress")]
+[node name="EngineModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_engine_sprite", "ui_engine_fireballs", "ui_engine_smoke", "ui_acceleration_label", "ui_boost_button", "ui_boost_progress", "ui_auto_boost_container", "ui_auto_boost_progress")]
 script = ExtResource("3_wqs7w")
 ui_engine_sprite = NodePath("EngineSprite2D")
 ui_engine_fireballs = NodePath("Fireballs")
 ui_engine_smoke = NodePath("Smoke")
-ui_acceleration_label = NodePath("../../../HUDContainer/HUD/AccelerationLabel")
-ui_boost_button = NodePath("../../../HUDContainer/HUD/BoostContainer/BoostEngineButton")
-ui_boost_progress = NodePath("../../../HUDContainer/HUD/BoostContainer/BoostEngineProgressBar")
+ui_acceleration_label = NodePath("../../../UIContainer/HUDContainer/HUD/AccelerationLabel")
+ui_boost_button = NodePath("../../../UIContainer/HUDContainer/HUD/BoostContainer/BoostEngineButton")
+ui_boost_progress = NodePath("../../../UIContainer/HUDContainer/HUD/BoostContainer/BoostEngineProgressBar")
+ui_auto_boost_container = NodePath("../../../UIContainer/HUDContainer/HUD/AutoBoostContainer")
+ui_auto_boost_progress = NodePath("../../../UIContainer/HUDContainer/HUD/AutoBoostContainer/AutoBoostEngineProgressBar")
 engine_boost_curve = SubResource("Curve_wqs7w")
 metadata/_custom_type_script = "uid://b36s11j48be0a"
 
@@ -276,9 +364,10 @@ texture = ExtResource("6_8aiju")
 visible = false
 polygon = PackedVector2Array(-102, -184, -135, -184, -135, -181.5, -139, -174.5, -187.3, -160, -191.5, -160, -205, -153.2, -205, -116.7, -169, -100.8, -169, -99.5, -140.3, -91, -138, -91, -138, -85.9, -133, -82.9, -133, -76, -142.6, -76, -144, -80.3, -144, -83.2, -165.2, -81, -175.5, -81, -185, -76.2, -185, -68.1, -198.6, -74, -223.6, -74, -245, -61.1, -255.3, -59, -256, -59, -256, -19.9, -255.9, -18, -248, -18, -248, 12.1, -256, 12.9, -256, 53.8, -244.5, 54, -224, 66.1, -224, 68, -199.5, 68, -185.5, 61, -185, 74.1, -182, 76.1, -182, 77.8, -151.1, 81, -145.2, 81, -142, 77.8, -142, 74, -135.1, 74, -133.1, 77, -133, 87, -135.7, 89, -137.6, 89, -139, 95.5, -167.3, 104, -170.5, 104, -205, 120.7, -205, 157.4, -140.3, 179, -138.2, 179, -135, 185.5, -135, 188, -103.4, 188, -92, 181.1, -49.8, 181, -45, 185.8, -45, 188, -20.1, 188, -14.1, 181, 36.5, 181, 46.4, 188, 69.8, 188, 74, 183.8, 74, 180.8, 101.1, 179, 104, 179, 104, 95.9, 101, 93.9, 101, 92, 73.3, 92, 70.3, 85, 47.4, 85, 35, 92.9, -14.2, 93, -19, 88.2, -19, 86, -43.9, 86, -49.9, 93, -91.9, 93, -91, 73, -91, 67.3, -102, 65.2, -102, 62.9, -48, 60.9, -48, 25.2, -51.2, 22, -102.5, 22, -104, 17, -104, 14, -120.4, 14, -122.3, 18.7, -128.6, 16, -129.8, 16, -131.8, 12, -142.6, 12, -144, 7.70001, -144, 4.79999, -156, 5.89999, -156, -7.8, -150.1, -7, -146.2, -7, -142, -11.2, -142, -14, -132, -14, -128, -19.3, -122.9, -21, -120.4, -16, -104.8, -16, -102, -21.5, -102, -25.1, -50.9, -27, -48, -27, -48, -61.8, -51.2, -65, -92.9, -65, -92, -89, -49.8, -89, -44, -83.2, -44, -80.7, -33.8, -82, -20.2, -82, -13.2, -89, 36.4, -89, 48.4, -81, 70.3, -81, 73.3, -88, 100.1, -88, 102.1, -91, 104, -91, 104, -173.8, 99.8, -178, 73.4, -178, 72, -181.5, 72, -184, 46.4, -184, 35, -177.1, -14.2, -177, -19, -181.8, -19, -184, -43.9, -184, -49.9, -177, -93.5, -177, -102, -182.1)
 
-[node name="MiningModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_titanium_label", "mining_ray_placeholder")]
+[node name="MiningModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_mining_laser_label", "ui_titanium_label", "mining_ray_placeholder")]
 script = ExtResource("4_qkquj")
-ui_titanium_label = NodePath("../../../HUDContainer/HUD/TitaniumLabel")
+ui_mining_laser_label = NodePath("../../../UIContainer/ResourcesContainer/Resources/MiningLaserLabel")
+ui_titanium_label = NodePath("../../../UIContainer/ResourcesContainer/Resources/TitaniumLabel")
 mining_ray_placeholder = NodePath("MiningRays")
 mining_ray_scene = ExtResource("14_g7nme")
 metadata/_custom_type_script = "uid://bun3ie62h08vs"
@@ -302,7 +391,7 @@ metadata/_custom_type_script = "uid://iigsupy7ia7q"
 
 [node name="ForegroundEffects" type="Node2D" parent="."]
 
-[connection signal="pressed" from="HUDContainer/HUD/BoostContainer/BoostEngineButton" to="CanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
+[connection signal="pressed" from="UIContainer/HUDContainer/HUD/BoostContainer/BoostEngineButton" to="CanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
 [connection signal="input_event" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_exited"]

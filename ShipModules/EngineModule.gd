@@ -9,6 +9,8 @@ extends ShipModule
 @export var ui_acceleration_label: Label
 @export var ui_boost_button: Button
 @export var ui_boost_progress: ProgressBar
+@export var ui_auto_boost_container: Container
+@export var ui_auto_boost_progress: ProgressBar
 
 @export_group("Module Properties")
 var base_acceleration := Big.ZERO().setSuffixSeparatorOverride(" ")
@@ -22,6 +24,9 @@ var engine_boost_duration_cooldown: float = 0.0
 var engine_boost := Big.ONE().multiplyBy(0.10)
 @export var engine_boost_curve: Curve
 
+var engine_auto_boost_cooldown_max: float = 15.0
+var engine_auto_boost_cooldown: float = 0.0
+
 var boosted_acceleration := Big.ZERO().setSuffixSeparatorOverride(" ")
 var mouse_over:bool = false
 
@@ -34,6 +39,13 @@ func get_boost_strength() -> float:
 	
 func update_stats(delta: float) -> void:
 	super.update_stats(delta)
+	
+	# activate auto boost
+	if engine_auto_boost_cooldown_max > 0.0:
+		engine_auto_boost_cooldown -= delta
+		if engine_boost_duration_cooldown <= 0.0 and engine_auto_boost_cooldown <= 0.0:
+			engine_auto_boost_cooldown = engine_auto_boost_cooldown_max
+			boost_engine()
 	
 	# calculate current_acceleration with engine boost
 	boosted_acceleration = Big.new(base_acceleration)
@@ -94,7 +106,11 @@ func update_ui():
 		ui_boost_progress.modulate = Color.WHITE
 		ui_engine_sprite.modulate = Color.WHITE
 
-func _on_boost_engine_button_pressed() -> void:
+	ui_auto_boost_container.visible = engine_auto_boost_cooldown_max > 0.0
+	ui_auto_boost_progress.max_value = engine_auto_boost_cooldown_max
+	ui_auto_boost_progress.value = engine_auto_boost_cooldown_max - engine_auto_boost_cooldown
+
+func boost_engine() -> void:
 	engine_boost_duration_left = engine_boost_duration_max
 	engine_boost_duration_cooldown = engine_boost_duration_cooldown_max
 
@@ -104,10 +120,13 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		event.pressed):
 			on_click()
 			
+func _on_boost_engine_button_pressed() -> void:
+	on_click()
+	
 func on_click():
 	if ui_boost_button.disabled:
 		return
-	_on_boost_engine_button_pressed()
+	boost_engine()
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true

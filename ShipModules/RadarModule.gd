@@ -40,19 +40,6 @@ func spawn_asteroid():
 	var asteroid_scene = asteroid_scenes.pick_random()
 	var asteroid:Asteroid = asteroid_scene.instantiate()
 	asteroid.ship = ship
-	
-	asteroids.append(asteroid)
-	asteroid.screen_exited.connect(_on_asteroid_screen_exited)
-	asteroid.screen_exited.connect(ship.mining.on_asteroid_screen_exited)
-	asteroid.clicked.connect(ship.mining.on_asteroid_clicked)
-	asteroid_placeholder.add_child(asteroid)
-	
-	var viewport_size = asteroid.get_viewport_rect().size
-	asteroid.position = Vector2(
-		viewport_size.x + 128,
-		randf_range(128, viewport_size.y - 128)
-	)
-	
 	asteroid.titanium_richness = asteroid_spawn_titanium_richness
 	asteroid.spawn_carbon_richness = asteroid_spawn_carbon_richness
 	asteroid.water_richness = asteroid_spawn_water_richness
@@ -63,6 +50,19 @@ func spawn_asteroid():
 		asteroid_spawn_min_mining_time_available,
 		asteroid_spawn_max_mining_time_available
 	)
+	
+	asteroids.append(asteroid)
+	asteroid.screen_exited.connect(_on_asteroid_screen_exited)
+	asteroid.screen_exited.connect(ship.mining.on_asteroid_screen_exited)
+	asteroid.clicked.connect(ship.mining.on_asteroid_clicked)
+	asteroid_placeholder.add_child(asteroid)
+	
+	var viewport_size = asteroid.get_viewport_rect().size
+	asteroid.position = Vector2(
+		viewport_size.x + 64,
+		randf_range(64, viewport_size.y - 64)
+	)
+	
 	
 func _on_asteroid_screen_exited(asteroid:Asteroid):
 	asteroids.erase(asteroid)

@@ -2,8 +2,6 @@ class_name ShipUpgrade
 extends Resource
 
 @export_group("Requirements")
-
-@export var ship_module: String
 @export var titanium_cost_mantissa: float
 @export var titanium_cost_exponent: int
 @export var parent_purchases: Array[String]
@@ -16,6 +14,7 @@ var titanium_cost: Big:
 		return _titanium_cost
 		
 @export_group("Impact")
+@export var ship_module: String
 @export var property_to_increase: String
 @export var increase_mantissa: float
 @export var increase_exponent: int
