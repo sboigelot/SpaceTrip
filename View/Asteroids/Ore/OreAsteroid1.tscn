@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnwhr7jr64wwk"]
+
+[ext_resource type="Script" uid="uid://mtiyemjd232k" path="res://View/Asteroids/Asteroid.gd" id="1_pg0ue"]
+[ext_resource type="Texture2D" uid="uid://b7ixd8btr7w4k" path="res://Sprites/Asteroids/asteroid0.png" id="2_knupe"]
+[ext_resource type="Texture2D" uid="uid://rgglrkwdlpfl" path="res://Sprites/target.png" id="3_knupe"]
+[ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="4_kalhe"]
+
+[sub_resource type="Animation" id="Animation_p7vrq"]
+resource_name = "Highlight"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.52, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.55, 0.55), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_n68h7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_um33k"]
+_data = {
+&"Highlight": SubResource("Animation_p7vrq"),
+&"RESET": SubResource("Animation_n68h7")
+}
+
+[node name="OreAsteroid1" type="Node2D" node_paths=PackedStringArray("asteroid_sprite", "target_sprite")]
+script = ExtResource("1_pg0ue")
+asteroid_sprite = NodePath("AsteroidSprite2D")
+target_sprite = NodePath("TargetSprite2D")
+
+[node name="AsteroidSprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_knupe")
+
+[node name="Area2D" type="Area2D" parent="AsteroidSprite2D"]
+scale = Vector2(2, 2)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AsteroidSprite2D/Area2D"]
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-43.5, -67.6, -43.5, -66.1, -53.6, -63.5, -56.3, -63.5, -75.3, -44.5, -76.7, -44.5, -89.7, -19.5, -90.9, -19.5, -99.9, 6.5, -101.1, 6.5, -102.5, 13.3, -102.5, 21.9, -95.5, 38.8, -95.5, 41.3, -82.5, 54.3, -82.5, 55.6, -72.5, 61.6, -72.5, 62.9, -43.5, 72.9, -43.5, 74.2, -34.6, 75.5, -18.2, 75.5, -8.2, 72.5, -4, 72.5, 43, 49.5, 45.2, 49.5, 64.2, 34.5, 66.6, 34.5, 76.6, 19.5, 78.3, 19.5, 80.3, 4.5, 81.8, 4.5, 80.5, -5.5, 80.5, -14.9, 76.5, -25, 76.5, -27.4, 51.5, -48.5, 51.5, -50, 31.5, -56, 31.5, -57.2, -10.5, -65.2, -10.5, -66.4)
+
+[node name="TargetSprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_knupe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TargetSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_um33k")
+}
+script = ExtResource("4_kalhe")
+auto_start_animation = "Highlight"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-64, -64, 128, 128)
+
+[connection signal="input_event" from="AsteroidSprite2D/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="AsteroidSprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="AsteroidSprite2D/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

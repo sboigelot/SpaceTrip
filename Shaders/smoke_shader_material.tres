@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dibchw3oboxt2"]
+
+[ext_resource type="Shader" uid="uid://b7eako2jga4ew" path="res://Shaders/fireball_shader_material.gdshader" id="1_17oqj"]
+
+[resource]
+shader = ExtResource("1_17oqj")
+shader_parameter/fire_color = Color(0.35, 0.35, 0.35, 1)
+shader_parameter/fire_power_factor = 0.0
+shader_parameter/fire_intensity = 1.0
+shader_parameter/fire_start = 1.0
+shader_parameter/ball_size = 0.5
+shader_parameter/roughness = 0.05
+shader_parameter/detail = 4
+shader_parameter/scale = 15.0
+shader_parameter/lacunarity = 1.0

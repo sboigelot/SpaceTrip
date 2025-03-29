@@ -1,0 +1,76 @@
+class_name MiningShipModule
+extends ShipModule
+
+@export_group("UI elements")
+@export var ui_titanium_label: Label
+@export var mining_ray_placeholder: Node2D
+
+@export var mining_ray_scene: PackedScene
+
+var titanium := Big.ZERO()
+var titanium_per_second_factor := Big.ONE()
+
+var max_targeted_asteroids: int = 2
+var auto_catch_asteroid_chance := 0.0
+
+var targeted_asteroids: Array[Asteroid]
+
+func update_stats(delta: float) -> void:
+	for targeted_asteroid in targeted_asteroids:
+		mine_asteroid(targeted_asteroid, delta)
+			
+func mine_asteroid(asteroid: Asteroid, delta: float) -> void:
+	
+	asteroid.mining_time_available -= delta
+	if asteroid.mining_time_available <= 0.0:
+		return
+	
+	if asteroid.titanium_richness > 0:
+		titanium.plusEquals(titanium_per_second_factor.
+					multiplyBy(delta).
+					multiplyBy(asteroid.titanium_richness))
+	
+func update_ui():
+	ui_titanium_label.text = "Titanium: %s" % titanium.toMetricSymbol(true)
+	target_mining_rays()
+	
+func target_mining_rays():
+	for mining_ray in mining_ray_placeholder.get_children():
+		mining_ray.visible = false
+		
+	var ray_index = 0
+	for targeted_asteroid in targeted_asteroids:
+		ray_index += 1
+		target_ray_towards(ray_index, targeted_asteroid)
+	
+func target_ray_towards(ray_index: int, asteroid: Asteroid):
+	while ray_index >= mining_ray_placeholder.get_child_count():
+		spawn_mining_ray()
+		
+	var mining_ray = mining_ray_placeholder.get_child(ray_index)
+	mining_ray.target(asteroid)
+
+func spawn_mining_ray():
+	var mining_ray = mining_ray_scene.instantiate()
+	mining_ray.visible = false
+	mining_ray_placeholder.add_child(mining_ray)
+	
+func on_asteroid_screen_exited(asteroid:Asteroid) -> void:
+	targeted_asteroids.erase(asteroid)
+
+func on_asteroid_clicked(asteroid:Asteroid) -> void:
+	cycle_target_asteroid(asteroid, true)
+	
+func cycle_target_asteroid(asteroid:Asteroid, erase_on_re_target: bool = false):
+	if targeted_asteroids.has(asteroid):
+		targeted_asteroids.erase(asteroid)
+		if not erase_on_re_target: #push to the back
+			targeted_asteroids.append(asteroid)
+	else:
+		targeted_asteroids.append(asteroid)
+		
+	var max_asteroids: int = max(0, max_targeted_asteroids)
+	while targeted_asteroids.size() > max_asteroids:
+		targeted_asteroids.pop_front()
+		
+	

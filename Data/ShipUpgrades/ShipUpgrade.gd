@@ -4,16 +4,16 @@ extends Resource
 @export_group("Requirements")
 
 @export var ship_module: String
+@export var titanium_cost_mantissa: float
+@export var titanium_cost_exponent: int
 @export var parent_purchases: Array[String]
-@export var ore_cost_mantissa: float
-@export var ore_cost_exponent: int
 
-var _ore_cost: Big
-var ore_cost: Big:
+var _titanium_cost: Big
+var titanium_cost: Big:
 	get():
-		if _ore_cost == null:
-			_ore_cost = Big.new(ore_cost_mantissa, ore_cost_exponent)
-		return _ore_cost
+		if _titanium_cost == null:
+			_titanium_cost = Big.new(titanium_cost_mantissa, titanium_cost_exponent)
+		return _titanium_cost
 		
 @export_group("Impact")
 @export var property_to_increase: String

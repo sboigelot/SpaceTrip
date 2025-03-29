@@ -1,87 +1,308 @@
-[gd_scene load_steps=6 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=25 format=3 uid="uid://clw4hwx1ukirp"]
 
+[ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
+[ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
 [ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship.gd" id="1_tp0y5"]
 [ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://ShipModules/CoreShipModule.gd" id="2_i2c18"]
-[ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://EngineModule.gd" id="3_wqs7w"]
-[ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://MiningModule.gd" id="4_qkquj"]
+[ext_resource type="Texture2D" uid="uid://b41b8pjawwt5t" path="res://Sprites/hull.png" id="3_i5j76"]
+[ext_resource type="Material" uid="uid://db4nowr7gcwtr" path="res://Shaders/canvas_group_outline_material.tres" id="3_v47jd"]
+[ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://ShipModules/EngineModule.gd" id="3_wqs7w"]
+[ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="4_5ampq"]
+[ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://ShipModules/MiningModule.gd" id="4_qkquj"]
+[ext_resource type="PackedScene" uid="uid://bnwhr7jr64wwk" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="5_2xvgb"]
+[ext_resource type="Script" uid="uid://iigsupy7ia7q" path="res://ShipModules/RadarModule.gd" id="5_dt3j3"]
+[ext_resource type="Script" uid="uid://gvinpfgame2m" path="res://SynchronizedChildrenScale.gd" id="6_7ev53"]
+[ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/engine.png" id="6_8aiju"]
+[ext_resource type="Material" uid="uid://bra7sd3a51u2f" path="res://Shaders/fireball_shader_material.tres" id="7_g8p7d"]
+[ext_resource type="Material" uid="uid://dibchw3oboxt2" path="res://Shaders/smoke_shader_material.tres" id="8_su33w"]
+[ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/mining.png" id="14_20yo5"]
+[ext_resource type="PackedScene" uid="uid://br5g34mdxpnvq" path="res://View/MiningRay.tscn" id="14_g7nme"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_su33w"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahis8"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxo1i"]
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_8aiju"]
+resource_name = "Bop"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.51, 3, 4.5, 6),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(960, 540), Vector2(960, 525), Vector2(960, 540), Vector2(960, 555), Vector2(960, 540)]
+}
+
+[sub_resource type="Animation" id="Animation_g8p7d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(960, 540)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ev53"]
+_data = {
+&"Bop": SubResource("Animation_8aiju"),
+&"RESET": SubResource("Animation_g8p7d")
+}
 
 [sub_resource type="Curve" id="Curve_wqs7w"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 8.36947, 0, 0, Vector2(0.377104, 1), 0.0, 0.0, 0, 0, Vector2(0.777778, 0.741781), -0.909055, -0.909055, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
-[node name="SpaceTrip" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SpaceTrip" type="Node"]
 
-[node name="Ship" type="Node" parent="." node_paths=PackedStringArray("ui_shop_container", "core", "engine", "mining")]
-script = ExtResource("1_tp0y5")
-ui_shop_container = NodePath("../BoxContainer/ShopBoxContainer")
-core = NodePath("CoreModule")
-engine = NodePath("EngineModule")
-mining = NodePath("MiningModule")
+[node name="BackgroundEffects" type="Node2D" parent="."]
 
-[node name="CoreModule" type="Node" parent="Ship" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label")]
-script = ExtResource("2_i2c18")
-ui_distance_label = NodePath("../../BoxContainer/DistanceLabel")
-ui_speed_label = NodePath("../../BoxContainer/SpeedLabel")
+[node name="ScrollingStars" type="ColorRect" parent="BackgroundEffects"]
+material = ExtResource("1_gxo1i")
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
-[node name="EngineModule" type="Node" parent="Ship" node_paths=PackedStringArray("ui_acceleration_label", "ui_boost_button", "ui_boost_progress")]
-script = ExtResource("3_wqs7w")
-ui_acceleration_label = NodePath("../../BoxContainer/AccelerationLabel")
-ui_boost_button = NodePath("../../BoxContainer/BoostContainer/BoostEngineButton")
-ui_boost_progress = NodePath("../../BoxContainer/BoostContainer/BoostEngineProgressBar")
-engine_boost_curve = SubResource("Curve_wqs7w")
-
-[node name="MiningModule" type="Node" parent="Ship" node_paths=PackedStringArray("ui_ore_label")]
-script = ExtResource("4_qkquj")
-ui_ore_label = NodePath("../../BoxContainer/OreLabel")
-
-[node name="BoxContainer" type="BoxContainer" parent="."]
-layout_mode = 0
+[node name="SpeedLines" type="ColorRect" parent="BackgroundEffects"]
+visible = false
+material = ExtResource("1_ahis8")
+custom_minimum_size = Vector2(1920, 1080)
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="HUDContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HUD" type="BoxContainer" parent="HUDContainer"]
+layout_mode = 2
 vertical = true
 
-[node name="DistanceLabel" type="Label" parent="BoxContainer"]
+[node name="DistanceLabel" type="Label" parent="HUDContainer/HUD"]
 layout_mode = 2
-text = "Dist: 0.0"
+text = "Distance: 0.0"
+label_settings = SubResource("LabelSettings_su33w")
 
-[node name="SpeedLabel" type="Label" parent="BoxContainer"]
+[node name="SpeedLabel" type="Label" parent="HUDContainer/HUD"]
 layout_mode = 2
 text = "Speed: 0.0"
+label_settings = SubResource("LabelSettings_ahis8")
 
-[node name="AccelerationLabel" type="Label" parent="BoxContainer"]
+[node name="AccelerationLabel" type="Label" parent="HUDContainer/HUD"]
 layout_mode = 2
 text = "Acceleration: 0.0"
+label_settings = SubResource("LabelSettings_ahis8")
 
-[node name="OreLabel" type="Label" parent="BoxContainer"]
-layout_mode = 2
-text = "Scrap: 0.0"
-
-[node name="BoostContainer" type="MarginContainer" parent="BoxContainer"]
+[node name="BoostContainer" type="MarginContainer" parent="HUDContainer/HUD"]
 layout_mode = 2
 
-[node name="BoostEngineButton" type="Button" parent="BoxContainer/BoostContainer"]
+[node name="BoostEngineButton" type="Button" parent="HUDContainer/HUD/BoostContainer"]
 layout_mode = 2
 text = "Boost Engine"
 
-[node name="BoostEngineProgressBar" type="ProgressBar" parent="BoxContainer/BoostContainer"]
+[node name="BoostEngineProgressBar" type="ProgressBar" parent="HUDContainer/HUD/BoostContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
 show_percentage = false
 
-[node name="AsteroidButton" type="Button" parent="BoxContainer"]
+[node name="TitaniumLabel" type="Label" parent="HUDContainer/HUD"]
 layout_mode = 2
-text = "Asteroid"
+text = "Titanium: 0.0"
+label_settings = SubResource("LabelSettings_gxo1i")
 
-[node name="ShopBoxContainer" type="BoxContainer" parent="BoxContainer"]
+[node name="ShopBoxContainer" type="BoxContainer" parent="HUDContainer/HUD"]
 layout_mode = 2
 vertical = true
 
-[connection signal="pressed" from="BoxContainer/BoostContainer/BoostEngineButton" to="Ship/EngineModule" method="_on_boost_engine_button_pressed"]
-[connection signal="pressed" from="BoxContainer/AsteroidButton" to="Ship/MiningModule" method="_on_asteroid_button_pressed"]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = ExtResource("3_v47jd")
+
+[node name="Ship" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("ui_shop_container", "core", "engine", "mining", "radar")]
+position = Vector2(960, 540)
+script = ExtResource("1_tp0y5")
+ui_shop_container = NodePath("../../HUDContainer/HUD/ShopBoxContainer")
+core = NodePath("CoreModule")
+engine = NodePath("EngineModule")
+mining = NodePath("MiningModule")
+radar = NodePath("RadarModule")
+metadata/_custom_type_script = "uid://cb1uogjndktfp"
+
+[node name="AutoStartAnimationPlayer" type="AnimationPlayer" parent="CanvasGroup/Ship"]
+root_node = NodePath("../CoreModule/HullSprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_7ev53")
+}
+script = ExtResource("4_5ampq")
+auto_start_animation = "Bop"
+metadata/_custom_type_script = "uid://0epgfa68wioe"
+
+[node name="CoreModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label")]
+script = ExtResource("2_i2c18")
+ui_distance_label = NodePath("../../../HUDContainer/HUD/DistanceLabel")
+ui_speed_label = NodePath("../../../HUDContainer/HUD/SpeedLabel")
+metadata/_custom_type_script = "uid://bf3mh7sr0282d"
+
+[node name="HullSprite2D" type="Sprite2D" parent="CanvasGroup/Ship/CoreModule"]
+texture = ExtResource("3_i5j76")
+
+[node name="EngineModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_engine_sprite", "ui_engine_fireballs", "ui_engine_smoke", "ui_acceleration_label", "ui_boost_button", "ui_boost_progress")]
+script = ExtResource("3_wqs7w")
+ui_engine_sprite = NodePath("EngineSprite2D")
+ui_engine_fireballs = NodePath("Fireballs")
+ui_engine_smoke = NodePath("Smoke")
+ui_acceleration_label = NodePath("../../../HUDContainer/HUD/AccelerationLabel")
+ui_boost_button = NodePath("../../../HUDContainer/HUD/BoostContainer/BoostEngineButton")
+ui_boost_progress = NodePath("../../../HUDContainer/HUD/BoostContainer/BoostEngineProgressBar")
+engine_boost_curve = SubResource("Curve_wqs7w")
+metadata/_custom_type_script = "uid://b36s11j48be0a"
+
+[node name="Smoke" type="Node2D" parent="CanvasGroup/Ship/EngineModule"]
+visible = false
+material = ExtResource("8_su33w")
+script = ExtResource("6_7ev53")
+children_scale_factor = 2.0
+children_scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://gvinpfgame2m"
+
+[node name="Smoke1" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Smoke"]
+material = ExtResource("8_su33w")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -324.0
+offset_top = -201.0
+offset_right = -196.0
+offset_bottom = -73.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Smoke2" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Smoke"]
+material = ExtResource("8_su33w")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -304.0
+offset_top = -111.0
+offset_right = -176.0
+offset_bottom = 17.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Smoke3" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Smoke"]
+material = ExtResource("8_su33w")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -304.0
+offset_top = -23.0
+offset_right = -176.0
+offset_bottom = 105.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Smoke4" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Smoke"]
+material = ExtResource("8_su33w")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -324.0
+offset_top = 74.0
+offset_right = -196.0
+offset_bottom = 202.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Fireballs" type="Node2D" parent="CanvasGroup/Ship/EngineModule"]
+visible = false
+script = ExtResource("6_7ev53")
+children_scale_factor = 2.0
+children_scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://gvinpfgame2m"
+
+[node name="Fireball1" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Fireballs"]
+material = ExtResource("7_g8p7d")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -330.0
+offset_top = -201.0
+offset_right = -202.0
+offset_bottom = -73.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Fireball2" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Fireballs"]
+material = ExtResource("7_g8p7d")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -310.0
+offset_top = -111.0
+offset_right = -182.0
+offset_bottom = 17.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Fireball3" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Fireballs"]
+material = ExtResource("7_g8p7d")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -310.0
+offset_top = -23.0
+offset_right = -182.0
+offset_bottom = 105.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Fireball4" type="ColorRect" parent="CanvasGroup/Ship/EngineModule/Fireballs"]
+material = ExtResource("7_g8p7d")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -330.0
+offset_top = 74.0
+offset_right = -202.0
+offset_bottom = 202.0
+pivot_offset = Vector2(128, 64)
+
+[node name="EngineSprite2D" type="Sprite2D" parent="CanvasGroup/Ship/EngineModule"]
+texture = ExtResource("6_8aiju")
+
+[node name="Area2D" type="Area2D" parent="CanvasGroup/Ship/EngineModule/EngineSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D"]
+visible = false
+polygon = PackedVector2Array(-102, -184, -135, -184, -135, -181.5, -139, -174.5, -187.3, -160, -191.5, -160, -205, -153.2, -205, -116.7, -169, -100.8, -169, -99.5, -140.3, -91, -138, -91, -138, -85.9, -133, -82.9, -133, -76, -142.6, -76, -144, -80.3, -144, -83.2, -165.2, -81, -175.5, -81, -185, -76.2, -185, -68.1, -198.6, -74, -223.6, -74, -245, -61.1, -255.3, -59, -256, -59, -256, -19.9, -255.9, -18, -248, -18, -248, 12.1, -256, 12.9, -256, 53.8, -244.5, 54, -224, 66.1, -224, 68, -199.5, 68, -185.5, 61, -185, 74.1, -182, 76.1, -182, 77.8, -151.1, 81, -145.2, 81, -142, 77.8, -142, 74, -135.1, 74, -133.1, 77, -133, 87, -135.7, 89, -137.6, 89, -139, 95.5, -167.3, 104, -170.5, 104, -205, 120.7, -205, 157.4, -140.3, 179, -138.2, 179, -135, 185.5, -135, 188, -103.4, 188, -92, 181.1, -49.8, 181, -45, 185.8, -45, 188, -20.1, 188, -14.1, 181, 36.5, 181, 46.4, 188, 69.8, 188, 74, 183.8, 74, 180.8, 101.1, 179, 104, 179, 104, 95.9, 101, 93.9, 101, 92, 73.3, 92, 70.3, 85, 47.4, 85, 35, 92.9, -14.2, 93, -19, 88.2, -19, 86, -43.9, 86, -49.9, 93, -91.9, 93, -91, 73, -91, 67.3, -102, 65.2, -102, 62.9, -48, 60.9, -48, 25.2, -51.2, 22, -102.5, 22, -104, 17, -104, 14, -120.4, 14, -122.3, 18.7, -128.6, 16, -129.8, 16, -131.8, 12, -142.6, 12, -144, 7.70001, -144, 4.79999, -156, 5.89999, -156, -7.8, -150.1, -7, -146.2, -7, -142, -11.2, -142, -14, -132, -14, -128, -19.3, -122.9, -21, -120.4, -16, -104.8, -16, -102, -21.5, -102, -25.1, -50.9, -27, -48, -27, -48, -61.8, -51.2, -65, -92.9, -65, -92, -89, -49.8, -89, -44, -83.2, -44, -80.7, -33.8, -82, -20.2, -82, -13.2, -89, 36.4, -89, 48.4, -81, 70.3, -81, 73.3, -88, 100.1, -88, 102.1, -91, 104, -91, 104, -173.8, 99.8, -178, 73.4, -178, 72, -181.5, 72, -184, 46.4, -184, 35, -177.1, -14.2, -177, -19, -181.8, -19, -184, -43.9, -184, -49.9, -177, -93.5, -177, -102, -182.1)
+
+[node name="MiningModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("ui_titanium_label", "mining_ray_placeholder")]
+script = ExtResource("4_qkquj")
+ui_titanium_label = NodePath("../../../HUDContainer/HUD/TitaniumLabel")
+mining_ray_placeholder = NodePath("MiningRays")
+mining_ray_scene = ExtResource("14_g7nme")
+metadata/_custom_type_script = "uid://bun3ie62h08vs"
+
+[node name="MinginSprite2D" type="Sprite2D" parent="CanvasGroup/Ship/MiningModule"]
+z_index = 2
+texture = ExtResource("14_20yo5")
+
+[node name="MiningRays" type="Node2D" parent="CanvasGroup/Ship/MiningModule"]
+
+[node name="MiningRay" parent="CanvasGroup/Ship/MiningModule/MiningRays" instance=ExtResource("14_g7nme")]
+visible = false
+
+[node name="RadarModule" type="Node2D" parent="CanvasGroup/Ship" node_paths=PackedStringArray("asteroid_placeholder")]
+script = ExtResource("5_dt3j3")
+asteroid_placeholder = NodePath("../../../Asteroids")
+asteroid_scenes = Array[PackedScene]([ExtResource("5_2xvgb")])
+metadata/_custom_type_script = "uid://iigsupy7ia7q"
+
+[node name="Asteroids" type="Node2D" parent="."]
+
+[node name="ForegroundEffects" type="Node2D" parent="."]
+
+[connection signal="pressed" from="HUDContainer/HUD/BoostContainer/BoostEngineButton" to="CanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
+[connection signal="input_event" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_exited"]

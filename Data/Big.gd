@@ -982,3 +982,8 @@ func toAA(no_decimals_on_small_values = false, use_thousand_symbol = true, force
 	var prefix = toPrefix(no_decimals_on_small_values, use_thousand_symbol, force_decimals)
 
 	return prefix + options.suffix_separator + suffix
+
+func clear() -> Big:
+	mantissa = 0.0
+	exponent = 0
+	return self

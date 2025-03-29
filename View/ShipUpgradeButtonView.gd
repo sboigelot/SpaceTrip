@@ -42,9 +42,9 @@ func update_ui() -> void:
 	buy_button.text = "Increase %s by %s for %s ore" % [
 		data.property_to_increase,
 		data.increase_value.toMetricSymbol(true),
-		data.ore_cost.toMetricSymbol(true)
+		data.titanium_cost.toMetricSymbol(true)
 	]
-	buy_button.disabled = ship.mining.ore.isLessThan(data.ore_cost)
+	buy_button.disabled = ship.mining.titanium.isLessThan(data.titanium_cost)
 
 func on_buy() -> void:
 	assert(ship != null)

@@ -1,5 +1,5 @@
 class_name ShipModule
-extends Node
+extends Node2D
 
 var ship:Ship
 

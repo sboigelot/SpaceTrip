@@ -1,5 +1,5 @@
 class_name Ship
-extends Node
+extends Node2D
 
 #####################
 #		EXPORTS		#
@@ -12,6 +12,7 @@ extends Node
 @export var core: CoreShipModule
 @export var engine: EngineShipModule
 @export var mining: MiningShipModule
+@export var radar: RadarShipModule
 
 #####################
 #		SIGNALS		#
@@ -34,7 +35,7 @@ func _ready() -> void:
 		ui_shop_container.add_child(shop_item_view)
 
 func purchase_shop_item(ship_upgrade:ShipUpgrade):
-	mining.ore.minusEquals(ship_upgrade.ore_cost)
+	mining.titanium.minusEquals(ship_upgrade.titanium_cost)
 	
 	var module = self
 	if ship_upgrade.ship_module != "":

@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://clcvlwnatk8we"]
+
+[ext_resource type="Shader" uid="uid://irhje8kbenwi" path="res://Shaders/mining_ray_material.gdshader" id="1_f0lsp"]
+
+[sub_resource type="Gradient" id="Gradient_f0lsp"]
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.8, 1)
+colors = PackedColorArray(1, 0, 0.0166664, 0, 1, 0.443137, 0.0941176, 1, 1, 1, 1, 1, 1, 0.443137, 0.0941176, 1, 1, 0, 0.0166664, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rmkgj"]
+gradient = SubResource("Gradient_f0lsp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7waoo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x4sow"]
+seamless = true
+normalize = false
+noise = SubResource("FastNoiseLite_7waoo")
+
+[resource]
+shader = ExtResource("1_f0lsp")
+shader_parameter/line_gradient = SubResource("GradientTexture1D_rmkgj")
+shader_parameter/width = 0.75
+shader_parameter/fix_start = true
+shader_parameter/fix_end = true
+shader_parameter/inverted = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_x4sow")
+shader_parameter/speed = 0.3
+shader_parameter/variation = 1.0
+shader_parameter/scale = 1.0
+shader_parameter/repeats = 0.2
