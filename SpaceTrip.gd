@@ -9,32 +9,18 @@ class_name Ship
 
 signal new_purchase_done(purchase_name)
 
-var distance_travelled: float = 0.0
-var distance_per_engine_click: float = 1.0
-var base_speed:float = 0.0
-var speed:float = 0.0
-var speed_per_engine_click: float = 1.0
-var speed_drag:float = 0.5
-var scrap:float = 0.0
-var scrap_per_asteroid_click:float = 1.0
-var auto_catch_asteroids:float = 0.0
+var distance_travelled := Big.ZERO()
+var distance_per_engine_click := Big.ONE()
+var base_speed := Big.ZERO()
+var speed := Big.ZERO()
+var speed_per_engine_click := Big.ONE()
+var speed_drag :float = 0.5
+var scrap := Big.ZERO()
+var scrap_per_asteroid_click := Big.ONE()
+var auto_catch_asteroids := Big.ZERO()
 
 var shop_items: Array[ShipUpgrade]
 var purchased_items: Array[String]
-
-func purchase_shop_item(ship_upgrade:ShipUpgrade):
-	
-	scrap -= ship_upgrade.scrap_cost
-	self[ship_upgrade.property_to_increase] += ship_upgrade.increase_value
-	
-	var dir_str_length = ship_upgrade.resource_path.rfind("/") + 1
-	var purchase_name = ship_upgrade.resource_path.substr(
-		dir_str_length,
-		ship_upgrade.resource_path.length() - dir_str_length - ".tres".length()
-	)
-	
-	purchased_items.append(purchase_name)
-	new_purchase_done.emit(purchase_name)
 
 func _ready() -> void:
 	shop_items.assign(ResourceFinder.get_resources_in_folder("res://Data/"))
@@ -50,17 +36,34 @@ func _process(delta: float) -> void:
 	update_ui()
 	
 func update_stats(delta: float) -> void:
-	distance_travelled += speed * delta
-	speed = max(base_speed, speed - speed_drag * delta * max(0.0, speed - base_speed))
-	scrap += auto_catch_asteroids * delta 
+	distance_travelled.plusEquals(Big.multiply(speed, delta))
+	
+	speed = Big.maxValue(base_speed, speed.minusEquals(
+		Big.multiply(speed_drag * delta, Big.maxValue(0.0, speed.minus(base_speed)))
+	))
+	
+	scrap.plusEquals(Big.multiply(auto_catch_asteroids, delta)) 
 	
 func update_ui():
-	ui_distance_label.text = "Dist: %d" % distance_travelled
-	ui_speed_label.text = "Speed: %.2f" % speed
-	ui_scrap_label.text = "Scrap: %d" % scrap
+	ui_distance_label.text = "Dist: %sm" % distance_travelled.toMetricSymbol(true)
+	ui_speed_label.text = "Speed: %sm/s" % speed.toMetricSymbol(false)
+	ui_scrap_label.text = "Scrap: %s" % scrap.toMetricSymbol(true)
 
+func purchase_shop_item(ship_upgrade:ShipUpgrade):
+	scrap.minusEquals(ship_upgrade.scrap_cost)
+	self[ship_upgrade.property_to_increase].plusEquals(ship_upgrade.increase_value)
+	
+	var dir_str_length = ship_upgrade.resource_path.rfind("/") + 1
+	var purchase_name = ship_upgrade.resource_path.substr(
+		dir_str_length,
+		ship_upgrade.resource_path.length() - dir_str_length - ".tres".length()
+	)
+	
+	purchased_items.append(purchase_name)
+	new_purchase_done.emit(purchase_name)
+	
 func _on_engine_button_pressed() -> void:
-	speed += speed_per_engine_click
+	speed.plusEquals(speed_per_engine_click)
 	
 func _on_asteroid_button_pressed() -> void:
-	scrap += scrap_per_asteroid_click
+	scrap.plusEquals(scrap_per_asteroid_click)
