@@ -39,12 +39,12 @@ func update_ui() -> void:
 	if not visible:
 		return
 	
-	buy_button.text = "Increase %s by %s for %s scrap" % [
+	buy_button.text = "Increase %s by %s for %s ore" % [
 		data.property_to_increase,
 		data.increase_value.toMetricSymbol(true),
-		data.scrap_cost.toMetricSymbol(true)
+		data.ore_cost.toMetricSymbol(true)
 	]
-	buy_button.disabled = ship.scrap.isLessThan(data.scrap_cost)
+	buy_button.disabled = ship.ore.isLessThan(data.ore_cost)
 
 func on_buy() -> void:
 	assert(ship != null)

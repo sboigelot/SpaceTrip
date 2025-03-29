@@ -135,7 +135,7 @@ const latin_special: Array[String] = [
 ]
 
 ## Various options to control the string presentation of Big Numbers
-static var options = {
+static var default_options = {
 	"dynamic_decimals": false, 
 	"dynamic_numbers": 4, 
 	"small_decimals": 3, 
@@ -145,10 +145,12 @@ static var options = {
 	"logarithmic_decimals": 4, 
 	"thousand_separator": ",", 
 	"decimal_separator": ".", 
-	"suffix_separator": " ", 
+	"suffix_separator": "", 
 	"reading_separator": "", 
 	"thousand_name": "thousand"
 }
+
+var options: Dictionary = default_options.duplicate()
 
 ## Maximum Big Number Mantissa
 const MANTISSA_MAX: float = 1209600.0
@@ -170,6 +172,7 @@ func _init(m: Variant = 1.0, e: int = 0) -> void:
 	if m is Big:
 		mantissa = m.mantissa
 		exponent = m.exponent
+		options = m.options.duplicate(false)
 	elif typeof(m) == TYPE_STRING:
 		var scientific: PackedStringArray = m.split("e")
 		mantissa = float(scientific[0])
@@ -256,7 +259,17 @@ static func subtract(x, y) -> Big:
 	var negated_y := Big.new(-y.mantissa, y.exponent)
 	return add(negated_y, x)
 
-
+## Equivalent of [code]Big * n[/code]
+func multiplyBy(n) -> Big:
+	return Big.multiply(self, n)
+	
+## Equivalent of [code]Big *= n[/code]
+func multiplyByEquals(n) -> Big:
+	var new_value = Big.multiply(self, n)
+	mantissa = new_value.mantissa
+	exponent = new_value.exponent
+	return self
+	
 ## Multiplies two numbers and returns the Big number result
 static func multiply(x, y) -> Big:
 	x = Big._typeCheck(x)
@@ -582,64 +595,126 @@ func pow10(value: int) -> void:
 
 ## Sets the Thousand name option
 static func setThousandName(name: String) -> void:
-	options.thousand_name = name
+	default_options.thousand_name = name
 
 
 ## Sets the Thousand Separator option
 static func setThousandSeparator(separator: String) -> void:
-	options.thousand_separator = separator
+	default_options.thousand_separator = separator
 
 
 ## Sets the Decimal Separator option
 static func setDecimalSeparator(separator: String) -> void:
-	options.decimal_separator = separator
+	default_options.decimal_separator = separator
 
 
 ## Sets the Suffix Separator option
 static func setSuffixSeparator(separator: String) -> void:
-	options.suffix_separator = separator
+	default_options.suffix_separator = separator
 
 
 ## Sets the Reading Separator option
 static func setReadingSeparator(separator: String) -> void:
-	options.reading_separator = separator
+	default_options.reading_separator = separator
 
 
 ## Sets the Dynamic Decimals option
 static func setDynamicDecimals(d: bool) -> void:
-	options.dynamic_decimals = d
+	default_options.dynamic_decimals = d
 
 
 ## Sets the Dynamic numbers digits option
 static func setDynamicNumbers(d: int) -> void:
-	options.dynamic_numbers = d
+	default_options.dynamic_numbers = d
 
 
 ## Sets the small decimal digits option
 static func setSmallDecimals(d: int) -> void:
-	options.small_decimals = d
+	default_options.small_decimals = d
 
 
 ## Sets the thousand decimal digits option
 static func setThousandDecimals(d: int) -> void:
-	options.thousand_decimals = d
+	default_options.thousand_decimals = d
 
 
 ## Sets the big decimal digits option
 static func setBigDecimals(d: int) -> void:
-	options.big_decimals = d
+	default_options.big_decimals = d
 
 
 ## Sets the scientific notation decimal digits option
 static func setScientificDecimals(d: int) -> void:
-	options.scientific_decimals = d
+	default_options.scientific_decimals = d
 
 
 ## Sets the logarithmic notation decimal digits option
 static func setLogarithmicDecimals(d: int) -> void:
+	default_options.logarithmic_decimals = d
+
+## Sets the Thousand name option override for this Big instance
+func setThousandNameOverride(name: String) -> Big:
+	options.thousand_name = name
+	return self
+
+## Sets the Thousand Separator option override for this Big instance
+func setThousandSeparatorOverride(separator: String) -> Big:
+	options.thousand_separator = separator
+	return self
+
+## Sets the Decimal Separator option override for this Big instance
+func setDecimalSeparatorOverride(separator: String) -> Big:
+	options.decimal_separator = separator
+	return self
+
+## Sets the Suffix Separator option override for this Big instance
+func setSuffixSeparatorOverride(separator: String) -> Big:
+	options.suffix_separator = separator
+	return self
+
+## Sets the Reading Separator option override for this Big instance
+func setReadingSeparatorOverride(separator: String) -> Big:
+	options.reading_separator = separator
+	return self
+
+## Sets the Dynamic Decimals option override for this Big instance
+func setDynamicDecimalsOverride(d: bool) -> Big:
+	options.dynamic_decimals = d
+	return self
+
+## Sets the Dynamic numbers digits option override for this Big instance
+func setDynamicNumbersOverride(d: int) -> Big:
+	options.dynamic_numbers = d
+	return self
+
+## Sets the small decimal digits option override for this Big instance
+func setSmallDecimalsOverride(d: int) -> Big:
+	options.small_decimals = d
+	return self
+
+## Sets the thousand decimal digits option override for this Big instance
+func setThousandDecimalsOverride(d: int) -> Big:
+	options.thousand_decimals = d
+	return self
+
+## Sets the big decimal digits option override for this Big instance
+func setBigDecimalsOverride(d: int) -> Big:
+	options.big_decimals = d
+	return self
+
+## Sets the scientific notation decimal digits option override for this Big instance
+func setScientificDecimalsOverride(d: int) -> Big:
+	options.scientific_decimals = d
+	return self
+
+## Sets the logarithmic notation decimal digits option override for this Big instance
+func setLogarithmicDecimalsOverride(d: int) -> Big:
 	options.logarithmic_decimals = d
+	return self
 
-
+func _to_string() -> String:
+	return toString()
+	
 ## Converts the Big Number into a string
 func toString() -> String:
 	var mantissa_decimals := 0

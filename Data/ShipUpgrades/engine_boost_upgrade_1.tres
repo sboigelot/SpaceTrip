@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=3 format=3 uid="uid://b7gjvmjhteamd"]
+
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrade.gd" id="1_mde7r"]
+[ext_resource type="PackedScene" uid="uid://5f3evw36yhrq" path="res://View/ShipUpgradeButtonView.tscn" id="2_elk04"]
+
+[resource]
+script = ExtResource("1_mde7r")
+ship_module_name = ""
+parent_purchases = Array[String]([])
+ore_cost_mantissa = 10.0
+ore_cost_exponent = 0
+property_to_increase = "engine_boost_duration_max"
+increase_mantissa = 1.0
+increase_exponent = 0
+increase_is_percent = false
+shop_item_button_view = ExtResource("2_elk04")
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

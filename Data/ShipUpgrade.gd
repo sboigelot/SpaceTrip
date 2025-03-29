@@ -4,15 +4,15 @@ extends Resource
 @export_group("Requirements")
 @export var ship_module_name: String
 @export var parent_purchases: Array[String]
-@export var scrap_cost_mantissa: float
-@export var scrap_cost_exponent: int
+@export var ore_cost_mantissa: float
+@export var ore_cost_exponent: int
 
-var _scrap_cost: Big
-var scrap_cost: Big:
+var _ore_cost: Big
+var ore_cost: Big:
 	get():
-		if _scrap_cost == null:
-			_scrap_cost = Big.new(scrap_cost_mantissa, scrap_cost_exponent)
-		return _scrap_cost
+		if _ore_cost == null:
+			_ore_cost = Big.new(ore_cost_mantissa, ore_cost_exponent)
+		return _ore_cost
 		
 @export_group("Impact")
 @export var property_to_increase: String
