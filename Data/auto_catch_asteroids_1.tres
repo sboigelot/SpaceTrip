@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=3 format=3 uid="uid://sbtydp5m24ka"]
+
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrade.gd" id="1_1qymk"]
+[ext_resource type="PackedScene" uid="uid://5f3evw36yhrq" path="res://View/ShopItemButtonView.tscn" id="2_n1sb4"]
+
+[resource]
+script = ExtResource("1_1qymk")
+scrap_cost = 25.0
+ship_module_name = ""
+property_to_increase = "auto_catch_asteroids"
+increase_value = 1.0
+increase_is_percent = false
+parent_purchases = Array[String](["base_speed_upgrade_1"])
+shop_item_button_view = ExtResource("2_n1sb4")
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

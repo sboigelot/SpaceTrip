@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://clw4hwx1ukirp"]
+
+[ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://SpaceTrip.gd" id="1_tp0y5"]
+
+[node name="SpaceTrip" type="Control" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label", "ui_scrap_label", "ui_shop_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tp0y5")
+ui_distance_label = NodePath("BoxContainer/DistanceLabel")
+ui_speed_label = NodePath("BoxContainer/SpeedLabel")
+ui_scrap_label = NodePath("BoxContainer/ScrapLabel")
+ui_shop_container = NodePath("BoxContainer/ShopBoxContainer")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+vertical = true
+
+[node name="DistanceLabel" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Dist: 0.0"
+
+[node name="SpeedLabel" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Speed: 0.0"
+
+[node name="EngineButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Engine"
+
+[node name="ScrapLabel" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Scrap: 0.0"
+
+[node name="AsteroidButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Asteroid"
+
+[node name="ShopBoxContainer" type="BoxContainer" parent="BoxContainer"]
+layout_mode = 2
+vertical = true
+
+[connection signal="pressed" from="BoxContainer/EngineButton" to="." method="_on_engine_button_pressed"]
+[connection signal="pressed" from="BoxContainer/AsteroidButton" to="." method="_on_asteroid_button_pressed"]
