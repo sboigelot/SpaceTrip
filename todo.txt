@@ -1,13 +1,13 @@
-add mode ADD / REPLACE / PERCENT to shop item value impact
--20 y pixel on target center asteroids due to laser size
 resource pictures and display
 mining other ore
 asteroid variety
-change background on speed breakthrough
-begining animation and mini text
 
-shop sorted by module
-better shop purchase display
+purchase "Engage Warp Speed" -> acc x 1000 -> require liquid fuel (from carbon)
+purchase "Enter Subspace" -> acc x 1000 -> require hydrogen (from water)
+purchase "Enter Hyperspace" -> acc x 1000 -> require mana (from pyralium)
+change background on enter other dimension
+
+begining animation and mini text
 
 maybe use slow version of grim music
 add sfx
@@ -19,4 +19,3 @@ save settings, allow option sound volume + fullscreen on /off
 add "check out our other games"
 
 add achievements? (take wake cup achievemnt layer)
-

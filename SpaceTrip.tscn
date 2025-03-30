@@ -1,17 +1,18 @@
-[gd_scene load_steps=27 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=29 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
-[ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship.gd" id="1_tp0y5"]
-[ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://ShipModules/CoreShipModule.gd" id="2_i2c18"]
+[ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship/Ship.gd" id="1_tp0y5"]
+[ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://Ship/ShipModules/CoreShipModule.gd" id="2_i2c18"]
+[ext_resource type="Script" uid="uid://ce3mk3t6pnsl0" path="res://Utilities/RichTextTooltip.gd" id="3_cfmqu"]
 [ext_resource type="Texture2D" uid="uid://b41b8pjawwt5t" path="res://Sprites/hull.png" id="3_i5j76"]
 [ext_resource type="Material" uid="uid://db4nowr7gcwtr" path="res://Shaders/canvas_group_outline_material.tres" id="3_v47jd"]
-[ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://ShipModules/EngineModule.gd" id="3_wqs7w"]
+[ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://Ship/ShipModules/EngineModule.gd" id="3_wqs7w"]
 [ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="4_5ampq"]
-[ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://ShipModules/MiningModule.gd" id="4_qkquj"]
+[ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://Ship/ShipModules/MiningModule.gd" id="4_qkquj"]
 [ext_resource type="PackedScene" uid="uid://bnwhr7jr64wwk" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="5_2xvgb"]
-[ext_resource type="Script" uid="uid://iigsupy7ia7q" path="res://ShipModules/RadarModule.gd" id="5_dt3j3"]
-[ext_resource type="Script" uid="uid://gvinpfgame2m" path="res://SynchronizedChildrenScale.gd" id="6_7ev53"]
+[ext_resource type="Script" uid="uid://iigsupy7ia7q" path="res://Ship/ShipModules/RadarModule.gd" id="5_dt3j3"]
+[ext_resource type="Script" uid="uid://gvinpfgame2m" path="res://Utilities/SynchronizedChildrenScale.gd" id="6_7ev53"]
 [ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/engine.png" id="6_8aiju"]
 [ext_resource type="Material" uid="uid://bra7sd3a51u2f" path="res://Shaders/fireball_shader_material.tres" id="7_g8p7d"]
 [ext_resource type="Material" uid="uid://dibchw3oboxt2" path="res://Shaders/smoke_shader_material.tres" id="8_su33w"]
@@ -48,6 +49,9 @@ font_size = 32
 content_margin_left = 3.0
 content_margin_top = 3.0
 bg_color = Color(0.65098, 0.188235, 0.65098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfmqu"]
+font_size = 18
 
 [sub_resource type="Animation" id="Animation_8aiju"]
 resource_name = "Bop"
@@ -214,23 +218,92 @@ vertical = true
 layout_mode = 2
 text = "Upgrades"
 label_settings = SubResource("LabelSettings_su33w")
-horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="UIContainer/ShopContainer/Shop"]
+visible = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_cfmqu")
 
-[node name="ShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+[node name="EngineTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+text = "Engine"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="EngineShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
 layout_mode = 2
 vertical = true
+
+[node name="RadarTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+text = "Radar"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="RadarShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+vertical = true
+
+[node name="MiningTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+text = "Mining"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="MiningShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+vertical = true
+
+[node name="CoreTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+text = "Core"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="CoreShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+vertical = true
+
+[node name="RichTextTooltip" type="Node2D" parent="UIContainer" node_paths=PackedStringArray("ui_tooltip_container", "ui_tooltip_rich_text_label")]
+script = ExtResource("3_cfmqu")
+ui_tooltip_container = NodePath("TooltipContainer")
+ui_tooltip_rich_text_label = NodePath("TooltipContainer/TooltipRichTextLabel")
+
+[node name="TooltipContainer" type="PanelContainer" parent="UIContainer/RichTextTooltip"]
+custom_minimum_size = Vector2(600, 0)
+offset_left = 400.0
+offset_right = 840.0
+offset_bottom = 137.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="TooltipRichTextLabel" type="RichTextLabel" parent="UIContainer/RichTextTooltip/TooltipContainer"]
+layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "this is a test
+this is a test
+this is a test"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 material = ExtResource("3_v47jd")
 
-[node name="Ship" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("ui_shop_container", "core", "engine", "radar", "mining")]
+[node name="Ship" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_tooltip", "core", "engine", "radar", "mining")]
 position = Vector2(960, 540)
 script = ExtResource("1_tp0y5")
-ui_shop_container = NodePath("../../UIContainer/ShopContainer/Shop/ShopBoxContainer")
+ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/CoreTitleLabel")
+ui_shop_container_core = NodePath("../../UIContainer/ShopContainer/Shop/CoreShopBoxContainer")
+ui_shop_container_engine_title = NodePath("../../UIContainer/ShopContainer/Shop/EngineTitleLabel")
+ui_shop_container_engine = NodePath("../../UIContainer/ShopContainer/Shop/EngineShopBoxContainer")
+ui_shop_container_radar_title = NodePath("../../UIContainer/ShopContainer/Shop/RadarTitleLabel")
+ui_shop_container_radar = NodePath("../../UIContainer/ShopContainer/Shop/RadarShopBoxContainer")
+ui_shop_container_mining_title = NodePath("../../UIContainer/ShopContainer/Shop/MiningTitleLabel")
+ui_shop_container_mining = NodePath("../../UIContainer/ShopContainer/Shop/MiningShopBoxContainer")
+ui_tooltip = NodePath("../../UIContainer/RichTextTooltip")
 core = NodePath("CoreModule")
 engine = NodePath("EngineModule")
 radar = NodePath("RadarModule")

@@ -10,7 +10,7 @@ impact_explanation = ""
 ship_module = "engine"
 property_impacted = "base_acceleration"
 impact_method = 4
-impact_value = 1.0
+impact_value = 0.25
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 

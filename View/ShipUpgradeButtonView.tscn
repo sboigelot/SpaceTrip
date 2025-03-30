@@ -18,12 +18,17 @@ theme_override_constants/separation = 8
 [node name="BuyShipUpgradeButton" type="Button" parent="BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_font_sizes/font_size = 24
-text = "buy"
+text = "display name"
 alignment = 0
 
 [node name="PriceLabel" type="Label" parent="BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "12 Titanium"
+mouse_filter = 1
+text = "cost"
 label_settings = SubResource("LabelSettings_0sm0c")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

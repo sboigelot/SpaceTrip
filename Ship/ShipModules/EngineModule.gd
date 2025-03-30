@@ -14,14 +14,12 @@ extends ShipModule
 
 @export_group("Module Properties")
 var base_acceleration := Big.ZERO().setSuffixSeparatorOverride(" ")
-var current_acceleration := Big.ZERO().setSuffixSeparatorOverride(" ")
-var base_acceleration_drag_factor_per_second: float = 1.0
 
 var engine_boost_duration_max: float = 3.0
 var engine_boost_duration_cooldown_max: float = 5.0
 var engine_boost_duration_left: float = 0.0
 var engine_boost_duration_cooldown: float = 0.0
-var engine_boost := Big.ONE().timesEquals(0.10)
+var engine_boost := Big.ONE()
 @export var engine_boost_curve: Curve
 
 var engine_auto_boost_cooldown_max: float = 0.0
@@ -53,6 +51,8 @@ func update_stats(delta: float) -> void:
 	if engine_boost_duration_left > 0.0:
 		engine_boost_duration_left -= delta
 		var boost_strength = get_boost_strength()
+		if boost_strength >= 1.0:
+			pass
 		var boost = engine_boost.times(boost_strength)
 		boosted_acceleration.plusEquals(boost)
 	elif engine_boost_duration_cooldown > 0.0:
@@ -62,11 +62,6 @@ func update_stats(delta: float) -> void:
 	if boosted_acceleration.isGreaterThan(0.0):
 		ship.core.speed.plusEquals(boosted_acceleration.times(delta))
 		
-	# drag acceleration --> WARNING NOT TESTED
-	if current_acceleration.isGreaterThan(base_acceleration):
-		var base_accleration_drag = 1.0 - base_acceleration_drag_factor_per_second * delta
-		current_acceleration.timesEquals(base_accleration_drag)
-	
 func update_ui():
 	super.update_ui()
 	

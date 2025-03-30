@@ -6,7 +6,16 @@ extends Node2D
 #####################
 
 @export_group("UI elements")
-@export var ui_shop_container: Container
+@export var ui_shop_container_core_title: Label
+@export var ui_shop_container_core: Container
+@export var ui_shop_container_engine_title: Label
+@export var ui_shop_container_engine: Container
+@export var ui_shop_container_radar_title: Label
+@export var ui_shop_container_radar: Container
+@export var ui_shop_container_mining_title: Label
+@export var ui_shop_container_mining: Container
+
+@export var ui_tooltip: RichTextTooltip
 
 @export_group("Ship Modules")
 @export var core: CoreShipModule
@@ -32,8 +41,33 @@ func _ready() -> void:
 		var shop_item_view:ShopItemViewBase = shop_item.shop_item_button_view.instantiate()
 		shop_item_view.ship = self
 		shop_item_view.data = shop_item
+		
+		var ui_shop_container = ui_shop_container_core
+		match shop_item.impacts[0].ship_module:
+			"core":
+				ui_shop_container = ui_shop_container_core
+			"engine":
+				ui_shop_container = ui_shop_container_engine
+			"radar":
+				ui_shop_container = ui_shop_container_radar
+			"mining":
+				ui_shop_container = ui_shop_container_mining
 		ui_shop_container.add_child(shop_item_view)
+	
+	update_ui()
 
+func update_ui():
+	ui_shop_container_core_title.visible = 		any_child_visible(ui_shop_container_core)
+	ui_shop_container_engine_title.visible = 	any_child_visible(ui_shop_container_engine)
+	ui_shop_container_radar_title.visible = 	any_child_visible(ui_shop_container_radar)
+	ui_shop_container_mining_title.visible =	any_child_visible(ui_shop_container_mining)
+
+func any_child_visible(container:Container):
+	for child in container.get_children(false):
+		if child.visible:
+			return true
+	return false
+	
 func purchase_shop_item(ship_upgrade:ShipUpgrade):
 	mining.titanium.minusEquals(ship_upgrade.titanium_cost)
 	
@@ -48,7 +82,8 @@ func purchase_shop_item(ship_upgrade:ShipUpgrade):
 	
 	purchased_items.append(purchase_name)
 	new_purchase_done.emit(purchase_name)
-		
+	update_ui()
+
 func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 	
 	var module = self
@@ -70,7 +105,7 @@ func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 			ShipUpgradeImpact.IMPACT_METHOD.REMOVE_PERCENT:
 				var percent = property.times(impact.impact_value)
 				property.minusEquals(percent)
-			ShipUpgradeImpact.IMPACT_METHOD.REPLACE:
+			ShipUpgradeImpact.IMPACT_METHOD.REPLACE_BY:
 				property.replace(impact.impact_big)
 	else:
 		match(impact.impact_method):
@@ -84,5 +119,5 @@ func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 			ShipUpgradeImpact.IMPACT_METHOD.REMOVE_PERCENT:
 				var percent = module[impact.property_impacted] * impact.impact_value
 				module[impact.property_impacted] -= percent
-			ShipUpgradeImpact.IMPACT_METHOD.REPLACE:
+			ShipUpgradeImpact.IMPACT_METHOD.REPLACE_BY:
 				module[impact.property_impacted] = impact.impact_value

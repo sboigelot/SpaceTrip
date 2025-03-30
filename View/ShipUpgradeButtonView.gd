@@ -50,5 +50,12 @@ func on_buy() -> void:
 	assert(ship != null)
 	assert(data != null)
 	ship.purchase_shop_item(data)
+	ship.ui_tooltip.close()
 	queue_free()
 	
+func _on_mouse_entered() -> void:
+	var tooltip_content = data.get_tooltip_content()
+	ship.ui_tooltip.open_and_move(tooltip_content, global_position, true)
+
+func _on_mouse_exited() -> void:
+	ship.ui_tooltip.close()

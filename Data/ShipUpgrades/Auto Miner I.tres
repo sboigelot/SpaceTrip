@@ -21,6 +21,6 @@ titanium_cost_exponent = 0
 parent_purchases = Array[String]([])
 impacts = Array[ExtResource("1_e3ixo")]([SubResource("Resource_3qpx3")])
 display_name = "Auto Miner I"
-lore_descripton = ""
+lore_descripton = "Idle to the max"
 shop_item_button_view = ExtResource("3_f2tqa")
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"
