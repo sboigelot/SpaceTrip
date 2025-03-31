@@ -45,6 +45,7 @@ script = ExtResource("2_ch8hk")
 debug_hook = false
 lore_descripton = ""
 parent_purchases = Array[String](["Plate Refining I"])
+parent_missions = Array[String]([])
 titanium_cost = SubResource("Resource_vypkk")
 impacts = Array[ExtResource("1_b6671")]([SubResource("Resource_4woyq"), SubResource("Resource_bcsg6"), SubResource("Resource_1m0s0")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

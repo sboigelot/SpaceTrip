@@ -9,6 +9,7 @@ extends Resource
 
 @export_group("Requirements")
 @export var parent_purchases: Array[String]
+@export var parent_missions: Array[String]
 @export var titanium_cost: Big
 @export var plate_cost: Big
 @export var carbon_cost: Big
@@ -37,6 +38,21 @@ var display_name: String:
 		return _display_name
 	set(value):
 		_display_name = value
+		
+var is_free: bool:
+	get():
+		return (
+			titanium_cost == null and
+			plate_cost == null and
+			carbon_cost == null and
+			liquid_fuel_cost == null and
+			water_cost == null and
+			hydrogen_cost == null and
+			palladium_cost == null and
+			electronic_cost == null and
+			pyralium_cost == null and
+			mana_cost == null
+		)
 		
 const shop_item_button_view: PackedScene = preload("res://View/ShipUpgradeButtonView.tscn")
 
@@ -67,7 +83,7 @@ func get_tooltip_content() -> String:
 			impact_descriptions += "\n%s %s%s" % [
 				prop_description,
 				(ShipUpgradeImpact.IMPACT_METHOD_FORMAT[impact.impact_method] % [
-					value.toMetricSymbol(true)
+					value.toMetricSymbol(false)
 				]),
 				prop_suffix
 			]

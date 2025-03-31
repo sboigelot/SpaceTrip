@@ -140,7 +140,7 @@ const latin_special: Array[String] = [
 static var default_options = {
 	"dynamic_decimals": false, 
 	"dynamic_numbers": 4, 
-	"small_decimals": 3, 
+	"small_decimals": 2, 
 	"thousand_decimals": 1, 
 	"big_decimals": 1, 
 	"scientific_decimals": 3, 
@@ -808,7 +808,7 @@ func toFloat() -> float:
 	return snappedf(float(str(mantissa) + "e" + str(exponent)),0.01)
 
 
-func toPrefix(no_decimals_on_small_values = false, use_thousand_symbol=true, force_decimals=true, scientic_prefix=false) -> String:
+func toPrefix(no_decimals_on_small_values = false, use_thousand_symbol=true, force_decimals=false, scientic_prefix=false) -> String:
 	var number: float = mantissa
 	if not scientic_prefix:
 		var hundreds = 1
@@ -934,15 +934,25 @@ func toLongName(no_decimals_on_small_values = false, european_system = false) ->
 
 
 ## Converts the Big Number into a string (in Metric Symbols format)
-func toMetricSymbol(no_decimals_on_small_values = false) -> String:
+func toMetricSymbol(no_decimals_on_small_values = false, trim_zero:bool = false) -> String:
 	@warning_ignore("integer_division")
 	var target := int(exponent / 3)
 
+	var metric_symbol: String
 	if not suffixes_metric_symbol.has(str(target)):
-		return toScientific()
+		metric_symbol = toScientific()
 	else:
-		return toPrefix(no_decimals_on_small_values) + options.suffix_separator + suffixes_metric_symbol[str(target)]
+		metric_symbol = toPrefix(no_decimals_on_small_values)
+		if trim_zero:
+			while (metric_symbol.find(options.decimal_separator) != -1 and
+				 	metric_symbol.length() > 0 and 
+					metric_symbol.right(1) == "0"):
+				metric_symbol = metric_symbol.trim_suffix("0")
+			metric_symbol = metric_symbol.trim_suffix(options.decimal_separator)
+		metric_symbol += options.suffix_separator + suffixes_metric_symbol[str(target)]
 
+		
+	return metric_symbol
 
 ## Converts the Big Number into a string (in Metric Name format)
 func toMetricName(no_decimals_on_small_values = false) -> String:

@@ -2,6 +2,7 @@ class_name MiningShipModule
 extends ShipModule
 
 @export_group("UI elements")
+@export var ui_mining_laser_container: Container
 @export var ui_mining_laser_label: Label
 @export var mining_ray_placeholder: Node2D
 @export var mining_ray_scene: PackedScene
@@ -18,7 +19,7 @@ var water_per_second_factor := Big.ONE()
 var palladium_per_second_factor := Big.ONE()
 var pyralium_per_second_factor := Big.ONE()
 
-var max_targeted_asteroids: int = 1
+var max_targeted_asteroids: int = 0
 var auto_mine_asteroid_count: int = 0
 var targeted_asteroids: Array[Asteroid]
 
@@ -69,6 +70,7 @@ func mine_asteroid_resource(core_stock:Big,
 	
 	
 func update_ui():
+	ui_mining_laser_container.visible = max_targeted_asteroids > 0
 	ui_mining_laser_label.text = "Mining laser: %d / %d%s" % [
 		targeted_asteroids.size(),
 		max_targeted_asteroids,

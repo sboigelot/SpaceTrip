@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dwi5g0f8p7xn2"]
+
+[ext_resource type="Shader" uid="uid://e4x6dg03s3jg" path="res://Shaders/hyperspace_shader_material.gdshader" id="1_dkbfp"]
+
+[resource]
+shader = ExtResource("1_dkbfp")
+shader_parameter/zoom = 1.0
+shader_parameter/NUM_LAYERS = 7.0
+shader_parameter/brightness1 = 0.8
+shader_parameter/brightness2 = 0.5
+shader_parameter/brightness3 = 0.2
+shader_parameter/twinkle = 2.0
+shader_parameter/star_rays = 1.0
+shader_parameter/speed = 0.5
+shader_parameter/color1 = Vector3(0.498, 0.588, 1.128)
+shader_parameter/color2 = Vector3(0.303, 0.388, 0.273)
+shader_parameter/color3 = Vector3(1.763, 0.938, 0.787)
+shader_parameter/color4 = Vector3(-2.982, 1.818, 1.948)
+shader_parameter/adjust_queue = Vector2(123.34, 456.821)

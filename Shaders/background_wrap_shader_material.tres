@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2vvp5ec8hglv"]
+
+[ext_resource type="Shader" uid="uid://c7ynvgwm3v5vi" path="res://Shaders/subspace_shader_material.gdshader" id="1_77j4b"]
+
+[resource]
+shader = ExtResource("1_77j4b")
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/wave_color = Color(0.768627, 0.741176, 4, 1)
+shader_parameter/wave_transparency = 1.0

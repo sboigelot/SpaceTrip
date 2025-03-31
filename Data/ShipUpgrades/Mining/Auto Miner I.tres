@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_bqksp"]
 script = ExtResource("3_8ammv")
-mantissa = 100.0
+mantissa = 50.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
@@ -24,7 +24,8 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 script = ExtResource("2_th20j")
 debug_hook = false
 lore_descripton = "Idle to the max"
-parent_purchases = Array[String]([])
+parent_purchases = Array[String](["Repair Mining Laser"])
+parent_missions = Array[String]([])
 titanium_cost = SubResource("Resource_bqksp")
 impacts = Array[ExtResource("1_e3ixo")]([SubResource("Resource_3qpx3")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

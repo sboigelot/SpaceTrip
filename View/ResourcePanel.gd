@@ -21,13 +21,8 @@ func _process(delta: float) -> void:
 	update_ui()
 	
 func update_ui():
-	var module = self
-	if ship_module != "":
-		module = ship[ship_module]
-		assert(module != null)
 	
-	var property = module[property_bound]
-	assert(property != null)
+	var property = ship.get_ship_property(ship_module, property_bound)
 	
 	if property is Big:
 		visible = visible_once or property.isGreaterThan(0.0)

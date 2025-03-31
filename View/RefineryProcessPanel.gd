@@ -46,4 +46,8 @@ func update_ui():
 	ui_progress_bar.value = get_refining_progress() / get_refining_duration()
 
 func _on_check_box_toggled(toggled_on: bool) -> void:
-	ship.refinery.active_refining_output = ship.refinery["%s" % resource_output]
+	if toggled_on:
+		ship.refinery.active_refining_output = ship.refinery["%s" % resource_output]
+	elif ship.refinery["%s" % resource_output] == ship.refinery.active_refining_output:
+		ship.refinery.active_refining_output = null
+		

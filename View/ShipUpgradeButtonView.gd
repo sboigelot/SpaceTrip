@@ -31,6 +31,7 @@ var data: ShipUpgrade
 func _ready() -> void:
 	ui_buy_button.pressed.connect(on_buy)
 	ship.new_purchase_done.connect(on_new_ship_purchase_done)
+	ship.new_mission_completed.connect(on_new_mission_completed)
 	check_availability(true)
 	first_update_ui()
 	update_ui()
@@ -56,14 +57,14 @@ func update_resouce_cost(cost: Big, ui_panel: PanelContainer, ui_label: Label):
 	if cost == null or cost.isLessThanOrEqualTo(0.0):
 		ui_panel.queue_free()
 	else:
-		ui_label.text = cost.toMetricSymbol(true)
+		ui_label.text = cost.toMetricSymbol(true, true)
 	
 func on_new_ship_purchase_done(purchase_name):
 	check_availability(false)
+	
+func on_new_mission_completed(purchase_name):
+	check_availability(false)
 
-# can be improved by copying the array on ready and removing the done items 
-# on every new purchase
-# visible = list empty
 func check_availability(force_check:bool):
 	if not force_check and visible:
 		return
@@ -71,6 +72,11 @@ func check_availability(force_check:bool):
 	if data.debug_hook:
 		pass
 		
+	for parent_missions in data.parent_missions:
+		if not ship.mission_completed.has(parent_missions):
+			visible = false
+			return
+			
 	for parent_purchase in data.parent_purchases:
 		if not ship.purchased_items.has(parent_purchase):
 			visible = false
@@ -90,19 +96,22 @@ func update_ui() -> void:
 	
 	if not visible:
 		return
-		
-	ui_buy_button.disabled = (
-		(data.titanium_cost == null 	or ship.mining.titanium.isLessThan(data.titanium_cost)) and
-		(data.plate_cost == null 		or ship.refinery.plate.isLessThan(data.plate_cost)) and
-		(data.carbon_cost == null 		or ship.mining.carbon.isLessThan(data.carbon_cost)) and
-		(data.liquid_fuel_cost == null 	or ship.refinery.liquid_fuel.isLessThan(data.liquid_fuel_cost)) and
-		(data.water_cost == null 		or ship.mining.water.isLessThan(data.water_cost)) and
-		(data.hydrogen_cost == null 	or ship.refinery.hydrogen.isLessThan(data.hydrogen_cost)) and
-		(data.palladium_cost == null 	or ship.mining.palladium.isLessThan(data.palladium_cost)) and
-		(data.electronic_cost == null 	or ship.refinery.electronic.isLessThan(data.electronic_cost)) and
-		(data.pyralium_cost == null 	or ship.mining.pyralium.isLessThan(data.pyralium_cost)) and
-		(data.mana_cost == null 		or ship.refinery.mana.isLessThan(data.mana_cost))
-	)
+	
+	if ship.god_mode or data.is_free:
+		ui_buy_button.disabled = false
+	else:
+		ui_buy_button.disabled = (
+			(data.titanium_cost != null 	and ship.mining.titanium.isLessThan(data.titanium_cost)) or
+			(data.plate_cost != null 		and ship.refinery.plate.isLessThan(data.plate_cost)) or
+			(data.carbon_cost != null 		and ship.mining.carbon.isLessThan(data.carbon_cost)) or
+			(data.liquid_fuel_cost != null 	and ship.refinery.liquid_fuel.isLessThan(data.liquid_fuel_cost)) or
+			(data.water_cost != null 		and ship.mining.water.isLessThan(data.water_cost)) or
+			(data.hydrogen_cost != null 	and ship.refinery.hydrogen.isLessThan(data.hydrogen_cost)) or
+			(data.palladium_cost != null 	and ship.mining.palladium.isLessThan(data.palladium_cost)) or
+			(data.electronic_cost != null 	and ship.refinery.electronic.isLessThan(data.electronic_cost)) or
+			(data.pyralium_cost != null 	and ship.mining.pyralium.isLessThan(data.pyralium_cost)) or
+			(data.mana_cost != null 		and ship.refinery.mana.isLessThan(data.mana_cost))
+		)
 
 func on_buy() -> void:
 	assert(ship != null)

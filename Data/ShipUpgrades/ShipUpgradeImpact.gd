@@ -11,19 +11,22 @@ const property_display_names: Dictionary = {
 	"max_asteroids": "Maximum asteroid",
 	"engine_boost_duration_max": "Engine boost duration",
 	"engine_boost_duration_cooldown_max": "Engine boost cooldown",
-	"titanium_per_second_factor": "Titanium mining efficiency"
+	"titanium_per_second_factor": "Titanium mining efficiency",
+	"plate_refining_duration": "Plate refining duration",
+	"plate_refining_input_titanium": "Plate refining input",
+	"plate_refining_output_efficiency": "Plate refining efficiency",
+	"asteroid_spawn_titanium_chance": "Chance of titanium asteroid",
+	"asteroid_spawn_carbon_chance": "Chance of carbon asteroid",
 }
 
 const property_display_suffixes: Dictionary = {
 	"engine_auto_boost_cooldown_max": "s",
-	"auto_mine_asteroid_count": "",
 	"base_acceleration": "m/s/s",
 	"engine_boost": "m/s",
-	"max_targeted_asteroids": "",
-	"max_asteroids": "",
 	"engine_boost_duration_max": "s",
 	"engine_boost_duration_cooldown_max": "s",
-	"titanium_per_second_factor": ""
+	"plate_refining_duration": "s",
+	"plate_refining_input_titanium": "titanium",
 }
 
 const IMPACT_METHOD_FORMAT: Dictionary = {

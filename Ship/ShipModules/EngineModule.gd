@@ -99,7 +99,7 @@ func update_ui():
 		ui_engine_smoke.children_scale_factor = 2.0
 		ui_engine_smoke.children_scale = Vector2.ONE * engine_boost_duration_cooldown / engine_boost_duration_cooldown_max
 		ui_boost_progress.modulate = Color.WHITE
-		ui_engine_sprite.modulate = Color.WHITE
+		ui_engine_sprite.modulate = Color.WHITE if not mouse_over else Color.GRAY
 
 	ui_auto_boost_container.visible = engine_auto_boost_cooldown_max > 0.0
 	ui_auto_boost_progress.max_value = engine_auto_boost_cooldown_max

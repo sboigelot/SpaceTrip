@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2dkytfduaj8w"]
+
+[ext_resource type="Script" uid="uid://cghxhy5i0yidv" path="res://View/MissionView.gd" id="1_pcuk3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mnhhu"]
+font_size = 24
+
+[node name="MissionView" type="MarginContainer" node_paths=PackedStringArray("ui_goal_label", "ui_progress_bar")]
+size_flags_horizontal = 3
+script = ExtResource("1_pcuk3")
+ui_goal_label = NodePath("BoxContainer/GoalLabel")
+ui_progress_bar = NodePath("BoxContainer/MissionProgressBar")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+vertical = true
+
+[node name="GoalLabel" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Goal text"
+label_settings = SubResource("LabelSettings_mnhhu")
+
+[node name="MissionProgressBar" type="ProgressBar" parent="BoxContainer"]
+custom_minimum_size = Vector2(400, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+max_value = 1.0
+show_percentage = false
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

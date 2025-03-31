@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cbk04h8i7wev0"]
+
+[ext_resource type="Shader" uid="uid://dpbkjup0v1pe4" path="res://Shaders/wrap_space_shader_material.gdshader" id="1_oxqx4"]
+
+[resource]
+shader = ExtResource("1_oxqx4")
+shader_parameter/spin_rotation_speed = 0.25
+shader_parameter/move_speed = 5.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0, 0, 0, 1)
+shader_parameter/colour_2 = Color(0, 0.709804, 0.705882, 1)
+shader_parameter/colour_3 = Color(0.0862745, 0.360784, 0.490196, 1)
+shader_parameter/contrast = 3.5
+shader_parameter/lighting = 0.4
+shader_parameter/spin_amount = 0.25
+shader_parameter/pixel_filter = 1920.0
+shader_parameter/is_rotating = true

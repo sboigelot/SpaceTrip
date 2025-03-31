@@ -1,9 +1,11 @@
-[gd_scene load_steps=58 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=63 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
 [ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship/Ship.gd" id="1_tp0y5"]
+[ext_resource type="Material" uid="uid://d2vvp5ec8hglv" path="res://Shaders/background_wrap_shader_material.tres" id="2_fmtom"]
 [ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://Ship/ShipModules/CoreShipModule.gd" id="2_i2c18"]
+[ext_resource type="Material" uid="uid://cbk04h8i7wev0" path="res://Shaders/wrap_space_shader_material.tres" id="2_vvaot"]
 [ext_resource type="Texture2D" uid="uid://buu4g7yet06gd" path="res://Sprites/UI/cb-checked.png" id="3_5wn8v"]
 [ext_resource type="Script" uid="uid://cb64ig84dov3c" path="res://RefineryHud.gd" id="3_26kmh"]
 [ext_resource type="Script" uid="uid://ce3mk3t6pnsl0" path="res://Utilities/RichTextTooltip.gd" id="3_cfmqu"]
@@ -12,9 +14,11 @@
 [ext_resource type="Script" uid="uid://cnar8mct5q1t3" path="res://View/RefineryProcessPanel.gd" id="3_lx2c6"]
 [ext_resource type="Script" uid="uid://b20qytjxlvosn" path="res://View/ResourcePanel.gd" id="3_pljlk"]
 [ext_resource type="Texture2D" uid="uid://djx32u85qgjbj" path="res://Sprites/Items/titanium.png" id="3_svbfm"]
+[ext_resource type="Script" uid="uid://hgd34vmp8b41" path="res://Shaders/SubSpace.gd" id="3_v2ctf"]
 [ext_resource type="Material" uid="uid://db4nowr7gcwtr" path="res://Shaders/canvas_group_outline_material.tres" id="3_v47jd"]
 [ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://Ship/ShipModules/EngineModule.gd" id="3_wqs7w"]
 [ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="4_5ampq"]
+[ext_resource type="Material" uid="uid://dwi5g0f8p7xn2" path="res://Shaders/hyperspace_shader_material.tres" id="4_hmren"]
 [ext_resource type="Texture2D" uid="uid://cw4ng3ompu6j" path="res://Sprites/Items/plate.png" id="4_j376e"]
 [ext_resource type="Texture2D" uid="uid://5fegtfn604da" path="res://Sprites/UI/cb-unchecked.png" id="4_lx2c6"]
 [ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://Ship/ShipModules/MiningModule.gd" id="4_qkquj"]
@@ -32,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://cwqmimjkf8ubh" path="res://Sprites/Items/hydrogen.png" id="8_segi0"]
 [ext_resource type="Material" uid="uid://dibchw3oboxt2" path="res://Shaders/smoke_shader_material.tres" id="8_su33w"]
 [ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/rare_ore.png" id="9_b1kpa"]
+[ext_resource type="Material" uid="uid://cxdkgla1n5r7t" path="res://Shaders/transition_shader_material.tres" id="9_vkh00"]
 [ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_ejfde"]
 [ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="11_7aab3"]
 [ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/Ship/mining.png" id="14_20yo5"]
@@ -65,13 +70,13 @@ corner_radius_bottom_left = 5
 shadow_size = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_su33w"]
-font_size = 32
+font_size = 28
 
 [sub_resource type="LabelSettings" id="LabelSettings_ahis8"]
-font_size = 32
+font_size = 28
 
 [sub_resource type="LabelSettings" id="LabelSettings_sbeg1"]
-font_size = 32
+font_size = 28
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_y637g"]
 allow_unpress = true
@@ -128,13 +133,56 @@ point_count = 4
 
 [node name="BackgroundEffects" type="Node2D" parent="."]
 
+[node name="VoidOfSpace" type="ColorRect" parent="BackgroundEffects"]
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="ScrollingStars" type="ColorRect" parent="BackgroundEffects"]
+visible = false
 material = ExtResource("1_gxo1i")
 custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="WrapSpace" type="ColorRect" parent="BackgroundEffects"]
+visible = false
+material = ExtResource("2_vvaot")
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="SubSpace" type="ColorRect" parent="BackgroundEffects"]
+visible = false
+material = ExtResource("2_fmtom")
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("3_v2ctf")
+
+[node name="HyperSpace" type="ColorRect" parent="BackgroundEffects"]
+visible = false
+material = ExtResource("4_hmren")
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+rotation = 3.14159
+pivot_offset = Vector2(960, 540)
+mouse_filter = 2
+
+[node name="TransitionOverlay" type="ColorRect" parent="BackgroundEffects"]
+visible = false
+material = ExtResource("9_vkh00")
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="SpeedLines" type="ColorRect" parent="BackgroundEffects"]
 visible = false
@@ -213,6 +261,39 @@ layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
 show_percentage = false
+
+[node name="MissionHUD" type="PanelContainer" parent="UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MissionHUD"]
+layout_mode = 2
+vertical = true
+
+[node name="MissionTitle" type="BoxContainer" parent="UIContainer/MissionHUD/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ShopTitleLabel" type="Label" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle"]
+layout_mode = 2
+text = "Missions"
+label_settings = SubResource("LabelSettings_su33w")
+
+[node name="ShopEyeCheckBox" type="CheckBox" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle" node_paths=PackedStringArray("target")]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("3_ltq8v")
+theme_override_icons/unchecked = ExtResource("4_sbeg1")
+button_pressed = true
+script = ExtResource("5_sbeg1")
+target = NodePath("../../MissionContainer")
+metadata/_custom_type_script = "uid://bdvfbm07hftq3"
+
+[node name="MissionContainer" type="BoxContainer" parent="UIContainer/MissionHUD/BoxContainer"]
+layout_mode = 2
+vertical = true
 
 [node name="MiningHUD" type="BoxContainer" parent="UIContainer"]
 layout_mode = 2
@@ -793,7 +874,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_gxo1i")
 
 [node name="ShopContainer" type="PanelContainer" parent="UIContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -857,14 +938,19 @@ label_settings = SubResource("LabelSettings_cfmqu")
 layout_mode = 2
 vertical = true
 
+[node name="NoneAvailableLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+text = "No upgrade available"
+label_settings = SubResource("LabelSettings_cfmqu")
+
 [node name="ShopEyeContainer" type="MarginContainer" parent="UIContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="ShopEyeCheckBox" type="CheckBox" parent="UIContainer/ShopEyeContainer" node_paths=PackedStringArray("target")]
 layout_mode = 2
@@ -877,6 +963,7 @@ target = NodePath("../../ShopContainer/Shop")
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="RichTextTooltip" type="Node2D" parent="UIContainer" node_paths=PackedStringArray("ui_tooltip_container", "ui_tooltip_rich_text_label")]
+visible = false
 script = ExtResource("3_cfmqu")
 ui_tooltip_container = NodePath("TooltipContainer")
 ui_tooltip_rich_text_label = NodePath("TooltipContainer/TooltipRichTextLabel")
@@ -908,9 +995,11 @@ shortcut_keys_enabled = false
 [node name="ShipCanvasGroup" type="CanvasGroup" parent="."]
 material = ExtResource("3_v47jd")
 
-[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
+[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_mission_container", "ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_shop_container_no_upgrade_title", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
 position = Vector2(960, 540)
 script = ExtResource("1_tp0y5")
+god_mode = true
+ui_mission_container = NodePath("../../UIContainer/MissionHUD/BoxContainer/MissionContainer")
 ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/CoreTitleLabel")
 ui_shop_container_core = NodePath("../../UIContainer/ShopContainer/Shop/CoreShopBoxContainer")
 ui_shop_container_engine_title = NodePath("../../UIContainer/ShopContainer/Shop/EngineTitleLabel")
@@ -921,6 +1010,7 @@ ui_shop_container_mining_title = NodePath("../../UIContainer/ShopContainer/Shop/
 ui_shop_container_mining = NodePath("../../UIContainer/ShopContainer/Shop/MiningShopBoxContainer")
 ui_shop_container_refinery_title = NodePath("../../UIContainer/ShopContainer/Shop/RefineryTitleLabel")
 ui_shop_container_refinery = NodePath("../../UIContainer/ShopContainer/Shop/RefineryShopBoxContainer")
+ui_shop_container_no_upgrade_title = NodePath("../../UIContainer/ShopContainer/Shop/NoneAvailableLabel")
 ui_tooltip = NodePath("../../UIContainer/RichTextTooltip")
 ui_shop_eye = NodePath("../../UIContainer/ShopEyeContainer/ShopEyeCheckBox")
 core = NodePath("CoreModule")
@@ -939,10 +1029,12 @@ script = ExtResource("4_5ampq")
 auto_start_animation = "Bop"
 metadata/_custom_type_script = "uid://0epgfa68wioe"
 
-[node name="CoreModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label")]
+[node name="CoreModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label", "dimension_backgrounds", "dimension_transition_overlay")]
 script = ExtResource("2_i2c18")
 ui_distance_label = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/DistanceLabel")
 ui_speed_label = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/SpeedLabel")
+dimension_backgrounds = [NodePath("../../../BackgroundEffects/ScrollingStars"), NodePath("../../../BackgroundEffects/WrapSpace"), NodePath("../../../BackgroundEffects/SubSpace"), NodePath("../../../BackgroundEffects/HyperSpace")]
+dimension_transition_overlay = NodePath("../../../BackgroundEffects/TransitionOverlay")
 metadata/_custom_type_script = "uid://bf3mh7sr0282d"
 
 [node name="HullSprite2D" type="Sprite2D" parent="ShipCanvasGroup/Ship/CoreModule"]
@@ -1063,8 +1155,9 @@ asteroid_placeholder = NodePath("../../../Asteroids")
 asteroid_scenes = Array[PackedScene]([ExtResource("5_2xvgb"), ExtResource("29_y637g"), ExtResource("30_m1228"), ExtResource("31_hibut"), ExtResource("32_5wn8v"), ExtResource("33_lx2c6"), ExtResource("34_26kmh"), ExtResource("35_fmtom"), ExtResource("36_v2ctf"), ExtResource("37_hmren")])
 metadata/_custom_type_script = "uid://iigsupy7ia7q"
 
-[node name="MiningModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_mining_laser_label", "mining_ray_placeholder")]
+[node name="MiningModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_mining_laser_container", "ui_mining_laser_label", "mining_ray_placeholder")]
 script = ExtResource("4_qkquj")
+ui_mining_laser_container = NodePath("../../../UIContainer/MiningHUD/MiningHUD")
 ui_mining_laser_label = NodePath("../../../UIContainer/MiningHUD/MiningHUD/MiningLaserLabel")
 mining_ray_placeholder = NodePath("MiningRays")
 mining_ray_scene = ExtResource("14_g7nme")

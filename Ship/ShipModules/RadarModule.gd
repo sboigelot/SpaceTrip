@@ -16,7 +16,7 @@ var last_asteroid_spawn_distance: Big = Big.ONE().timesEquals(-25.0)
 var asteroid_spawn_min_mining_time_available: float = 20.0
 var asteroid_spawn_max_mining_time_available: float = 30.0
 
-var asteroid_spawn_titanium_chance: float = 2.0
+var asteroid_spawn_titanium_chance: float = 1.0
 var asteroid_spawn_carbon_chance: float = 0.0
 var asteroid_spawn_water_chance: float = 0.0
 var asteroid_spawn_palladium_chance: float = 0.0
@@ -79,8 +79,8 @@ func spawn_asteroid():
 	
 	var viewport_size = asteroid.get_viewport_rect().size
 	var y_position = randf_range(64, viewport_size.y - 64)
-	if abs(y_position - viewport_size.y) < 50.0:
-		y_position += 50.0
+	if abs(y_position - viewport_size.y / 2.0) < 64.0:
+		y_position += 64.0
 	asteroid.position = Vector2(
 		viewport_size.x + 64,
 		y_position

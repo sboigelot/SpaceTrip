@@ -5,7 +5,12 @@ extends Node2D
 #		EXPORTS		#
 #####################
 
+@export_group("Debug")
+
+@export var god_mode: bool = false
+
 @export_group("UI elements")
+@export var ui_mission_container: Container
 @export var ui_shop_container_core_title: Label
 @export var ui_shop_container_core: Container
 @export var ui_shop_container_engine_title: Label
@@ -16,6 +21,7 @@ extends Node2D
 @export var ui_shop_container_mining: Container
 @export var ui_shop_container_refinery_title: Label
 @export var ui_shop_container_refinery: Container
+@export var ui_shop_container_no_upgrade_title: Label
 
 @export var ui_tooltip: RichTextTooltip
 @export var ui_shop_eye: VisibilityControlCheckBox
@@ -32,13 +38,33 @@ extends Node2D
 #####################
 
 signal new_purchase_done(purchase_name)
+signal new_mission_completed(mission_name)
 
 #####################
 
 var shop_items: Array[ShipUpgrade]
 var purchased_items: Array[String]
 
+var missions: Array[Mission]
+var mission_completed: Array[String]
+
 func _ready() -> void:
+	load_missions()
+	load_shop()
+	check_shop_dependencies()
+	check_mission_dependencies()
+	update_ui()
+
+func load_missions():
+	missions.assign(ResourceFinder.get_resources_in_folder("res://Data/Missions/", ".tres", true))
+	
+	for mission in missions:
+		var mission_view:MissionView = mission.mission_view.instantiate()
+		mission_view.ship = self
+		mission_view.data = mission
+		ui_mission_container.add_child(mission_view)
+	
+func load_shop():
 	shop_items.assign(ResourceFinder.get_resources_in_folder("res://Data/ShipUpgrades/", ".tres", true))
 	
 	for shop_item in shop_items:
@@ -59,8 +85,52 @@ func _ready() -> void:
 			"refinery":
 				ui_shop_container = ui_shop_container_refinery
 		ui_shop_container.add_child(shop_item_view)
+
+func shop_item_exist(display_name: String)-> bool:
+	var found = false
+	for shop_item in shop_items:
+		if shop_item.display_name == display_name:
+			found = true
+			break
+	return found
 	
-	update_ui()
+func mission_exist(display_name: String)-> bool:
+	var found = false
+	for mission in missions:
+		if mission.display_name == display_name:
+			found = true
+			break
+	return found
+	
+func check_shop_dependencies():
+	for shop_item in shop_items:
+		for parent_shop_item in shop_item.parent_purchases:
+			if not shop_item_exist(parent_shop_item):
+				printerr("In shop item '%s', parent purchase not found: '%s'" % [
+					shop_item.display_name,
+					parent_shop_item
+				])
+		for parent_mission in shop_item.parent_missions:
+			if not mission_exist(parent_mission):
+				printerr("In shop item '%s', parent mission not found: '%s'" % [
+					shop_item.display_name,
+					parent_mission
+				])
+
+func check_mission_dependencies():
+	for mission in missions:
+		for parent_shop_item in mission.parent_purchases:
+			if not shop_item_exist(parent_shop_item):
+				printerr("In mission '%s', parent purchase not found: '%s'" % [
+					mission.display_name,
+					parent_shop_item
+				])
+		for parent_mission in mission.parent_missions:
+			if not mission_exist(parent_mission):
+				printerr("In mission '%s', parent mission not found: '%s'" % [
+					mission.display_name,
+					parent_mission
+				])
 
 func update_ui():
 	ui_shop_container_core_title.visible = 		any_child_visible(ui_shop_container_core)
@@ -68,15 +138,22 @@ func update_ui():
 	ui_shop_container_radar_title.visible = 	any_child_visible(ui_shop_container_radar)
 	ui_shop_container_mining_title.visible =	any_child_visible(ui_shop_container_mining)
 	ui_shop_container_refinery_title.visible =	any_child_visible(ui_shop_container_refinery)
+	
+	ui_shop_container_no_upgrade_title.visible = (
+		not ui_shop_container_core_title.visible and
+		not ui_shop_container_engine_title.visible and
+		not ui_shop_container_radar_title.visible and
+		not ui_shop_container_mining_title.visible and
+		not ui_shop_container_refinery_title.visible
+	)
 
 func any_child_visible(container:Container):
 	for child in container.get_children(false):
 		if child.visible and not child.is_queued_for_deletion():
 			return true
 	return false
-	
-func purchase_shop_item(ship_upgrade:ShipUpgrade):
-	
+
+func pay_for_shop_item(ship_upgrade:ShipUpgrade):
 	if ship_upgrade.titanium_cost != null:
 		mining.titanium.minusEquals(ship_upgrade.titanium_cost)
 	if ship_upgrade.plate_cost != null:
@@ -102,6 +179,10 @@ func purchase_shop_item(ship_upgrade:ShipUpgrade):
 	if ship_upgrade.mana_cost != null:
 		refinery.mana.minusEquals(ship_upgrade.mana_cost)
 	
+func purchase_shop_item(ship_upgrade: ShipUpgrade):
+	
+	if not god_mode:
+		pay_for_shop_item(ship_upgrade)
 		
 	for impact in ship_upgrade.impacts:
 		_apply_ship_upgrade_impact(impact)
@@ -109,16 +190,29 @@ func purchase_shop_item(ship_upgrade:ShipUpgrade):
 	purchased_items.append(ship_upgrade.display_name)
 	new_purchase_done.emit(ship_upgrade.display_name)
 	update_ui()
+	
+func complete_mission(mission: Mission):
+	mission_completed.append(mission.display_name)
+	new_mission_completed.emit(mission.display_name)
+	update_ui()
 
+func get_ship_module(module_name:String):
+	var module = self
+	if module_name != "":
+		module = self[module_name]
+		assert(module != null)
+	return module
+	
+func get_ship_property(module_name:String, property_name:String):
+	var module = get_ship_module(module_name)
+	var property = module[property_name]
+	assert(property != null)
+	return property
+	
 func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 	
-	var module = self
-	if impact.ship_module != "":
-		module = self[impact.ship_module]
-		assert(module != null)
+	var property = get_ship_property(impact.ship_module, impact.property_impacted)
 	
-	var property = module[impact.property_impacted]
-	assert(property != null)
 	if property is Big:
 		match(impact.impact_method):
 			ShipUpgradeImpact.IMPACT_METHOD.ADD:
@@ -134,6 +228,7 @@ func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 			ShipUpgradeImpact.IMPACT_METHOD.REPLACE_BY:
 				property.replace(impact.impact_big)
 	else:
+		var module = get_ship_module(impact.ship_module)
 		match(impact.impact_method):
 			ShipUpgradeImpact.IMPACT_METHOD.ADD:
 				module[impact.property_impacted] += impact.impact_value
