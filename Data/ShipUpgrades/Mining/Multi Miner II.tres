@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=6 format=3 uid="uid://lxsimvouk6xi"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_l0kvy"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_n1y46"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="3_fcknw"]
+
+[sub_resource type="Resource" id="Resource_l0kvy"]
+script = ExtResource("1_l0kvy")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "max_targeted_asteroids"
+impact_method = 4
+impact_value = 3.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_n1y46"]
+script = ExtResource("3_fcknw")
+mantissa = 500.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("2_n1y46")
+debug_hook = false
+display_name = "Multi Miner II"
+lore_descripton = ""
+parent_purchases = Array[String](["Multi Miner I"])
+titanium_cost = SubResource("Resource_n1y46")
+impacts = Array[ExtResource("1_l0kvy")]([SubResource("Resource_l0kvy")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

@@ -1,15 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://5f3evw36yhrq"]
+[gd_scene load_steps=13 format=3 uid="uid://5f3evw36yhrq"]
 
 [ext_resource type="Script" uid="uid://beoauneavc0r7" path="res://View/ShipUpgradeButtonView.gd" id="1_4cr3g"]
+[ext_resource type="Texture2D" uid="uid://djx32u85qgjbj" path="res://Sprites/Items/titanium.png" id="2_cl15n"]
+[ext_resource type="Texture2D" uid="uid://cw4ng3ompu6j" path="res://Sprites/Items/plate.png" id="3_b3dwt"]
+[ext_resource type="Texture2D" uid="uid://bg2ukgh2ok5f4" path="res://Sprites/Items/carbon.png" id="4_bnru3"]
+[ext_resource type="Texture2D" uid="uid://3i0hubt1jsm1" path="res://Sprites/Items/liquid-fuel.png" id="5_2hx8k"]
+[ext_resource type="Texture2D" uid="uid://duc4xdlobempm" path="res://Sprites/Items/water.png" id="6_hxcaf"]
+[ext_resource type="Texture2D" uid="uid://cwqmimjkf8ubh" path="res://Sprites/Items/hydrogen.png" id="7_trqc2"]
+[ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/rare_ore.png" id="8_erw57"]
+[ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="9_d2plb"]
+[ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_3g3lu"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_0sm0c"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_odi84"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jppu1"]
 font_size = 24
 
-[node name="ShipUpgradeButtonView" type="MarginContainer" node_paths=PackedStringArray("ui_buy_button", "ui_price_label")]
+[node name="ShipUpgradeButtonView" type="MarginContainer" node_paths=PackedStringArray("ui_buy_button", "ui_panel_titanium", "ui_label_titanium", "ui_panel_plate", "ui_label_plate", "ui_panel_carbon", "ui_label_carbon", "ui_panel_liquid_fuel", "ui_label_liquid_fuel", "ui_panel_water", "ui_label_water", "ui_panel_hydrogen", "ui_label_hydrogen", "ui_panel_palladium", "ui_label_palladium", "ui_panel_electronic", "ui_label_electronic", "ui_panel_pyralium", "ui_label_pyralium", "ui_panel_mana", "ui_label_mana")]
 size_flags_horizontal = 3
 script = ExtResource("1_4cr3g")
 ui_buy_button = NodePath("BoxContainer/BuyShipUpgradeButton")
-ui_price_label = NodePath("BoxContainer/PriceLabel")
+ui_panel_titanium = NodePath("BoxContainer/TitaniumPanel")
+ui_label_titanium = NodePath("BoxContainer/TitaniumPanel/BoxContainer/Label")
+ui_panel_plate = NodePath("BoxContainer/PlatePanel")
+ui_label_plate = NodePath("BoxContainer/PlatePanel/BoxContainer/Label")
+ui_panel_carbon = NodePath("BoxContainer/CarbonPanel")
+ui_label_carbon = NodePath("BoxContainer/CarbonPanel/BoxContainer/Label")
+ui_panel_liquid_fuel = NodePath("BoxContainer/LiquidFuelPanel")
+ui_label_liquid_fuel = NodePath("BoxContainer/LiquidFuelPanel/BoxContainer/Label")
+ui_panel_water = NodePath("BoxContainer/WaterPanel")
+ui_label_water = NodePath("BoxContainer/WaterPanel/BoxContainer/Label")
+ui_panel_hydrogen = NodePath("BoxContainer/HydrogenPanel")
+ui_label_hydrogen = NodePath("BoxContainer/HydrogenPanel/BoxContainer/Label")
+ui_panel_palladium = NodePath("BoxContainer/PalladiumPanel")
+ui_label_palladium = NodePath("BoxContainer/PalladiumPanel/BoxContainer/Label")
+ui_panel_electronic = NodePath("BoxContainer/ElectronicPanel")
+ui_label_electronic = NodePath("BoxContainer/ElectronicPanel/BoxContainer/Label")
+ui_panel_pyralium = NodePath("BoxContainer/PyraliumPanel")
+ui_label_pyralium = NodePath("BoxContainer/PyraliumPanel/BoxContainer/Label")
+ui_panel_mana = NodePath("BoxContainer/ManaPanel")
+ui_label_mana = NodePath("BoxContainer/ManaPanel/BoxContainer/Label")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 2
@@ -23,12 +53,184 @@ theme_override_font_sizes/font_size = 24
 text = "display name"
 alignment = 0
 
-[node name="PriceLabel" type="Label" parent="BoxContainer"]
+[node name="TitaniumPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-mouse_filter = 1
-text = "cost"
-label_settings = SubResource("LabelSettings_0sm0c")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/TitaniumPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/TitaniumPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("2_cl15n")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/TitaniumPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="PlatePanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/PlatePanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/PlatePanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("3_b3dwt")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/PlatePanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="CarbonPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/CarbonPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/CarbonPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("4_bnru3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/CarbonPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="LiquidFuelPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/LiquidFuelPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/LiquidFuelPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("5_2hx8k")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/LiquidFuelPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="WaterPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/WaterPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/WaterPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("6_hxcaf")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/WaterPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="HydrogenPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/HydrogenPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/HydrogenPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("7_trqc2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/HydrogenPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="PalladiumPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/PalladiumPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/PalladiumPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("8_erw57")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/PalladiumPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="ElectronicPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/ElectronicPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/ElectronicPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("9_d2plb")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/ElectronicPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="PyraliumPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/PyraliumPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/PyraliumPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("10_3g3lu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/PyraliumPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="ManaPanel" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/ManaPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/ManaPanel/BoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BoxContainer/ManaPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jppu1")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -22,11 +22,10 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
 script = ExtResource("2_47xm0")
-display_name = "Titunium Drill I"
+debug_hook = false
+display_name = "Titanium Drill I"
 lore_descripton = "Imrpove our mining techniques"
 parent_purchases = Array[String]([])
-titanium_cost_mantissa = 30.0
-titanium_cost_exponent = 0
 titanium_cost = SubResource("Resource_5g460")
 impacts = Array[ExtResource("1_l2pg4")]([SubResource("Resource_l2pg4")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

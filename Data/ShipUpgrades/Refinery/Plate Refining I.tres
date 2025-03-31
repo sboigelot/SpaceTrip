@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=6 format=3 uid="uid://b2ah7n7jxva8u"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_leu00"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_vypkk"]
+
+[sub_resource type="Resource" id="Resource_4woyq"]
+script = ExtResource("1_leu00")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "plate_refining_duration"
+impact_method = 4
+impact_value = 30.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_bcsg6"]
+script = ExtResource("1_leu00")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "plate_refining_input_titanium"
+impact_method = 4
+impact_value = 10.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_1m0s0"]
+script = ExtResource("1_leu00")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "plate_refining_output_efficiency"
+impact_method = 4
+impact_value = 0.1
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[resource]
+script = ExtResource("2_vypkk")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Titanium Drill III"])
+impacts = Array[ExtResource("1_leu00")]([SubResource("Resource_4woyq"), SubResource("Resource_bcsg6"), SubResource("Resource_1m0s0")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

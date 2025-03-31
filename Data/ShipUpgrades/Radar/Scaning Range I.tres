@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_d52x2"]
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="3_1agd0"]
 
-[sub_resource type="Resource" id="Resource_27ury"]
+[sub_resource type="Resource" id="Resource_1agd0"]
 script = ExtResource("1_obsvn")
 impact_explanation = ""
 ship_module = "radar"
@@ -16,15 +16,16 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_vetdn"]
 script = ExtResource("3_1agd0")
-mantissa = 0.0
+mantissa = 300.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
 script = ExtResource("2_d52x2")
-display_name = ""
+debug_hook = false
+display_name = "Scaning Range I"
 lore_descripton = ""
-parent_purchases = Array[String](["Scaning Range I"])
+parent_purchases = Array[String](["Auto Miner II"])
 titanium_cost = SubResource("Resource_vetdn")
-impacts = Array[ExtResource("1_obsvn")]([SubResource("Resource_27ury")])
+impacts = Array[ExtResource("1_obsvn")]([SubResource("Resource_1agd0")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

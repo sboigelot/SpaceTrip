@@ -23,6 +23,7 @@ extends Node2D
 @export var engine: EngineShipModule
 @export var radar: RadarShipModule
 @export var mining: MiningShipModule
+@export var refinery: RefineryShipModule
 
 #####################
 #		SIGNALS		#
@@ -65,7 +66,7 @@ func update_ui():
 
 func any_child_visible(container:Container):
 	for child in container.get_children(false):
-		if child.visible:
+		if child.visible and not child.is_queued_for_deletion():
 			return true
 	return false
 	
@@ -75,14 +76,8 @@ func purchase_shop_item(ship_upgrade:ShipUpgrade):
 	for impact in ship_upgrade.impacts:
 		_apply_ship_upgrade_impact(impact)
 	
-	var dir_str_length = ship_upgrade.resource_path.rfind("/") + 1
-	var purchase_name = ship_upgrade.resource_path.substr(
-		dir_str_length,
-		ship_upgrade.resource_path.length() - dir_str_length - ".tres".length()
-	)
-	
-	purchased_items.append(purchase_name)
-	new_purchase_done.emit(purchase_name)
+	purchased_items.append(ship_upgrade.display_name)
+	new_purchase_done.emit(ship_upgrade.display_name)
 	update_ui()
 
 func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):

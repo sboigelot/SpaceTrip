@@ -3,9 +3,7 @@ extends ShipModule
 
 @export_group("UI elements")
 @export var ui_mining_laser_label: Label
-@export var ui_titanium_label: Label
 @export var mining_ray_placeholder: Node2D
-
 @export var mining_ray_scene: PackedScene
 
 var titanium:= Big.ZERO()
@@ -13,13 +11,6 @@ var carbon:= Big.ZERO()
 var water:= Big.ZERO()
 var palladium:= Big.ZERO()
 var pyralium:= Big.ZERO()
-
-#for refinery
-#var plate:= Big.ZERO()
-#var liquid_fuel:= Big.ZERO()
-#var hydrogen:= Big.ZERO()
-#var electronic:= Big.ZERO()
-#var mana:= Big.ZERO()
 
 var titanium_per_second_factor := Big.ONE()
 var carbon_per_second_factor := Big.ONE()
@@ -84,7 +75,6 @@ func update_ui():
 		(" (%d auto)" % auto_mine_asteroid_count) if auto_mine_asteroid_count > 0 else ""
 	]
 	
-	ui_titanium_label.text = "Titanium: %s" % titanium.toMetricSymbol(true)
 	target_mining_rays()
 	
 func target_mining_rays():

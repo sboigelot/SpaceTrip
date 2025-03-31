@@ -6,13 +6,57 @@ var ship: Ship
 var data: ShipUpgrade
 
 @export var ui_buy_button: Button
-@export var ui_price_label: Label
+
+@export var ui_panel_titanium: PanelContainer
+@export var ui_label_titanium: Label
+@export var ui_panel_plate: PanelContainer
+@export var ui_label_plate: Label
+@export var ui_panel_carbon: PanelContainer
+@export var ui_label_carbon: Label
+@export var ui_panel_liquid_fuel: PanelContainer
+@export var ui_label_liquid_fuel: Label
+@export var ui_panel_water: PanelContainer
+@export var ui_label_water: Label
+@export var ui_panel_hydrogen: PanelContainer
+@export var ui_label_hydrogen: Label
+@export var ui_panel_palladium: PanelContainer
+@export var ui_label_palladium: Label
+@export var ui_panel_electronic: PanelContainer
+@export var ui_label_electronic: Label
+@export var ui_panel_pyralium: PanelContainer
+@export var ui_label_pyralium: Label
+@export var ui_panel_mana: PanelContainer
+@export var ui_label_mana: Label
 
 func _ready() -> void:
 	ui_buy_button.pressed.connect(on_buy)
 	ship.new_purchase_done.connect(on_new_ship_purchase_done)
 	check_availability(true)
+	first_update_ui()
 	update_ui()
+	
+func first_update_ui():
+	assert(ship != null)
+	assert(data != null)
+	
+	ui_buy_button.text = data.display_name
+	
+	update_resouce_cost(data.titanium_cost, 	ui_panel_titanium,		ui_label_titanium)
+	update_resouce_cost(data.plate_cost,		ui_panel_plate,			ui_label_plate)
+	update_resouce_cost(data.carbon_cost,		ui_panel_carbon,		ui_label_carbon)
+	update_resouce_cost(data.liquid_fuel_cost,	ui_panel_liquid_fuel, 	ui_label_liquid_fuel)
+	update_resouce_cost(data.water_cost,		ui_panel_water,			ui_label_water)
+	update_resouce_cost(data.hydrogen_cost,		ui_panel_hydrogen,		ui_label_hydrogen)
+	update_resouce_cost(data.palladium_cost,	ui_panel_palladium,		ui_label_palladium)
+	update_resouce_cost(data.electronic_cost,	ui_panel_electronic,	ui_label_electronic)
+	update_resouce_cost(data.pyralium_cost,		ui_panel_pyralium,		ui_label_pyralium)
+	update_resouce_cost(data.mana_cost,			ui_panel_mana,			ui_label_mana)
+
+func update_resouce_cost(cost: Big, ui_panel: PanelContainer, ui_label: Label):
+	if cost == null or cost.isLessThanOrEqualTo(0.0):
+		ui_panel.queue_free()
+	else:
+		ui_label.text = cost.toMetricSymbol(true)
 	
 func on_new_ship_purchase_done(purchase_name):
 	check_availability(false)
@@ -24,10 +68,17 @@ func check_availability(force_check:bool):
 	if not force_check and visible:
 		return
 		
+	if data.debug_hook:
+		pass
+		
 	for parent_purchase in data.parent_purchases:
 		if not ship.purchased_items.has(parent_purchase):
 			visible = false
 			return
+			
+	if data.debug_hook:
+		pass
+		
 	visible = true
 	
 func _process(delta: float) -> void:
@@ -39,11 +90,6 @@ func update_ui() -> void:
 	
 	if not visible:
 		return
-	
-	ui_buy_button.text = data.display_name
-	ui_price_label.text = "%s titanium" % [
-		data.titanium_cost.toMetricSymbol(true)
-	]
 	ui_buy_button.disabled = ship.mining.titanium.isLessThan(data.titanium_cost)
 
 func on_buy() -> void:

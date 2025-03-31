@@ -1,6 +1,5 @@
-extends Node
-
 class_name ResourceFinder
+extends Node
 
 static func get_resources_in_folder(folder_path: String, filter: String = ".tres", recursive: bool = false) -> Array[Resource]:
 	var resources:Array[Resource] = []

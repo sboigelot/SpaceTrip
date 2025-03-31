@@ -14,7 +14,18 @@ func close():
 	visible = false
 
 func open_and_move(content: String, anchor: Vector2, left_anchored:bool = false):
+	
 	ui_tooltip_rich_text_label.text = content
+	
+	#var font = ui_tooltip_rich_text_label.get_theme_default_font()
+	#var font_size = 16
+	#var content_size = font.get_multiline_string_size(
+		#content, HORIZONTAL_ALIGNMENT_LEFT, 
+		#-1, font_size, -1,
+		#TextServer.BREAK_NONE, TextServer.JUSTIFICATION_NONE,
+		#TextServer.DIRECTION_INHERITED, TextServer.ORIENTATION_HORIZONTAL)
+	#ui_tooltip_container.custom_minimum_size = content_size + Vector2(20, 20)
+	
 	ui_tooltip_container.size = Vector2.ZERO
 	
 	var tooltip_anchor = anchor

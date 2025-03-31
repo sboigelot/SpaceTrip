@@ -1,6 +1,10 @@
-resource pictures and display
-mining other ore
-asteroid variety
+write refinery code and UI (only one refining at a time)
+create mission? (Reach Proxima centaury + UI, Reach x m/s speed)
+	mission can start after purchased items
+	is a mission the same as an achivement with onscreen progress?
+
+asteroids do not despaw off screen?
+empty shop category doesn't dispear when becoming empty
 
 purchase "Engage Warp Speed" -> acc x 1000 -> require liquid fuel (from carbon)
 purchase "Enter Subspace" -> acc x 1000 -> require hydrogen (from water)

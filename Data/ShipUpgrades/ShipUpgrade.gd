@@ -2,8 +2,9 @@
 class_name ShipUpgrade
 extends Resource
 
+@export var debug_hook: bool
+
 @export_group("Description")
-@export var display_name: String
 @export_multiline var lore_descripton: String
 
 @export_group("Requirements")
@@ -22,6 +23,21 @@ extends Resource
 @export_group("Impacts")
 @export var impacts: Array[ShipUpgradeImpact]
 
+var _display_name:String
+var display_name: String:
+	get():
+		if _display_name != "":
+			return _display_name
+			
+		var dir_str_length = resource_path.rfind("/") + 1
+		_display_name = resource_path.substr(
+			dir_str_length,
+			resource_path.length() - dir_str_length - ".tres".length()
+		)
+		return _display_name
+	set(value):
+		_display_name = value
+		
 const shop_item_button_view: PackedScene = preload("res://View/ShipUpgradeButtonView.tscn")
 
 func get_tooltip_content() -> String:
@@ -51,7 +67,7 @@ func get_tooltip_content() -> String:
 			impact_descriptions += "\n%s %s%s" % [
 				prop_description,
 				(ShipUpgradeImpact.IMPACT_METHOD_FORMAT[impact.impact_method] % [
-					value.toMetricSymbol(false)
+					value.toMetricSymbol(true)
 				]),
 				prop_suffix
 			]

@@ -24,7 +24,7 @@ signal screen_exited(asteroid:Asteroid)
 var mining_time_available: float = 11.0
 var starting_mining_time: float
 
-var titanium_richness: float = 1.0
+var titanium_richness: float = 0.0
 var carbon_richness: float = 0.0
 var water_richness: float = 0.0
 var palladium_richness: float = 0.0
