@@ -15,8 +15,14 @@ const property_display_names: Dictionary = {
 	"plate_refining_duration": "Plate refining duration",
 	"plate_refining_input_titanium": "Plate refining input",
 	"plate_refining_output_efficiency": "Plate refining efficiency",
+	"liquid_fuel_refining_duration": "Liquid fuel refining duration",
+	"liquid_fuel_refining_input_carbon": "Liquid fuel refining input",
+	"liquid_fuel_refining_output_efficiency": "Liquid fuel refining efficiency",
 	"asteroid_spawn_titanium_chance": "Chance of titanium asteroid",
 	"asteroid_spawn_carbon_chance": "Chance of carbon asteroid",
+	"asteroid_spawn_warter_chance": "Chance of water asteroid",
+	"asteroid_spawn_palladium_chance": "Chance of palladium asteroid",
+	"asteroid_spawn_pyralium_chance": "Chance of pyralium asteroid",
 }
 
 const property_display_suffixes: Dictionary = {
@@ -27,6 +33,7 @@ const property_display_suffixes: Dictionary = {
 	"engine_boost_duration_cooldown_max": "s",
 	"plate_refining_duration": "s",
 	"plate_refining_input_titanium": "titanium",
+	"liquid_fuel_refining_input_carbon": "carbon",
 }
 
 const IMPACT_METHOD_FORMAT: Dictionary = {

@@ -26,7 +26,10 @@ func _process(delta: float) -> void:
 	super._process(delta)
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		dimension_index += 1
+		if Engine.time_scale == 1:
+			Engine.time_scale = 10
+		else:
+			Engine.time_scale = 1
 
 func update_background():
 	var start_transition = false
