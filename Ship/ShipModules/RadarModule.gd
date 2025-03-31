@@ -78,9 +78,12 @@ func spawn_asteroid():
 	asteroid_placeholder.add_child(asteroid)
 	
 	var viewport_size = asteroid.get_viewport_rect().size
+	var y_position = randf_range(64, viewport_size.y - 64)
+	if abs(y_position - viewport_size.y) < 50.0:
+		y_position += 50.0
 	asteroid.position = Vector2(
 		viewport_size.x + 64,
-		randf_range(64, viewport_size.y - 64)
+		y_position
 	)
 	
 	

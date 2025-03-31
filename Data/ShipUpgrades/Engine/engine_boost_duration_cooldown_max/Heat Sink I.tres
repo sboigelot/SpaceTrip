@@ -22,11 +22,9 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
 script = ExtResource("2_2btm5")
-display_name = "Heat Sink I"
+debug_hook = false
 lore_descripton = ""
 parent_purchases = Array[String](["Turbo Booster I"])
-titanium_cost_mantissa = 100.0
-titanium_cost_exponent = 0
 titanium_cost = SubResource("Resource_aftqq")
 impacts = Array[ExtResource("1_xqtfn")]([SubResource("Resource_36ldj")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

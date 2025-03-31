@@ -1,27 +1,32 @@
-[gd_scene load_steps=53 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=58 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
 [ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship/Ship.gd" id="1_tp0y5"]
 [ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://Ship/ShipModules/CoreShipModule.gd" id="2_i2c18"]
+[ext_resource type="Texture2D" uid="uid://buu4g7yet06gd" path="res://Sprites/UI/cb-checked.png" id="3_5wn8v"]
+[ext_resource type="Script" uid="uid://cb64ig84dov3c" path="res://RefineryHud.gd" id="3_26kmh"]
 [ext_resource type="Script" uid="uid://ce3mk3t6pnsl0" path="res://Utilities/RichTextTooltip.gd" id="3_cfmqu"]
-[ext_resource type="Texture2D" uid="uid://b41b8pjawwt5t" path="res://Sprites/hull.png" id="3_i5j76"]
-[ext_resource type="Texture2D" uid="uid://db6jq7irrwpk1" path="res://Sprites/cb-eye-opened.png" id="3_ltq8v"]
+[ext_resource type="Texture2D" uid="uid://b41b8pjawwt5t" path="res://Sprites/Ship/hull.png" id="3_i5j76"]
+[ext_resource type="Texture2D" uid="uid://db6jq7irrwpk1" path="res://Sprites/UI/cb-eye-opened.png" id="3_ltq8v"]
+[ext_resource type="Script" uid="uid://cnar8mct5q1t3" path="res://View/RefineryProcessPanel.gd" id="3_lx2c6"]
 [ext_resource type="Script" uid="uid://b20qytjxlvosn" path="res://View/ResourcePanel.gd" id="3_pljlk"]
 [ext_resource type="Texture2D" uid="uid://djx32u85qgjbj" path="res://Sprites/Items/titanium.png" id="3_svbfm"]
 [ext_resource type="Material" uid="uid://db4nowr7gcwtr" path="res://Shaders/canvas_group_outline_material.tres" id="3_v47jd"]
 [ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://Ship/ShipModules/EngineModule.gd" id="3_wqs7w"]
 [ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="4_5ampq"]
 [ext_resource type="Texture2D" uid="uid://cw4ng3ompu6j" path="res://Sprites/Items/plate.png" id="4_j376e"]
+[ext_resource type="Texture2D" uid="uid://5fegtfn604da" path="res://Sprites/UI/cb-unchecked.png" id="4_lx2c6"]
 [ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://Ship/ShipModules/MiningModule.gd" id="4_qkquj"]
-[ext_resource type="Texture2D" uid="uid://l58tjgwlgyet" path="res://Sprites/cb-eye-closed.png" id="4_sbeg1"]
+[ext_resource type="Texture2D" uid="uid://l58tjgwlgyet" path="res://Sprites/UI/cb-eye-closed.png" id="4_sbeg1"]
 [ext_resource type="PackedScene" uid="uid://bnwhr7jr64wwk" path="res://View/Asteroids/Ore/OreAsteroid0.tscn" id="5_2xvgb"]
 [ext_resource type="Script" uid="uid://iigsupy7ia7q" path="res://Ship/ShipModules/RadarModule.gd" id="5_dt3j3"]
 [ext_resource type="Texture2D" uid="uid://bg2ukgh2ok5f4" path="res://Sprites/Items/carbon.png" id="5_pljlk"]
 [ext_resource type="Script" uid="uid://bdvfbm07hftq3" path="res://VisibilityControlCheckBox.gd" id="5_sbeg1"]
 [ext_resource type="Texture2D" uid="uid://3i0hubt1jsm1" path="res://Sprites/Items/liquid-fuel.png" id="6_7aab3"]
 [ext_resource type="Script" uid="uid://gvinpfgame2m" path="res://Utilities/SynchronizedChildrenScale.gd" id="6_7ev53"]
-[ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/engine.png" id="6_8aiju"]
+[ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/Ship/engine.png" id="6_8aiju"]
+[ext_resource type="Texture2D" uid="uid://cac706olyb5p0" path="res://Sprites/UI/arrow.png" id="6_26kmh"]
 [ext_resource type="Texture2D" uid="uid://duc4xdlobempm" path="res://Sprites/Items/water.png" id="7_dqp5x"]
 [ext_resource type="Material" uid="uid://bra7sd3a51u2f" path="res://Shaders/fireball_shader_material.tres" id="7_g8p7d"]
 [ext_resource type="Texture2D" uid="uid://cwqmimjkf8ubh" path="res://Sprites/Items/hydrogen.png" id="8_segi0"]
@@ -29,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/rare_ore.png" id="9_b1kpa"]
 [ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_ejfde"]
 [ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="11_7aab3"]
-[ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/mining.png" id="14_20yo5"]
+[ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/Ship/mining.png" id="14_20yo5"]
 [ext_resource type="PackedScene" uid="uid://br5g34mdxpnvq" path="res://View/MiningRay.tscn" id="14_g7nme"]
 [ext_resource type="PackedScene" uid="uid://buqwfkkpa0y3m" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="29_y637g"]
 [ext_resource type="PackedScene" uid="uid://cg2wv0ofa72p8" path="res://View/Asteroids/Ore/OreAsteroid2.tscn" id="30_m1228"]
@@ -68,13 +73,11 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_sbeg1"]
 font_size = 32
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_y637g"]
+allow_unpress = true
+
 [sub_resource type="LabelSettings" id="LabelSettings_gxo1i"]
 font_size = 32
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfmqu"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-bg_color = Color(0.65098, 0.188235, 0.65098, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cfmqu"]
 font_size = 18
@@ -187,6 +190,7 @@ layout_mode = 2
 
 [node name="BoostEngineButton" type="Button" parent="UIContainer/SpeedHUD/SpeedHUD/BoostContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Boost Engine"
 
 [node name="BoostEngineProgressBar" type="ProgressBar" parent="UIContainer/SpeedHUD/SpeedHUD/BoostContainer"]
@@ -226,6 +230,343 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
 layout_mode = 2
 text = "Mining Laser: 1 / 1 (1 auto)"
 label_settings = SubResource("LabelSettings_sbeg1")
+
+[node name="RefineryHUD" type="PanelContainer" parent="UIContainer/MiningHUD" node_paths=PackedStringArray("ship", "process_container")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_26kmh")
+ship = NodePath("../../../ShipCanvasGroup/Ship")
+process_container = NodePath("BoxContainer/ProcessBoxContainer")
+
+[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD"]
+layout_mode = 2
+vertical = true
+
+[node name="RefineryTitleLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer"]
+layout_mode = 2
+text = "Refinery"
+label_settings = SubResource("LabelSettings_su33w")
+
+[node name="ProcessBoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="PlateRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
+resource_input = "titanium"
+resource_output = "plate"
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_svbfm")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_j376e")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="LiquiFuelRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
+resource_input = "carbon"
+resource_output = "liquid_fuel"
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_pljlk")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_7aab3")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="HydrogenRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
+resource_input = "water"
+resource_output = "hydrogen"
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_dqp5x")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_segi0")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="ElectronicRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
+resource_input = "palladium"
+resource_output = "electronic"
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_b1kpa")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_7aab3")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="ManaRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
+resource_input = "pyralium"
+resource_output = "mana"
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_ejfde")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_j376e")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
 
 [node name="Resources" type="BoxContainer" parent="UIContainer/MiningHUD"]
 layout_mode = 2
@@ -471,11 +812,6 @@ layout_mode = 2
 text = "Upgrades"
 label_settings = SubResource("LabelSettings_su33w")
 
-[node name="HSeparator" type="HSeparator" parent="UIContainer/ShopContainer/Shop"]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_cfmqu")
-
 [node name="EngineTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
 layout_mode = 2
 text = "Engine"
@@ -496,10 +832,19 @@ vertical = true
 
 [node name="MiningTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
 layout_mode = 2
-text = "Mining"
+text = "Mining Laser"
 label_settings = SubResource("LabelSettings_cfmqu")
 
 [node name="MiningShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+vertical = true
+
+[node name="RefineryTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+text = "Refinery"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="RefineryShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
 layout_mode = 2
 vertical = true
 
@@ -563,7 +908,7 @@ shortcut_keys_enabled = false
 [node name="ShipCanvasGroup" type="CanvasGroup" parent="."]
 material = ExtResource("3_v47jd")
 
-[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
+[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
 position = Vector2(960, 540)
 script = ExtResource("1_tp0y5")
 ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/CoreTitleLabel")
@@ -574,6 +919,8 @@ ui_shop_container_radar_title = NodePath("../../UIContainer/ShopContainer/Shop/R
 ui_shop_container_radar = NodePath("../../UIContainer/ShopContainer/Shop/RadarShopBoxContainer")
 ui_shop_container_mining_title = NodePath("../../UIContainer/ShopContainer/Shop/MiningTitleLabel")
 ui_shop_container_mining = NodePath("../../UIContainer/ShopContainer/Shop/MiningShopBoxContainer")
+ui_shop_container_refinery_title = NodePath("../../UIContainer/ShopContainer/Shop/RefineryTitleLabel")
+ui_shop_container_refinery = NodePath("../../UIContainer/ShopContainer/Shop/RefineryShopBoxContainer")
 ui_tooltip = NodePath("../../UIContainer/RichTextTooltip")
 ui_shop_eye = NodePath("../../UIContainer/ShopEyeContainer/ShopEyeCheckBox")
 core = NodePath("CoreModule")
@@ -741,6 +1088,11 @@ metadata/_custom_type_script = "uid://clj13cjwr8vtd"
 [node name="ForegroundEffects" type="Node2D" parent="."]
 
 [connection signal="pressed" from="UIContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineButton" to="ShipCanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
+[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel" method="_on_check_box_toggled"]
 [connection signal="mouse_entered" from="UIContainer/ShopEyeContainer/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_entered"]
 [connection signal="mouse_exited" from="UIContainer/ShopEyeContainer/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_exited"]
 [connection signal="input_event" from="ShipCanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="ShipCanvasGroup/Ship/EngineModule" method="_on_area_2d_input_event"]

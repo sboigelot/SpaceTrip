@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=6 format=3 uid="uid://vdy4abldfpfc"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_w24u3"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_k4ekr"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="3_vt3du"]
+
+[sub_resource type="Resource" id="Resource_k4ekr"]
+script = ExtResource("1_w24u3")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "base_acceleration"
+impact_method = 0
+impact_value = 2.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_w24u3"]
+script = ExtResource("3_vt3du")
+mantissa = 10.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("2_k4ekr")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Constant Acceleration II"])
+plate_cost = SubResource("Resource_w24u3")
+impacts = Array[ExtResource("1_w24u3")]([SubResource("Resource_k4ekr")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

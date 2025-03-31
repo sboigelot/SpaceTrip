@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=6 format=3 uid="uid://b2xkpg2v7e7m4"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_vhdku"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_6b2pn"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="3_g76ob"]
+
+[sub_resource type="Resource" id="Resource_vhdku"]
+script = ExtResource("1_vhdku")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_auto_boost_cooldown_max"
+impact_method = 4
+impact_value = 60.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_6b2pn"]
+script = ExtResource("3_g76ob")
+mantissa = 150.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("2_6b2pn")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Auto Boost I"])
+plate_cost = SubResource("Resource_6b2pn")
+impacts = Array[ExtResource("1_vhdku")]([SubResource("Resource_vhdku")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

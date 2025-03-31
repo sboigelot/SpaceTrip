@@ -23,7 +23,6 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 [resource]
 script = ExtResource("2_pvd8t")
 debug_hook = true
-display_name = "Auto Miner II"
 lore_descripton = "Idle to the max"
 parent_purchases = Array[String](["Auto Miner I", "Multi Miner I"])
 titanium_cost = SubResource("Resource_ro8dt")

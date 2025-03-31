@@ -16,13 +16,13 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_pc3yt"]
 script = ExtResource("3_e2j4q")
-mantissa = 250.0
+mantissa = 100.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
 script = ExtResource("2_lokgb")
-display_name = "Multi Miner I"
+debug_hook = false
 lore_descripton = ""
 parent_purchases = Array[String](["Titanium Drill I"])
 titanium_cost = SubResource("Resource_pc3yt")

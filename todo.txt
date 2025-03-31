@@ -11,6 +11,8 @@ purchase "Enter Subspace" -> acc x 1000 -> require hydrogen (from water)
 purchase "Enter Hyperspace" -> acc x 1000 -> require mana (from pyralium)
 change background on enter other dimension
 
+blue and green laser upgrade (clear ray and create new ones)
+
 begining animation and mini text
 
 maybe use slow version of grim music

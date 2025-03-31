@@ -14,6 +14,8 @@ extends Node2D
 @export var ui_shop_container_radar: Container
 @export var ui_shop_container_mining_title: Label
 @export var ui_shop_container_mining: Container
+@export var ui_shop_container_refinery_title: Label
+@export var ui_shop_container_refinery: Container
 
 @export var ui_tooltip: RichTextTooltip
 @export var ui_shop_eye: VisibilityControlCheckBox
@@ -54,6 +56,8 @@ func _ready() -> void:
 				ui_shop_container = ui_shop_container_radar
 			"mining":
 				ui_shop_container = ui_shop_container_mining
+			"refinery":
+				ui_shop_container = ui_shop_container_refinery
 		ui_shop_container.add_child(shop_item_view)
 	
 	update_ui()
@@ -63,6 +67,7 @@ func update_ui():
 	ui_shop_container_engine_title.visible = 	any_child_visible(ui_shop_container_engine)
 	ui_shop_container_radar_title.visible = 	any_child_visible(ui_shop_container_radar)
 	ui_shop_container_mining_title.visible =	any_child_visible(ui_shop_container_mining)
+	ui_shop_container_refinery_title.visible =	any_child_visible(ui_shop_container_refinery)
 
 func any_child_visible(container:Container):
 	for child in container.get_children(false):
@@ -71,8 +76,33 @@ func any_child_visible(container:Container):
 	return false
 	
 func purchase_shop_item(ship_upgrade:ShipUpgrade):
-	mining.titanium.minusEquals(ship_upgrade.titanium_cost)
 	
+	if ship_upgrade.titanium_cost != null:
+		mining.titanium.minusEquals(ship_upgrade.titanium_cost)
+	if ship_upgrade.plate_cost != null:
+		refinery.plate.minusEquals(ship_upgrade.plate_cost)
+	
+	if ship_upgrade.carbon_cost != null:
+		mining.carbon.minusEquals(ship_upgrade.carbon_cost)
+	if ship_upgrade.liquid_fuel_cost != null:
+		refinery.liquid_fuel.minusEquals(ship_upgrade.liquid_fuel_cost)
+	
+	if ship_upgrade.water_cost != null:
+		mining.water.minusEquals(ship_upgrade.water_cost)
+	if ship_upgrade.hydrogen_cost != null:
+		refinery.hydrogen.minusEquals(ship_upgrade.hydrogen_cost)
+	
+	if ship_upgrade.palladium_cost != null:
+		mining.palladium.minusEquals(ship_upgrade.palladium_cost)
+	if ship_upgrade.electronic_cost != null:
+		refinery.electronic.minusEquals(ship_upgrade.electronic_cost)
+	
+	if ship_upgrade.pyralium_cost != null:
+		mining.pyralium.minusEquals(ship_upgrade.pyralium_cost)
+	if ship_upgrade.mana_cost != null:
+		refinery.mana.minusEquals(ship_upgrade.mana_cost)
+	
+		
 	for impact in ship_upgrade.impacts:
 		_apply_ship_upgrade_impact(impact)
 	

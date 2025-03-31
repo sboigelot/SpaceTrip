@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5fegtfn604da"
-path="res://.godot/imported/cb-unchecked.png-3963292d6aa7e5ebdb6a49aec1a1053a.ctex"
+uid="uid://db6jq7irrwpk1"
+path="res://.godot/imported/cb-eye-opened.png-b57536aa3480242e2bb92f1ce7cdbe24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/cb-unchecked.png"
-dest_files=["res://.godot/imported/cb-unchecked.png-3963292d6aa7e5ebdb6a49aec1a1053a.ctex"]
+source_file="res://Sprites/UI/cb-eye-opened.png"
+dest_files=["res://.godot/imported/cb-eye-opened.png-b57536aa3480242e2bb92f1ce7cdbe24.ctex"]
 
 [params]
 

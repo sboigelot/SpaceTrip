@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddqkrqg1s3qyk"
-path="res://.godot/imported/mining.png-da7432db5df0d81ea14c84b2ebec2628.ctex"
+uid="uid://b414ov5p0vsl8"
+path="res://.godot/imported/icon_music.png-f5aa07b7be5c3fe4635c03dcda1c8b45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/mining.png"
-dest_files=["res://.godot/imported/mining.png-da7432db5df0d81ea14c84b2ebec2628.ctex"]
+source_file="res://Sprites/UI/icon_music.png"
+dest_files=["res://.godot/imported/icon_music.png-f5aa07b7be5c3fe4635c03dcda1c8b45.ctex"]
 
 [params]
 

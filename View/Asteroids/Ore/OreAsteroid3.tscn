@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://mtiyemjd232k" path="res://View/Asteroids/Asteroid.gd" id="1_2etwc"]
 [ext_resource type="Material" uid="uid://db4nowr7gcwtr" path="res://Shaders/canvas_group_outline_material.tres" id="2_8tnka"]
 [ext_resource type="Texture2D" uid="uid://bl0kwcncm8bmy" path="res://Sprites/Asteroids/asteroid3.png" id="3_2etwc"]
-[ext_resource type="Texture2D" uid="uid://rgglrkwdlpfl" path="res://Sprites/target.png" id="4_ctn3t"]
+[ext_resource type="Texture2D" uid="uid://rgglrkwdlpfl" path="res://Sprites/Ship/target.png" id="4_ctn3t"]
 [ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="5_xhra3"]
 
 [sub_resource type="Animation" id="Animation_p7vrq"]
@@ -82,7 +82,6 @@ script = ExtResource("5_xhra3")
 auto_start_animation = "Highlight"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-visible = false
 rect = Rect2(-64, -64, 128, 128)
 
 [connection signal="input_event" from="CanvasGroup/AsteroidSprite2D/Area2D" to="." method="_on_area_2d_input_event"]

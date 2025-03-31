@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b41b8pjawwt5t"
-path="res://.godot/imported/hull.png-9b61e37631c5bc232cbb90f9eb3043d7.ctex"
+uid="uid://cac706olyb5p0"
+path="res://.godot/imported/arrow.png-0f450c63843ff84459467a04958928cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/hull.png"
-dest_files=["res://.godot/imported/hull.png-9b61e37631c5bc232cbb90f9eb3043d7.ctex"]
+source_file="res://Sprites/UI/arrow.png"
+dest_files=["res://.godot/imported/arrow.png-0f450c63843ff84459467a04958928cf.ctex"]
 
 [params]
 

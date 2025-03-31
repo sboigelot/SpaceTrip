@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv2lqxyuk4i2j"
-path="res://.godot/imported/engine.png-65d4bc5fd209c5b17fcac946f40d6a2e.ctex"
+uid="uid://ddqkrqg1s3qyk"
+path="res://.godot/imported/mining.png-c0965b24339c23d3da666aaf0efe23e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/engine.png"
-dest_files=["res://.godot/imported/engine.png-65d4bc5fd209c5b17fcac946f40d6a2e.ctex"]
+source_file="res://Sprites/Ship/mining.png"
+dest_files=["res://.godot/imported/mining.png-c0965b24339c23d3da666aaf0efe23e5.ctex"]
 
 [params]
 

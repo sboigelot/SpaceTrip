@@ -90,14 +90,26 @@ func update_ui() -> void:
 	
 	if not visible:
 		return
-	ui_buy_button.disabled = ship.mining.titanium.isLessThan(data.titanium_cost)
+		
+	ui_buy_button.disabled = (
+		(data.titanium_cost == null 	or ship.mining.titanium.isLessThan(data.titanium_cost)) and
+		(data.plate_cost == null 		or ship.refinery.plate.isLessThan(data.plate_cost)) and
+		(data.carbon_cost == null 		or ship.mining.carbon.isLessThan(data.carbon_cost)) and
+		(data.liquid_fuel_cost == null 	or ship.refinery.liquid_fuel.isLessThan(data.liquid_fuel_cost)) and
+		(data.water_cost == null 		or ship.mining.water.isLessThan(data.water_cost)) and
+		(data.hydrogen_cost == null 	or ship.refinery.hydrogen.isLessThan(data.hydrogen_cost)) and
+		(data.palladium_cost == null 	or ship.mining.palladium.isLessThan(data.palladium_cost)) and
+		(data.electronic_cost == null 	or ship.refinery.electronic.isLessThan(data.electronic_cost)) and
+		(data.pyralium_cost == null 	or ship.mining.pyralium.isLessThan(data.pyralium_cost)) and
+		(data.mana_cost == null 		or ship.refinery.mana.isLessThan(data.mana_cost))
+	)
 
 func on_buy() -> void:
 	assert(ship != null)
 	assert(data != null)
+	queue_free()
 	ship.purchase_shop_item(data)
 	ship.ui_tooltip.close()
-	queue_free()
 	
 func _on_mouse_entered() -> void:
 	var tooltip_content = data.get_tooltip_content()

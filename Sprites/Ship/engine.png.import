@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l58tjgwlgyet"
-path="res://.godot/imported/cb-eye-closed.png-88fe41c67d16edcff0035f4917a401a0.ctex"
+uid="uid://bv2lqxyuk4i2j"
+path="res://.godot/imported/engine.png-370c763dbfe841a3a1a22f32472d4385.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/cb-eye-closed.png"
-dest_files=["res://.godot/imported/cb-eye-closed.png-88fe41c67d16edcff0035f4917a401a0.ctex"]
+source_file="res://Sprites/Ship/engine.png"
+dest_files=["res://.godot/imported/engine.png-370c763dbfe841a3a1a22f32472d4385.ctex"]
 
 [params]
 

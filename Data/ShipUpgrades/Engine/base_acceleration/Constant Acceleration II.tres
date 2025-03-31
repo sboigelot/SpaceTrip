@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
 script = ExtResource("2_tiq46")
-display_name = "Constant Acceleration"
+debug_hook = false
 lore_descripton = ""
 parent_purchases = Array[String](["Constant Acceleration I"])
 titanium_cost = SubResource("Resource_f5cgx")

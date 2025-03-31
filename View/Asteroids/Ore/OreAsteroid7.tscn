@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://mtiyemjd232k" path="res://View/Asteroids/Asteroid.gd" id="1_avlrg"]
 [ext_resource type="Material" uid="uid://db4nowr7gcwtr" path="res://Shaders/canvas_group_outline_material.tres" id="2_brcop"]
 [ext_resource type="Texture2D" uid="uid://c1g7t5u0et8i4" path="res://Sprites/Asteroids/asteroid7.png" id="3_avlrg"]
-[ext_resource type="Texture2D" uid="uid://rgglrkwdlpfl" path="res://Sprites/target.png" id="4_lvxlh"]
+[ext_resource type="Texture2D" uid="uid://rgglrkwdlpfl" path="res://Sprites/Ship/target.png" id="4_lvxlh"]
 [ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="5_igd80"]
 
 [sub_resource type="Animation" id="Animation_p7vrq"]
@@ -66,12 +66,10 @@ texture = ExtResource("3_avlrg")
 scale = Vector2(2, 2)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasGroup/AsteroidSprite2D/Area2D"]
-visible = false
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(15.5, -80.7, 15.5, -79.1, 9.39999, -77.5, 5.89999, -77.5, -4, -71.5, -6, -71.5, -65, -37.5, -67.3, -37.5, -79.3, -25.5, -80.9, -25.5, -85.9, -10.5, -88.1, -10.5, -85.5, -0.5, -85.5, 3.2, -80.5, 9.2, -80.5, 11.5, -70.5, 19.4, -70.5, 20.8, -57.5, 26.7, -57.5, 28.1, -42.7, 31.5, -30.3, 31.5, -11.6, 27.2, -27.2, 41.5, -28.9, 41.5, -31.9, 49.5, -33.5, 49.5, -33.5, 65.2, -22.5, 78.2, -22.5, 79.9, -9.5, 84.9, -9.5, 86.5, 7.89999, 86.5, 20.9, 80.5, 23.5, 80.5, 34.5, 66.2, 34.5, 52.2, 28.5, 35, 28.5, 31.7, 20.5, 23.7, 20.5, 22.1, 17.5, 21.1, 40.6, 14.5, 44.2, 14.5, 50.2, 9.5, 52.6, 9.5, 62.6, -5.5, 64.1, -5.5, 68.5, -23.3, 68.5, -41, 62.5, -53, 62.5, -55.4, 47.5, -69.5, 47.5, -70.8, 32.5, -77.8, 32.5, -79.4)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CanvasGroup/AsteroidSprite2D/Area2D"]
-visible = false
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(67.5, 12.2, 40.2, 16.5, 37.7, 16.5, 30.7, 23.5, 28.8, 23.5, 26.2, 40.5, 28.8, 40.5, 40.5, 50.4, 40.5, 52.5, 59.1, 52.5, 65.1, 48.5, 68.4, 48.5, 82.5, 33.3, 82.5, 26.7, 74.5, 17.7, 74.5, 16, 67.5, 14)
 
@@ -88,7 +86,6 @@ script = ExtResource("5_igd80")
 auto_start_animation = "Highlight"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-visible = false
 rect = Rect2(-64, -64, 128, 128)
 
 [connection signal="input_event" from="CanvasGroup/AsteroidSprite2D/Area2D" to="." method="_on_area_2d_input_event"]
