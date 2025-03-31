@@ -2,7 +2,7 @@ extends Node
 
 class_name ResourceFinder
 
-static func get_resources_in_folder(folder_path: String, filter: String = ".tres") -> Array[Resource]:
+static func get_resources_in_folder(folder_path: String, filter: String = ".tres", recursive: bool = false) -> Array[Resource]:
 	var resources:Array[Resource] = []
 
 	var dir = DirAccess.open(folder_path)
@@ -12,11 +12,14 @@ static func get_resources_in_folder(folder_path: String, filter: String = ".tres
 	
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
-	
 	while file_name != "":
+				
+		# Get the full path of the resource
+		var full_path = folder_path + file_name
 		
 		if dir.current_is_dir():
-			# Skip directories, or you can call this function recursively if needed
+			if recursive:
+				resources.append_array(get_resources_in_folder(full_path + "/", filter, recursive))
 			file_name = dir.get_next()
 			continue
 		
@@ -24,9 +27,6 @@ static func get_resources_in_folder(folder_path: String, filter: String = ".tres
 			file_name.find(filter) == -1):
 			file_name = dir.get_next()
 			continue
-				
-		# Get the full path of the resource
-		var full_path = folder_path + file_name
 		
 		# Load the resource
 		var resource = load(full_path)

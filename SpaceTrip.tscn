@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=32 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
@@ -6,12 +6,15 @@
 [ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://Ship/ShipModules/CoreShipModule.gd" id="2_i2c18"]
 [ext_resource type="Script" uid="uid://ce3mk3t6pnsl0" path="res://Utilities/RichTextTooltip.gd" id="3_cfmqu"]
 [ext_resource type="Texture2D" uid="uid://b41b8pjawwt5t" path="res://Sprites/hull.png" id="3_i5j76"]
+[ext_resource type="Texture2D" uid="uid://db6jq7irrwpk1" path="res://Sprites/cb-eye-opened.png" id="3_ltq8v"]
 [ext_resource type="Material" uid="uid://db4nowr7gcwtr" path="res://Shaders/canvas_group_outline_material.tres" id="3_v47jd"]
 [ext_resource type="Script" uid="uid://b36s11j48be0a" path="res://Ship/ShipModules/EngineModule.gd" id="3_wqs7w"]
 [ext_resource type="Script" uid="uid://0epgfa68wioe" path="res://Utilities/AutoStartAnimationPlayer.gd" id="4_5ampq"]
 [ext_resource type="Script" uid="uid://bun3ie62h08vs" path="res://Ship/ShipModules/MiningModule.gd" id="4_qkquj"]
+[ext_resource type="Texture2D" uid="uid://l58tjgwlgyet" path="res://Sprites/cb-eye-closed.png" id="4_sbeg1"]
 [ext_resource type="PackedScene" uid="uid://bnwhr7jr64wwk" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="5_2xvgb"]
 [ext_resource type="Script" uid="uid://iigsupy7ia7q" path="res://Ship/ShipModules/RadarModule.gd" id="5_dt3j3"]
+[ext_resource type="Script" uid="uid://bdvfbm07hftq3" path="res://VisibilityControlCheckBox.gd" id="5_sbeg1"]
 [ext_resource type="Script" uid="uid://gvinpfgame2m" path="res://Utilities/SynchronizedChildrenScale.gd" id="6_7ev53"]
 [ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/engine.png" id="6_8aiju"]
 [ext_resource type="Material" uid="uid://bra7sd3a51u2f" path="res://Shaders/fireball_shader_material.tres" id="7_g8p7d"]
@@ -205,6 +208,7 @@ text = "Titanium: 0.0"
 label_settings = SubResource("LabelSettings_gxo1i")
 
 [node name="ShopContainer" type="PanelContainer" parent="UIContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -214,7 +218,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
 layout_mode = 2
 vertical = true
 
-[node name="ShopTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+[node name="TitleContainer" type="MarginContainer" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+theme_override_constants/margin_right = 50
+
+[node name="ShopTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/TitleContainer"]
 layout_mode = 2
 text = "Upgrades"
 label_settings = SubResource("LabelSettings_su33w")
@@ -260,6 +268,25 @@ label_settings = SubResource("LabelSettings_cfmqu")
 layout_mode = 2
 vertical = true
 
+[node name="ShopEyeContainer" type="MarginContainer" parent="UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ShopEyeCheckBox" type="CheckBox" parent="UIContainer/ShopEyeContainer" node_paths=PackedStringArray("target")]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("3_ltq8v")
+theme_override_icons/unchecked = ExtResource("4_sbeg1")
+button_pressed = true
+script = ExtResource("5_sbeg1")
+target = NodePath("../../ShopContainer/Shop")
+metadata/_custom_type_script = "uid://bdvfbm07hftq3"
+
 [node name="RichTextTooltip" type="Node2D" parent="UIContainer" node_paths=PackedStringArray("ui_tooltip_container", "ui_tooltip_rich_text_label")]
 script = ExtResource("3_cfmqu")
 ui_tooltip_container = NodePath("TooltipContainer")
@@ -292,7 +319,7 @@ shortcut_keys_enabled = false
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 material = ExtResource("3_v47jd")
 
-[node name="Ship" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_tooltip", "core", "engine", "radar", "mining")]
+[node name="Ship" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining")]
 position = Vector2(960, 540)
 script = ExtResource("1_tp0y5")
 ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/CoreTitleLabel")
@@ -304,6 +331,7 @@ ui_shop_container_radar = NodePath("../../UIContainer/ShopContainer/Shop/RadarSh
 ui_shop_container_mining_title = NodePath("../../UIContainer/ShopContainer/Shop/MiningTitleLabel")
 ui_shop_container_mining = NodePath("../../UIContainer/ShopContainer/Shop/MiningShopBoxContainer")
 ui_tooltip = NodePath("../../UIContainer/RichTextTooltip")
+ui_shop_eye = NodePath("../../UIContainer/ShopEyeContainer/ShopEyeCheckBox")
 core = NodePath("CoreModule")
 engine = NodePath("EngineModule")
 radar = NodePath("RadarModule")
@@ -465,6 +493,8 @@ metadata/_custom_type_script = "uid://iigsupy7ia7q"
 [node name="ForegroundEffects" type="Node2D" parent="."]
 
 [connection signal="pressed" from="UIContainer/HUDContainer/HUD/BoostContainer/BoostEngineButton" to="CanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
+[connection signal="mouse_entered" from="UIContainer/ShopEyeContainer/ShopEyeCheckBox" to="CanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_entered"]
+[connection signal="mouse_exited" from="UIContainer/ShopEyeContainer/ShopEyeCheckBox" to="CanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_exited"]
 [connection signal="input_event" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="CanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_exited"]

@@ -13,10 +13,19 @@ signal screen_exited(asteroid:Asteroid)
 @export var asteroid_sprite: Sprite2D
 @export var target_sprite: Sprite2D
 
+@export_group("Ore Colors")
+@export var modulate_asteroid_by_ore_content: bool = false
+@export var titanium_ore_color: Color
+@export var carbon_ore_color: Color
+@export var water_ore_color: Color
+@export var palladium_ore_color: Color
+@export var pyradium_ore_color: Color
+
 var mining_time_available: float = 11.0
 var starting_mining_time: float
+
 var titanium_richness: float = 1.0
-var spawn_carbon_richness: float = 0.0
+var carbon_richness: float = 0.0
 var water_richness: float = 0.0
 var palladium_richness: float = 0.0
 var pyralium_richness: float = 0.0
@@ -42,6 +51,15 @@ func _ready() -> void:
 	asteroid_sprite.rotate(randf() * 400)
 	starting_mining_time = mining_time_available
 	
+	if modulate_asteroid_by_ore_content:
+		var color = asteroid_sprite.modulate
+		color = color.lerp(titanium_ore_color, titanium_richness)
+		color = color.lerp(carbon_ore_color, carbon_richness)
+		color = color.lerp(water_ore_color, water_richness)
+		color = color.lerp(palladium_ore_color, palladium_richness)
+		color = color.lerp(pyradium_ore_color, pyralium_richness)
+		asteroid_sprite.modulate = color
+		
 func _process(delta: float) -> void:
 	if mining_time_available <= 0:
 		screen_exited.emit(self)

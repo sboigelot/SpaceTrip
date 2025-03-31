@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=6 format=3 uid="uid://q03smyoskk1a"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_dbcof"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_wrppb"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="3_dbcof"]
+
+[sub_resource type="Resource" id="Resource_sip4r"]
+script = ExtResource("1_dbcof")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_boost"
+impact_method = 0
+impact_value = 1.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_wrppb"]
+script = ExtResource("3_dbcof")
+mantissa = 100.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("2_wrppb")
+display_name = "Oxidizer I"
+lore_descripton = ""
+parent_purchases = Array[String](["Turbo Booster I"])
+titanium_cost_mantissa = 100.0
+titanium_cost_exponent = 0
+titanium_cost = SubResource("Resource_wrppb")
+impacts = Array[ExtResource("1_dbcof")]([SubResource("Resource_sip4r")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

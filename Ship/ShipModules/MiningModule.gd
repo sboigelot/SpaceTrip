@@ -8,12 +8,27 @@ extends ShipModule
 
 @export var mining_ray_scene: PackedScene
 
-var titanium := Big.ZERO()
-var titanium_per_second_factor := Big.ONE()
+var titanium:= Big.ZERO()
+var carbon:= Big.ZERO()
+var water:= Big.ZERO()
+var palladium:= Big.ZERO()
+var pyralium:= Big.ZERO()
 
-var auto_mine_asteroid_count: int = 0
+#for refinery
+#var plate:= Big.ZERO()
+#var liquid_fuel:= Big.ZERO()
+#var hydrogen:= Big.ZERO()
+#var electronic:= Big.ZERO()
+#var mana:= Big.ZERO()
+
+var titanium_per_second_factor := Big.ONE()
+var carbon_per_second_factor := Big.ONE()
+var water_per_second_factor := Big.ONE()
+var palladium_per_second_factor := Big.ONE()
+var pyralium_per_second_factor := Big.ONE()
 
 var max_targeted_asteroids: int = 1
+var auto_mine_asteroid_count: int = 0
 var targeted_asteroids: Array[Asteroid]
 
 func update_stats(delta: float) -> void:
@@ -46,10 +61,21 @@ func mine_asteroid(asteroid: Asteroid, delta: float) -> void:
 	if asteroid.mining_time_available <= 0.0:
 		return
 	
-	if asteroid.titanium_richness > 0:
-		titanium.plusEquals(titanium_per_second_factor.
+	mine_asteroid_resource(titanium, titanium_per_second_factor, asteroid.titanium_richness, delta)
+	mine_asteroid_resource(carbon, carbon_per_second_factor, asteroid.carbon_richness, delta)
+	mine_asteroid_resource(water, water_per_second_factor, asteroid.water_richness, delta)
+	mine_asteroid_resource(palladium, palladium_per_second_factor, asteroid.palladium_richness, delta)
+	mine_asteroid_resource(pyralium, pyralium_per_second_factor, asteroid.pyralium_richness, delta)
+
+func mine_asteroid_resource(core_stock:Big, 
+							core_mining_per_second_factor: Big, 
+							asteroid_richness: float, 
+							delta: float):
+	if asteroid_richness > 0:
+		core_stock.plusEquals(core_mining_per_second_factor.
 					times(delta).
-					times(asteroid.titanium_richness))
+					times(asteroid_richness))
+	
 	
 func update_ui():
 	ui_mining_laser_label.text = "Mining laser: %d / %d%s" % [

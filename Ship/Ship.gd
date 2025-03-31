@@ -16,6 +16,7 @@ extends Node2D
 @export var ui_shop_container_mining: Container
 
 @export var ui_tooltip: RichTextTooltip
+@export var ui_shop_eye: VisibilityControlCheckBox
 
 @export_group("Ship Modules")
 @export var core: CoreShipModule
@@ -35,7 +36,7 @@ var shop_items: Array[ShipUpgrade]
 var purchased_items: Array[String]
 
 func _ready() -> void:
-	shop_items.assign(ResourceFinder.get_resources_in_folder("res://Data/ShipUpgrades/"))
+	shop_items.assign(ResourceFinder.get_resources_in_folder("res://Data/ShipUpgrades/", ".tres", true))
 	
 	for shop_item in shop_items:
 		var shop_item_view:ShopItemViewBase = shop_item.shop_item_button_view.instantiate()
@@ -121,3 +122,10 @@ func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 				module[impact.property_impacted] -= percent
 			ShipUpgradeImpact.IMPACT_METHOD.REPLACE_BY:
 				module[impact.property_impacted] = impact.impact_value
+
+func _on_shop_eye_check_box_mouse_entered() -> void:
+	var tooltip_content = "Show / Hide Upgrades"
+	ui_tooltip.open_and_move(tooltip_content, ui_shop_eye.global_position, true)
+
+func _on_shop_eye_check_box_mouse_exited() -> void:
+	ui_tooltip.close()

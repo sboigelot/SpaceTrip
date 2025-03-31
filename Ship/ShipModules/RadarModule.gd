@@ -41,7 +41,7 @@ func spawn_asteroid():
 	var asteroid:Asteroid = asteroid_scene.instantiate()
 	asteroid.ship = ship
 	asteroid.titanium_richness = asteroid_spawn_titanium_richness
-	asteroid.spawn_carbon_richness = asteroid_spawn_carbon_richness
+	asteroid.carbon_richness = asteroid_spawn_carbon_richness
 	asteroid.water_richness = asteroid_spawn_water_richness
 	asteroid.palladium_richness = asteroid_spawn_palladium_richness
 	asteroid.pyralium_richness = asteroid_spawn_pyralium_richness

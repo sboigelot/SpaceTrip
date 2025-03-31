@@ -1,6 +1,5 @@
 class_name Big
-extends RefCounted
-## from https://github.com/ChronoDK/GodotBigNumberClass/blob/master/Godot%204.1.x/Big.gd
+extends Resource
 ## Big number class for use in idle / incremental games and other games that needs very large numbers
 ##
 ## Can format large numbers using a variety of notation methods:[br]
@@ -12,10 +11,13 @@ extends RefCounted
 ## Long strings like 4200000000 or 13370000000000000000000000000000[br][br]
 ## Please note that this class has limited precision and does not fully support negative exponents[br]
 
+## Modified by Togis for SpaceTrip
+## from https://github.com/ChronoDK/GodotBigNumberClass/blob/master/Godot%204.1.x/Big.gd
+
 ## Big Number Mantissa
-var mantissa: float
+@export var mantissa: float
 ## Big Number Exponent
-var exponent: int
+@export var exponent: int
 
 ## Metric Symbol Suffixes
 const suffixes_metric_symbol: Dictionary = {
