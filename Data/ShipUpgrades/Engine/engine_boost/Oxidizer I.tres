@@ -25,6 +25,7 @@ script = ExtResource("2_wrppb")
 debug_hook = false
 lore_descripton = ""
 parent_purchases = Array[String](["Turbo Booster I"])
+parent_missions = Array[String]([])
 titanium_cost = SubResource("Resource_wrppb")
 impacts = Array[ExtResource("1_dbcof")]([SubResource("Resource_sip4r")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

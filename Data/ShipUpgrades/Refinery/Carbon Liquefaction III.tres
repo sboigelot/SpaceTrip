@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=10 format=3 uid="uid://cwore6vq3ucfb"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_dgif7"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_4qqt1"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_4m74e"]
+
+[sub_resource type="Resource" id="Resource_dgif7"]
+script = ExtResource("1_dgif7")
+mantissa = 1.0
+exponent = 4
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_4qqt1"]
+script = ExtResource("2_4qqt1")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "liquid_fuel_refining_duration"
+impact_method = 4
+impact_value = 20.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_4m74e"]
+script = ExtResource("2_4qqt1")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "liquid_fuel_refining_input_carbon"
+impact_method = 4
+impact_value = 1.0
+impact_exponent = 3
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_uyxww"]
+script = ExtResource("2_4qqt1")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "liquid_fuel_refining_output_efficiency"
+impact_method = 4
+impact_value = 0.3
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_685bi"]
+script = ExtResource("1_dgif7")
+mantissa = 100.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_4gqyc"]
+script = ExtResource("1_dgif7")
+mantissa = 1.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_4m74e")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Carbon Liquefaction II"])
+parent_missions = Array[String]([])
+titanium_cost = SubResource("Resource_4gqyc")
+carbon_cost = SubResource("Resource_dgif7")
+liquid_fuel_cost = SubResource("Resource_685bi")
+impacts = Array[ExtResource("2_4qqt1")]([SubResource("Resource_4qqt1"), SubResource("Resource_4m74e"), SubResource("Resource_uyxww")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

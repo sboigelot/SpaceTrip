@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=7 format=3 uid="uid://s1lkcht0pboe"]
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=8 format=3 uid="uid://s1lkcht0pboe"]
 
 [ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_yw7qj"]
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="2_wgy65"]
@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_yw7qj"]
 script = ExtResource("2_wgy65")
-mantissa = 500.0
-exponent = 0
+mantissa = 1.0
+exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_wgy65"]
@@ -22,8 +22,14 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_5d7ee"]
 script = ExtResource("2_wgy65")
-mantissa = 600.0
-exponent = 0
+mantissa = 6.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_wlfii"]
+script = ExtResource("2_wgy65")
+mantissa = 1.0
+exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
@@ -32,6 +38,7 @@ debug_hook = false
 lore_descripton = "We need a more advance material, tweak the radar to search for carbon asteroids"
 parent_purchases = Array[String](["Enter Warp"])
 parent_missions = Array[String]([])
+titanium_cost = SubResource("Resource_wlfii")
 plate_cost = SubResource("Resource_5d7ee")
 carbon_cost = SubResource("Resource_yw7qj")
 impacts = Array[ExtResource("1_yw7qj")]([SubResource("Resource_wgy65")])

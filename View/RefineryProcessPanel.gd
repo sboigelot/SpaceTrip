@@ -39,8 +39,8 @@ func update_ui():
 		return
 		
 	var input_big = get_refining_input_big()
-	ui_input_label.text = input_big.toMetricSymbol(true)
-	ui_output_label.text = input_big.times(get_refining_output_efficiency()).toMetricSymbol(true)
+	ui_input_label.text = input_big.toMetricSymbol(true, true)
+	ui_output_label.text = input_big.times(get_refining_output_efficiency()).toMetricSymbol(true, true)
 	
 	ui_progress_bar.max_value = 1.0
 	ui_progress_bar.value = get_refining_progress() / get_refining_duration()

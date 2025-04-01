@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_ro8dt"]
 script = ExtResource("3_gwa4f")
-mantissa = 250.0
+mantissa = 150.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
@@ -25,6 +25,7 @@ script = ExtResource("2_pvd8t")
 debug_hook = true
 lore_descripton = "Idle to the max"
 parent_purchases = Array[String](["Auto Miner I", "Multi Miner I"])
+parent_missions = Array[String]([])
 titanium_cost = SubResource("Resource_ro8dt")
 impacts = Array[ExtResource("1_xoxx3")]([SubResource("Resource_1fx3x")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

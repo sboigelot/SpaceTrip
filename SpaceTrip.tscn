@@ -276,12 +276,12 @@ vertical = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ShopTitleLabel" type="Label" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle"]
+[node name="MissionTitleLabel" type="Label" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle"]
 layout_mode = 2
 text = "Missions"
 label_settings = SubResource("LabelSettings_su33w")
 
-[node name="ShopEyeCheckBox" type="CheckBox" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle" node_paths=PackedStringArray("target")]
+[node name="MissionEyeCheckBox" type="CheckBox" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle" node_paths=PackedStringArray("target")]
 layout_mode = 2
 focus_mode = 0
 theme_override_icons/checked = ExtResource("3_ltq8v")
@@ -325,7 +325,20 @@ process_container = NodePath("BoxContainer/ProcessBoxContainer")
 layout_mode = 2
 vertical = true
 
-[node name="RefineryTitleLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer"]
+layout_mode = 2
+
+[node name="RefineryEyeCheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer" node_paths=PackedStringArray("target")]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("3_ltq8v")
+theme_override_icons/unchecked = ExtResource("4_sbeg1")
+button_pressed = true
+script = ExtResource("5_sbeg1")
+target = NodePath("../../ProcessBoxContainer")
+metadata/_custom_type_script = "uid://bdvfbm07hftq3"
+
+[node name="RefineryTitleLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer"]
 layout_mode = 2
 text = "Refinery"
 label_settings = SubResource("LabelSettings_su33w")
