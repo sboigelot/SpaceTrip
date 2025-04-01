@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Mission" load_steps=4 format=3 uid="uid://bxybphwsa87iv"]
+[gd_resource type="Resource" script_class="Mission" load_steps=5 format=3 uid="uid://bxybphwsa87iv"]
 
 [ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="1_scqef"]
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_ucrag"]
+[ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_hhify"]
 
-[sub_resource type="Resource" id="Resource_hhify"]
+[sub_resource type="Resource" id="Resource_wsbi8"]
 script = ExtResource("1_ucrag")
 mantissa = 402.0
 exponent = 13
@@ -12,13 +13,13 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 [resource]
 script = ExtResource("1_scqef")
 lore_descripton = "In the name of the Emperor, we have been charged to reach Proxima Centaury and establish a colony capable of sustaining life"
-has_start_trigger = false
 start_trigger_module = ""
 start_trigger_property = ""
 parent_missions = Array[String](["Reach 1000kms speed"])
 parent_purchases = Array[String]([])
 goal_text = "Reach Proxima Centaury"
-gloal_module = "core"
-gloal_property = "distance_travelled"
-gloal_target_value = SubResource("Resource_hhify")
+goal_module = "core"
+goal_property = "distance_travelled"
+goal_target_value = SubResource("Resource_wsbi8")
+rewards = Array[ExtResource("2_hhify")]([])
 metadata/_custom_type_script = "uid://dwx7xej5040qf"

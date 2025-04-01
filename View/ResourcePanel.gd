@@ -36,7 +36,7 @@ func update_ui():
 
 func _on_mouse_entered() -> void:
 	ship.ui_tooltip.open_and_move(
-		property_bound, 
+		property_bound.replace("_", " ").capitalize(), 
 		global_position - Vector2(0, size.y), 
 		false)
 

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Mission" load_steps=4 format=3 uid="uid://sewmgmlqrdaj"]
+[gd_resource type="Resource" script_class="Mission" load_steps=5 format=3 uid="uid://sewmgmlqrdaj"]
 
 [ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="1_18yh4"]
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_e2xab"]
+[ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_rh4r0"]
 
-[sub_resource type="Resource" id="Resource_rh4r0"]
+[sub_resource type="Resource" id="Resource_x084s"]
 script = ExtResource("1_e2xab")
 mantissa = 1.0
 exponent = 0
@@ -12,13 +13,15 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 [resource]
 script = ExtResource("1_18yh4")
 lore_descripton = "We need more titranium to repair the ship ! We will have to mine it from asteroids."
-has_start_trigger = false
 start_trigger_module = ""
 start_trigger_property = ""
 parent_missions = Array[String](["Boost to 5 ms speed"])
 parent_purchases = Array[String]([])
+goal_show_progress = false
 goal_text = "Repair the mining laser"
-gloal_module = "mining"
-gloal_property = "max_targeted_asteroids"
-gloal_target_value = SubResource("Resource_rh4r0")
+goal_module = "mining"
+goal_property = "max_targeted_asteroids"
+goal_target_value = SubResource("Resource_x084s")
+auto_complete = true
+rewards = Array[ExtResource("2_rh4r0")]([])
 metadata/_custom_type_script = "uid://dwx7xej5040qf"

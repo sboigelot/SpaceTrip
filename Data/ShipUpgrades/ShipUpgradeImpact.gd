@@ -65,3 +65,33 @@ var impact_big: Big:
 		if _impact_big == null:
 			_impact_big = Big.new(impact_value, impact_exponent)
 		return _impact_big
+
+func get_impact_description() -> String:
+	if impact_explanation.length() > 0:
+		return impact_explanation
+	
+	var prop_description:String
+	if property_display_names.has(property_impacted):
+		prop_description = property_display_names[property_impacted]
+	else:
+		prop_description = "%s" % property_impacted.replace("_", " ").capitalize()
+	
+	var prop_suffix: String
+	if ShipUpgradeImpact.property_display_suffixes.has(property_impacted):
+		prop_suffix = " " + property_display_suffixes[property_impacted]
+	
+	var value = impact_big.setSmallDecimalsOverride(2)
+	if (impact_method in [
+		IMPACT_METHOD.ADD_PERCENT,
+		IMPACT_METHOD.REMOVE_PERCENT]):
+		value = value.times(100)
+		value.setSmallDecimalsOverride(0)
+		
+	var impact_description = "%s %s%s" % [
+			prop_description,
+			(ShipUpgradeImpact.IMPACT_METHOD_FORMAT[impact_method] % [
+				value.toMetricSymbol(false)
+			]),
+			prop_suffix
+		]
+	return impact_description

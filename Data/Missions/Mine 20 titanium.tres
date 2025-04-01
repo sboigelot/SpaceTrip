@@ -1,24 +1,62 @@
-[gd_resource type="Resource" script_class="Mission" load_steps=4 format=3 uid="uid://b80kq4srbo78x"]
+[gd_resource type="Resource" script_class="Mission" load_steps=11 format=3 uid="uid://b80kq4srbo78x"]
 
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_etodk"]
 [ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="1_yayi2"]
+[ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_o13b1"]
+[ext_resource type="Texture2D" uid="uid://djx32u85qgjbj" path="res://Sprites/Items/titanium.png" id="3_l15ae"]
+[ext_resource type="Texture2D" uid="uid://b7ixd8btr7w4k" path="res://Sprites/Asteroids/asteroid0.png" id="4_vx0c3"]
+[ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/Ship/engine.png" id="5_vx0c3"]
 
-[sub_resource type="Resource" id="Resource_o13b1"]
+[sub_resource type="Resource" id="Resource_4ol0s"]
 script = ExtResource("1_etodk")
 mantissa = 20.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
+[sub_resource type="Resource" id="Resource_vsu72"]
+script = ExtResource("2_o13b1")
+icon = ExtResource("3_l15ae")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "titanium"
+impact_method = 0
+impact_value = 50.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[sub_resource type="Resource" id="Resource_7idfo"]
+script = ExtResource("2_o13b1")
+icon = ExtResource("4_vx0c3")
+impact_explanation = ""
+ship_module = "radar"
+property_impacted = "max_asteroids"
+impact_method = 0
+impact_value = 1.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[sub_resource type="Resource" id="Resource_l15ae"]
+script = ExtResource("2_o13b1")
+icon = ExtResource("5_vx0c3")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_boost"
+impact_method = 1
+impact_value = 0.5
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
 [resource]
 script = ExtResource("1_yayi2")
 lore_descripton = ""
-has_start_trigger = false
 start_trigger_module = ""
 start_trigger_property = ""
 parent_missions = Array[String](["Repair the mining laser"])
 parent_purchases = Array[String]([])
 goal_text = "Mine 20 titanium"
-gloal_module = "mining"
-gloal_property = "titanium"
-gloal_target_value = SubResource("Resource_o13b1")
+goal_module = "mining"
+goal_property = "titanium"
+goal_target_value = SubResource("Resource_4ol0s")
+auto_complete = false
+rewards = Array[ExtResource("2_o13b1")]([SubResource("Resource_vsu72"), SubResource("Resource_7idfo"), SubResource("Resource_l15ae")])
 metadata/_custom_type_script = "uid://dwx7xej5040qf"

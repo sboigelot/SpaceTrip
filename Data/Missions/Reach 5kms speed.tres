@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Mission" load_steps=4 format=3 uid="uid://cu6xvkn3xq4ry"]
+[gd_resource type="Resource" script_class="Mission" load_steps=5 format=3 uid="uid://cu6xvkn3xq4ry"]
 
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_l4plv"]
 [ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="2_iq5u7"]
+[ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_mp70i"]
 
-[sub_resource type="Resource" id="Resource_l4plv"]
+[sub_resource type="Resource" id="Resource_eobex"]
 script = ExtResource("1_l4plv")
 mantissa = 5.0
 exponent = 3
@@ -12,13 +13,13 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 [resource]
 script = ExtResource("2_iq5u7")
 lore_descripton = ""
-has_start_trigger = false
 start_trigger_module = ""
 start_trigger_property = ""
 parent_missions = Array[String](["Reach 500ms speed"])
 parent_purchases = Array[String]([])
 goal_text = "Reach 5 km/s speed"
-gloal_module = "core"
-gloal_property = "speed"
-gloal_target_value = SubResource("Resource_l4plv")
+goal_module = "core"
+goal_property = "speed"
+goal_target_value = SubResource("Resource_eobex")
+rewards = Array[ExtResource("2_mp70i")]([])
 metadata/_custom_type_script = "uid://dwx7xej5040qf"

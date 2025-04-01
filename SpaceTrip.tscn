@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=68 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
@@ -39,6 +39,8 @@
 [ext_resource type="Material" uid="uid://cxdkgla1n5r7t" path="res://Shaders/transition_shader_material.tres" id="9_vkh00"]
 [ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_ejfde"]
 [ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="11_7aab3"]
+[ext_resource type="Script" uid="uid://j6plbtpej2uc" path="res://View/RewardCard.gd" id="11_qktbg"]
+[ext_resource type="Script" uid="uid://b51l8pt32jn3s" path="res://RewardHud.gd" id="11_v4jsj"]
 [ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/Ship/mining.png" id="14_20yo5"]
 [ext_resource type="PackedScene" uid="uid://br5g34mdxpnvq" path="res://View/MiningRays/MiningRay.tscn" id="14_g7nme"]
 [ext_resource type="PackedScene" uid="uid://buqwfkkpa0y3m" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="29_y637g"]
@@ -75,6 +77,11 @@ font_size = 28
 
 [sub_resource type="LabelSettings" id="LabelSettings_ahis8"]
 font_size = 28
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee6t8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qktbg"]
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_sbeg1"]
 font_size = 28
@@ -295,6 +302,146 @@ metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 [node name="MissionContainer" type="BoxContainer" parent="UIContainer/MissionHUD/BoxContainer"]
 layout_mode = 2
 vertical = true
+
+[node name="RewardHUD" type="PanelContainer" parent="UIContainer" node_paths=PackedStringArray("ui_reward_cards")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("11_v4jsj")
+ui_reward_cards = [NodePath("BoxContainer/RewardCardContainer/RewardCard"), NodePath("BoxContainer/RewardCardContainer/RewardCard2"), NodePath("BoxContainer/RewardCardContainer/RewardCard3")]
+
+[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD"]
+layout_mode = 2
+vertical = true
+
+[node name="RewardTitleLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer"]
+layout_mode = 2
+text = "Choose a reward"
+label_settings = SubResource("LabelSettings_su33w")
+horizontal_alignment = 1
+
+[node name="RewardCardContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="RewardCard" type="PanelContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
+custom_minimum_size = Vector2(192, 267)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
+script = ExtResource("11_qktbg")
+ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
+ui_label = NodePath("BoxContainer/RewardLabel")
+
+[node name="ChooseRewardButton" type="Button" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="CenterContainer" type="CenterContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer"]
+custom_minimum_size = Vector2(0, 164)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RewardTextureRect" type="TextureRect" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_svbfm")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="RewardLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer"]
+custom_minimum_size = Vector2(192, 34)
+layout_mode = 2
+size_flags_vertical = 1
+text = "5 titanium"
+label_settings = SubResource("LabelSettings_qktbg")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardCard2" type="PanelContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
+custom_minimum_size = Vector2(192, 267)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
+script = ExtResource("11_qktbg")
+ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
+ui_label = NodePath("BoxContainer/RewardLabel")
+
+[node name="ChooseRewardButton" type="Button" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="CenterContainer" type="CenterContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer"]
+custom_minimum_size = Vector2(0, 164)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RewardTextureRect" type="TextureRect" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_svbfm")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="RewardLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer"]
+custom_minimum_size = Vector2(192, 34)
+layout_mode = 2
+size_flags_vertical = 1
+text = "5 titanium"
+label_settings = SubResource("LabelSettings_qktbg")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardCard3" type="PanelContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
+custom_minimum_size = Vector2(192, 267)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
+script = ExtResource("11_qktbg")
+ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
+ui_label = NodePath("BoxContainer/RewardLabel")
+
+[node name="ChooseRewardButton" type="Button" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="CenterContainer" type="CenterContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer"]
+custom_minimum_size = Vector2(0, 164)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RewardTextureRect" type="TextureRect" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_svbfm")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="RewardLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer"]
+custom_minimum_size = Vector2(192, 34)
+layout_mode = 2
+size_flags_vertical = 1
+text = "5 titanium"
+label_settings = SubResource("LabelSettings_qktbg")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="MiningHUD" type="BoxContainer" parent="UIContainer"]
 layout_mode = 2
@@ -1009,10 +1156,11 @@ shortcut_keys_enabled = false
 [node name="ShipCanvasGroup" type="CanvasGroup" parent="."]
 material = ExtResource("3_v47jd")
 
-[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_mission_container", "ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_shop_container_no_upgrade_title", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
+[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_mission_container", "ui_mission_reward_hud", "ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_shop_container_no_upgrade_title", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
 position = Vector2(960, 540)
 script = ExtResource("1_tp0y5")
 ui_mission_container = NodePath("../../UIContainer/MissionHUD/BoxContainer/MissionContainer")
+ui_mission_reward_hud = NodePath("../../UIContainer/RewardHUD")
 ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/CoreTitleLabel")
 ui_shop_container_core = NodePath("../../UIContainer/ShopContainer/Shop/CoreShopBoxContainer")
 ui_shop_container_engine_title = NodePath("../../UIContainer/ShopContainer/Shop/EngineTitleLabel")
@@ -1197,6 +1345,9 @@ metadata/_custom_type_script = "uid://clj13cjwr8vtd"
 [node name="ForegroundEffects" type="Node2D" parent="."]
 
 [connection signal="pressed" from="UIContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineButton" to="ShipCanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
+[connection signal="pressed" from="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/ChooseRewardButton" to="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard" method="_on_choose_reward_button_pressed"]
+[connection signal="pressed" from="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/ChooseRewardButton" to="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2" method="_on_choose_reward_button_pressed"]
+[connection signal="pressed" from="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/ChooseRewardButton" to="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3" method="_on_choose_reward_button_pressed"]
 [connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel" method="_on_check_box_toggled"]
 [connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel" method="_on_check_box_toggled"]
 [connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel" method="_on_check_box_toggled"]

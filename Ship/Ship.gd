@@ -11,6 +11,7 @@ extends Node2D
 
 @export_group("UI elements")
 @export var ui_mission_container: Container
+@export var ui_mission_reward_hud: RewardHUD
 @export var ui_shop_container_core_title: Label
 @export var ui_shop_container_core: Container
 @export var ui_shop_container_engine_title: Label
@@ -62,6 +63,7 @@ func load_missions():
 		var mission_view:MissionView = mission.mission_view.instantiate()
 		mission_view.ship = self
 		mission_view.data = mission
+		mission_view.ui_mission_reward_hud = ui_mission_reward_hud
 		ui_mission_container.add_child(mission_view)
 	
 func load_shop():

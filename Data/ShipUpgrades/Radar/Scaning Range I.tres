@@ -9,8 +9,8 @@ script = ExtResource("1_obsvn")
 impact_explanation = ""
 ship_module = "radar"
 property_impacted = "max_asteroids"
-impact_method = 4
-impact_value = 4.0
+impact_method = 0
+impact_value = 1.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 

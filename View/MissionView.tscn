@@ -5,11 +5,12 @@
 [sub_resource type="LabelSettings" id="LabelSettings_mnhhu"]
 font_size = 24
 
-[node name="MissionView" type="MarginContainer" node_paths=PackedStringArray("ui_goal_label", "ui_progress_bar")]
+[node name="MissionView" type="MarginContainer" node_paths=PackedStringArray("ui_goal_label", "ui_progress_bar", "ui_claim_button")]
 size_flags_horizontal = 3
 script = ExtResource("1_pcuk3")
 ui_goal_label = NodePath("BoxContainer/GoalLabel")
 ui_progress_bar = NodePath("BoxContainer/MissionProgressBar")
+ui_claim_button = NodePath("BoxContainer/ClaimButton")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 2
@@ -22,7 +23,7 @@ text = "Goal text"
 label_settings = SubResource("LabelSettings_mnhhu")
 
 [node name="MissionProgressBar" type="ProgressBar" parent="BoxContainer"]
-custom_minimum_size = Vector2(400, 32)
+custom_minimum_size = Vector2(400, 47)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -30,5 +31,12 @@ mouse_filter = 1
 max_value = 1.0
 show_percentage = false
 
+[node name="ClaimButton" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(400, 47)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Claim reward"
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="BoxContainer/ClaimButton" to="." method="_on_claim_button_pressed"]
