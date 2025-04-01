@@ -84,18 +84,21 @@ func update_ui():
 	target_mining_rays()
 	
 func target_mining_rays():
+
+	#if upgrading lasers
 	if mining_ray_placeholder.get_child_count() > max_targeted_asteroids:
 		for mining_ray in mining_ray_placeholder.get_children():
 			mining_ray_placeholder.remove_child(mining_ray)
 			mining_ray.queue_free()
+		targeted_asteroids.clear()
 	
 	for mining_ray in mining_ray_placeholder.get_children():
 		mining_ray.visible = false
 		
 	var ray_index = 0
 	for targeted_asteroid in targeted_asteroids:
-		ray_index += 1
 		target_ray_towards(ray_index, targeted_asteroid)
+		ray_index += 1
 	
 func target_ray_towards(ray_index: int, asteroid: Asteroid):
 	while ray_index >= mining_ray_placeholder.get_child_count():

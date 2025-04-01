@@ -79,8 +79,14 @@ func spawn_asteroid():
 	
 	var viewport_size = asteroid.get_viewport_rect().size
 	var y_position = randf_range(64, viewport_size.y - 64)
-	if abs(y_position - viewport_size.y / 2.0) < 64.0:
-		y_position += 64.0
+	var center_y = viewport_size.y / 2.0
+	const center_margin: float = 128.0
+	if y_position > center_y - center_margin and y_position < center_y + center_margin:
+		if y_position < center_y:
+			y_position -= center_margin
+		else:
+			y_position += center_margin
+		
 	asteroid.position = Vector2(
 		viewport_size.x + 64,
 		y_position

@@ -5,7 +5,6 @@ purchase "Engage Warp Speed" -> acc x 1000 -> require liquid fuel (from carbon)
 purchase "Enter Subspace" -> acc x 1000 -> require hydrogen (from water)
 purchase "Enter Hyperspace" -> acc x 1000 -> require mana (from pyralium)
 
-asteroid shoudn't spawn in the middle of Y
 green laser upgrade (clear ray and create new ones)
 
 begining animation and mini text
@@ -20,3 +19,5 @@ save settings, allow option sound volume + fullscreen on /off
 add "check out our other games"
 
 add achievements? (take wake cup achievemnt layer)
+
+end game unlock multiplier?

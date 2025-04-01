@@ -304,6 +304,7 @@ layout_mode = 2
 vertical = true
 
 [node name="RewardHUD" type="PanelContainer" parent="UIContainer" node_paths=PackedStringArray("ui_reward_cards")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1332,9 +1333,6 @@ z_index = 2
 texture = ExtResource("14_20yo5")
 
 [node name="MiningRays" type="Node2D" parent="ShipCanvasGroup/Ship/MiningModule"]
-
-[node name="MiningRay" parent="ShipCanvasGroup/Ship/MiningModule/MiningRays" instance=ExtResource("14_g7nme")]
-visible = false
 
 [node name="RefineryShipModule" type="Node2D" parent="ShipCanvasGroup/Ship"]
 script = ExtResource("32_7aab3")

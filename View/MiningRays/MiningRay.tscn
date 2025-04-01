@@ -79,7 +79,6 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="CenterContainer"]
-emitting = false
 amount = 64
 texture = SubResource("GradientTexture2D_20yo5")
 lifetime = 1.5
