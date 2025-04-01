@@ -66,7 +66,7 @@ func update_stats(delta: float) -> void:
 		liquid_fuel_refining_passive_factor,
 		delta)
 	
-	hydrogen_refining_duration = refine_resource(
+	hydrogen_refining_progress = refine_resource(
 		ship.mining.water, hydrogen,
 		hydrogen_refining_duration,
 		hydrogen_refining_progress,
@@ -76,7 +76,7 @@ func update_stats(delta: float) -> void:
 		hydrogen_refining_passive_factor,
 		delta)
 	
-	electronic_refining_duration = refine_resource(
+	electronic_refining_progress = refine_resource(
 		ship.mining.palladium, electronic,
 		electronic_refining_duration,
 		electronic_refining_progress,
@@ -86,7 +86,7 @@ func update_stats(delta: float) -> void:
 		electronic_refining_passive_factor,
 		delta)
 	
-	mana_refining_duration = refine_resource(
+	mana_refining_progress = refine_resource(
 		ship.mining.pyralium, mana,
 		mana_refining_duration,
 		mana_refining_progress,

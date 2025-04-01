@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://br5g34mdxpnvq"]
 
-[ext_resource type="Script" uid="uid://c2p6n1nrhs76w" path="res://View/MiningRay.gd" id="1_4leji"]
+[ext_resource type="Script" uid="uid://c2p6n1nrhs76w" path="res://View/MiningRays/MiningRay.gd" id="1_4leji"]
 [ext_resource type="Material" uid="uid://clcvlwnatk8we" path="res://Shaders/mining_ray_material.tres" id="1_qnch3"]
 
 [sub_resource type="Gradient" id="Gradient_g7nme"]

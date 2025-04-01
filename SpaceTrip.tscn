@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=64 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
@@ -40,7 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_ejfde"]
 [ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="11_7aab3"]
 [ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/Ship/mining.png" id="14_20yo5"]
-[ext_resource type="PackedScene" uid="uid://br5g34mdxpnvq" path="res://View/MiningRay.tscn" id="14_g7nme"]
+[ext_resource type="PackedScene" uid="uid://br5g34mdxpnvq" path="res://View/MiningRays/MiningRay.tscn" id="14_g7nme"]
 [ext_resource type="PackedScene" uid="uid://buqwfkkpa0y3m" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="29_y637g"]
 [ext_resource type="PackedScene" uid="uid://cg2wv0ofa72p8" path="res://View/Asteroids/Ore/OreAsteroid2.tscn" id="30_m1228"]
 [ext_resource type="PackedScene" uid="uid://dg5njaekg65rb" path="res://View/Asteroids/Ore/OreAsteroid3.tscn" id="31_hibut"]
@@ -51,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://c82e6qtgjgt83" path="res://View/Asteroids/Ore/OreAsteroid7.tscn" id="35_fmtom"]
 [ext_resource type="PackedScene" uid="uid://bt7my1ihwpqo" path="res://View/Asteroids/Ore/OreAsteroid8.tscn" id="36_v2ctf"]
 [ext_resource type="PackedScene" uid="uid://41du24e1jakv" path="res://View/Asteroids/Ore/OreAsteroid9.tscn" id="37_hmren"]
+[ext_resource type="PackedScene" uid="uid://bilg03h80ot6k" path="res://View/MiningRays/BlueMiningRay.tscn" id="50_ee6t8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20yo5"]
 content_margin_left = 20.0
@@ -1172,7 +1173,10 @@ script = ExtResource("4_qkquj")
 ui_mining_laser_container = NodePath("../../../UIContainer/MiningHUD/MiningHUD")
 ui_mining_laser_label = NodePath("../../../UIContainer/MiningHUD/MiningHUD/MiningLaserLabel")
 mining_ray_placeholder = NodePath("MiningRays")
-mining_ray_scene = ExtResource("14_g7nme")
+mining_ray_scenes_per_global_mining_speed = Dictionary[float, PackedScene]({
+0.0: ExtResource("14_g7nme"),
+2.0: ExtResource("50_ee6t8")
+})
 metadata/_custom_type_script = "uid://bun3ie62h08vs"
 
 [node name="MinginSprite2D" type="Sprite2D" parent="ShipCanvasGroup/Ship/MiningModule"]

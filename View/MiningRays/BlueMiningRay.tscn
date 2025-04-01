@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://bilg03h80ot6k"]
+
+[ext_resource type="Script" uid="uid://c2p6n1nrhs76w" path="res://View/MiningRays/MiningRay.gd" id="1_8dyjr"]
+[ext_resource type="Material" uid="uid://dnauce0brro6y" path="res://Shaders/blue_mining_ray_material.tres" id="2_8dyjr"]
+
+[sub_resource type="Gradient" id="Gradient_g7nme"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_20yo5"]
+gradient = SubResource("Gradient_g7nme")
+width = 8
+height = 8
+
+[sub_resource type="Curve" id="Curve_cfmqu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.731517, 0.765574), -1.51091, -1.51091, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_68llu"]
+curve = SubResource("Curve_cfmqu")
+
+[sub_resource type="Gradient" id="Gradient_ltq8v"]
+offsets = PackedFloat32Array(0.502164, 0.666667, 0.900433)
+colors = PackedColorArray(0.936667, 1, 0.05, 1, 1, 0, 0, 1, 1, 0.443137, 0.0941176, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sbeg1"]
+gradient = SubResource("Gradient_ltq8v")
+
+[sub_resource type="Curve" id="Curve_qv31f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.712062, 0.754918), -1.09541, -1.09541, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0dmvi"]
+curve = SubResource("Curve_qv31f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twtrl"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 20.0
+linear_accel_max = 30.0
+radial_accel_min = 25.0
+radial_accel_max = 50.0
+scale_curve = SubResource("CurveTexture_0dmvi")
+color = Color(0.966236, 0.553787, 0, 1)
+color_ramp = SubResource("GradientTexture1D_sbeg1")
+alpha_curve = SubResource("CurveTexture_68llu")
+
+[node name="MiningRay" type="MarginContainer" node_paths=PackedStringArray("mining_particules")]
+offset_top = -20.0
+offset_right = 400.0
+offset_bottom = 20.0
+pivot_offset = Vector2(0, 20)
+mouse_filter = 2
+script = ExtResource("1_8dyjr")
+mining_particules = NodePath("CenterContainer/GPUParticles2D")
+
+[node name="Ray" type="ColorRect" parent="."]
+z_index = 1
+z_as_relative = false
+material = ExtResource("2_8dyjr")
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+z_index = 2
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CenterContainer"]
+emitting = false
+amount = 64
+texture = SubResource("GradientTexture2D_20yo5")
+lifetime = 1.5
+explosiveness = 0.25
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_twtrl")

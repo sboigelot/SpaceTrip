@@ -5,13 +5,16 @@ extends ShipModule
 @export var ui_mining_laser_container: Container
 @export var ui_mining_laser_label: Label
 @export var mining_ray_placeholder: Node2D
-@export var mining_ray_scene: PackedScene
+
+@export var mining_ray_scenes_per_global_mining_speed: Dictionary[float, PackedScene]
 
 var titanium:= Big.ZERO()
 var carbon:= Big.ZERO()
 var water:= Big.ZERO()
 var palladium:= Big.ZERO()
 var pyralium:= Big.ZERO()
+
+var global_mining_speed_factor: float = 1.0
 
 var titanium_per_second_factor := Big.ONE()
 var carbon_per_second_factor := Big.ONE()
@@ -49,15 +52,16 @@ func auto_mine_asteroids():
 	targeted_asteroids.append_array(new_targets)
 		
 func mine_asteroid(asteroid: Asteroid, delta: float) -> void:
-	asteroid.mining_time_available -= delta
+	var mining_delta = global_mining_speed_factor * delta
+	asteroid.mining_time_available -= mining_delta
 	if asteroid.mining_time_available <= 0.0:
 		return
 	
-	mine_asteroid_resource(titanium, titanium_per_second_factor, asteroid.titanium_richness, delta)
-	mine_asteroid_resource(carbon, carbon_per_second_factor, asteroid.carbon_richness, delta)
-	mine_asteroid_resource(water, water_per_second_factor, asteroid.water_richness, delta)
-	mine_asteroid_resource(palladium, palladium_per_second_factor, asteroid.palladium_richness, delta)
-	mine_asteroid_resource(pyralium, pyralium_per_second_factor, asteroid.pyralium_richness, delta)
+	mine_asteroid_resource(titanium, titanium_per_second_factor, asteroid.titanium_richness, mining_delta)
+	mine_asteroid_resource(carbon, carbon_per_second_factor, asteroid.carbon_richness, mining_delta)
+	mine_asteroid_resource(water, water_per_second_factor, asteroid.water_richness, mining_delta)
+	mine_asteroid_resource(palladium, palladium_per_second_factor, asteroid.palladium_richness, mining_delta)
+	mine_asteroid_resource(pyralium, pyralium_per_second_factor, asteroid.pyralium_richness, mining_delta)
 
 func mine_asteroid_resource(core_stock:Big, 
 							core_mining_per_second_factor: Big, 
@@ -80,6 +84,11 @@ func update_ui():
 	target_mining_rays()
 	
 func target_mining_rays():
+	if mining_ray_placeholder.get_child_count() > max_targeted_asteroids:
+		for mining_ray in mining_ray_placeholder.get_children():
+			mining_ray_placeholder.remove_child(mining_ray)
+			mining_ray.queue_free()
+	
 	for mining_ray in mining_ray_placeholder.get_children():
 		mining_ray.visible = false
 		
@@ -96,6 +105,12 @@ func target_ray_towards(ray_index: int, asteroid: Asteroid):
 	mining_ray.target(asteroid)
 
 func spawn_mining_ray():
+	var mining_ray_scene: PackedScene
+	for dictionary_key in mining_ray_scenes_per_global_mining_speed.keys():
+		if dictionary_key > global_mining_speed_factor:
+			break
+		mining_ray_scene = mining_ray_scenes_per_global_mining_speed[dictionary_key] 	
+	
 	var mining_ray = mining_ray_scene.instantiate()
 	mining_ray.visible = false
 	mining_ray_placeholder.add_child(mining_ray)

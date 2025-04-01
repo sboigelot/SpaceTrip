@@ -1,3 +1,6 @@
+speed up upgrade in wrap space
+re-auto and multi laser for blue version
+
 purchase "Engage Warp Speed" -> acc x 1000 -> require liquid fuel (from carbon)
 purchase "Enter Subspace" -> acc x 1000 -> require hydrogen (from water)
 purchase "Enter Hyperspace" -> acc x 1000 -> require mana (from pyralium)
