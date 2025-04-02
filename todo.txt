@@ -4,6 +4,8 @@ Bugs / refinement:
 		if order even possible
 		
 	first time tooltip is show, it is max size Y
+	
+	click on reward icon doesn't activate button
 
 Gameplay todo:
 	
@@ -14,6 +16,7 @@ Gameplay todo:
 		more engine and speed upgrades
 		hydrolosys IV
 		1000 km/s rewards are ridiculus now
+		passive carbon I after hydrolisis I (0.1)
 	
 	Subspace: 
 		When enter:

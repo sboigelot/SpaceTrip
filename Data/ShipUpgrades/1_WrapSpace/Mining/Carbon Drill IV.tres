@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=7 format=3 uid="uid://d20yj440gst2x"]
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=8 format=3 uid="uid://d20yj440gst2x"]
 
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_kiv8l"]
 [ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_qyc3y"]
@@ -22,8 +22,14 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_0d36u"]
 script = ExtResource("1_kiv8l")
-mantissa = 300.0
-exponent = 0
+mantissa = 1.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_m8tqc"]
+script = ExtResource("1_kiv8l")
+mantissa = 10.0
+exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
@@ -32,6 +38,7 @@ debug_hook = false
 lore_descripton = "Imrpove our mining techniques"
 parent_purchases = Array[String](["Carbon Drill III", "Carbon Liquefaction II"])
 parent_missions = Array[String]([])
+titanium_cost = SubResource("Resource_m8tqc")
 carbon_cost = SubResource("Resource_kiv8l")
 liquid_fuel_cost = SubResource("Resource_0d36u")
 impacts = Array[ExtResource("2_qyc3y")]([SubResource("Resource_qyc3y")])

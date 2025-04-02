@@ -20,7 +20,7 @@ impact_explanation = ""
 ship_module = "refinery"
 property_impacted = "plate"
 impact_method = 0
-impact_value = 500.0
+impact_value = 250.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
@@ -42,7 +42,7 @@ impact_explanation = ""
 ship_module = "mining"
 property_impacted = "carbon"
 impact_method = 0
-impact_value = 150.0
+impact_value = 75.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
