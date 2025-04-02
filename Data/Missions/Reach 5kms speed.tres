@@ -1,14 +1,50 @@
-[gd_resource type="Resource" script_class="Mission" load_steps=5 format=3 uid="uid://cu6xvkn3xq4ry"]
+[gd_resource type="Resource" script_class="Mission" load_steps=11 format=3 uid="uid://cu6xvkn3xq4ry"]
 
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_l4plv"]
 [ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="2_iq5u7"]
 [ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_mp70i"]
+[ext_resource type="Texture2D" uid="uid://djx32u85qgjbj" path="res://Sprites/Items/titanium.png" id="3_w6pfc"]
+[ext_resource type="Texture2D" uid="uid://cw4ng3ompu6j" path="res://Sprites/Items/plate.png" id="4_0g868"]
+[ext_resource type="Texture2D" uid="uid://bl0kwcncm8bmy" path="res://Sprites/Asteroids/asteroid3.png" id="5_w6pfc"]
 
 [sub_resource type="Resource" id="Resource_eobex"]
 script = ExtResource("1_l4plv")
 mantissa = 5.0
 exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_cd5v8"]
+script = ExtResource("2_mp70i")
+icon = ExtResource("3_w6pfc")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "titanium"
+impact_method = 0
+impact_value = 50.0
+impact_exponent = 3
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[sub_resource type="Resource" id="Resource_2ti5w"]
+script = ExtResource("2_mp70i")
+icon = ExtResource("4_0g868")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "plate"
+impact_method = 0
+impact_value = 1.0
+impact_exponent = 3
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[sub_resource type="Resource" id="Resource_yvn6j"]
+script = ExtResource("2_mp70i")
+icon = ExtResource("5_w6pfc")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "global_mining_speed_factor"
+impact_method = 1
+impact_value = 1.05
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
 [resource]
 script = ExtResource("2_iq5u7")
@@ -17,9 +53,11 @@ start_trigger_module = ""
 start_trigger_property = ""
 parent_missions = Array[String](["Reach 500ms speed"])
 parent_purchases = Array[String]([])
+goal_show_progress = true
 goal_text = "Reach 5 km/s speed"
 goal_module = "core"
 goal_property = "speed"
 goal_target_value = SubResource("Resource_eobex")
-rewards = Array[ExtResource("2_mp70i")]([])
+auto_complete = false
+rewards = Array[ExtResource("2_mp70i")]([SubResource("Resource_cd5v8"), SubResource("Resource_2ti5w"), SubResource("Resource_yvn6j")])
 metadata/_custom_type_script = "uid://dwx7xej5040qf"

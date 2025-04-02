@@ -38,7 +38,9 @@ func auto_mine_asteroids():
 		return
 		
 	var new_targets: Array[Asteroid] = []
-	for asteroid in ship.radar.asteroids:
+	var all_asteroids = ship.radar.asteroids.duplicate()
+	all_asteroids.shuffle()
+	for asteroid in all_asteroids:
 		if not asteroid.can_be_auto_mined():
 			continue
 			

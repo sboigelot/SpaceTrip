@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform vec2 mouse_position = vec2(0.5, 0.5);
 uniform vec4 wave_color: source_color = vec4(1.0, 2.0, 4.0, 1.0);
 uniform float wave_transparency: hint_range(0.0, 1.0) = 1.0;
+uniform float slowdown: hint_range(0.1, 10.0, 0.1) = 1.0;
 
 mat2 rotate2D(float r) {
     // Matriz de rotación 2D
@@ -15,7 +16,7 @@ void fragment() {
     // Color inicial
     vec3 col = vec3(0.0);
     // Tiempo
-    float t = TIME;
+    float t = TIME / slowdown;
     // Variables para el cálculo del ruido
     vec2 n = vec2(0.0), q;
     vec2 N = vec2(0.0);

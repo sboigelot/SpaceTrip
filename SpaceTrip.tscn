@@ -103,13 +103,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("../..:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.51, 3, 4.5, 6),
-"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(960, 540), Vector2(960, 525), Vector2(960, 540), Vector2(960, 555), Vector2(960, 540)]
+"values": [Vector2(1200, 675), Vector2(1200, 643), Vector2(1200, 675), Vector2(1200, 707), Vector2(1200, 675)]
 }
 
 [sub_resource type="Animation" id="Animation_g8p7d"]
@@ -124,7 +124,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(960, 540)]
+"values": [Vector2(1200, 675)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ev53"]
@@ -139,19 +139,22 @@ point_count = 4
 
 [node name="SpaceTrip" type="Node"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(1200, 675)
+zoom = Vector2(0.8, 0.8)
+
 [node name="BackgroundEffects" type="Node2D" parent="."]
 
 [node name="VoidOfSpace" type="ColorRect" parent="BackgroundEffects"]
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ScrollingStars" type="ColorRect" parent="BackgroundEffects"]
-visible = false
 material = ExtResource("1_gxo1i")
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
@@ -160,7 +163,7 @@ color = Color(0, 0, 0, 1)
 [node name="WrapSpace" type="ColorRect" parent="BackgroundEffects"]
 visible = false
 material = ExtResource("2_vvaot")
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
@@ -168,7 +171,7 @@ mouse_filter = 2
 [node name="SubSpace" type="ColorRect" parent="BackgroundEffects"]
 visible = false
 material = ExtResource("2_fmtom")
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
@@ -177,17 +180,17 @@ script = ExtResource("3_v2ctf")
 [node name="HyperSpace" type="ColorRect" parent="BackgroundEffects"]
 visible = false
 material = ExtResource("4_hmren")
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0
 offset_bottom = 1080.0
 rotation = 3.14159
-pivot_offset = Vector2(960, 540)
+pivot_offset = Vector2(1200, 675)
 mouse_filter = 2
 
 [node name="TransitionOverlay" type="ColorRect" parent="BackgroundEffects"]
 visible = false
 material = ExtResource("9_vkh00")
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
@@ -195,7 +198,7 @@ mouse_filter = 2
 [node name="SpeedLines" type="ColorRect" parent="BackgroundEffects"]
 visible = false
 material = ExtResource("1_ahis8")
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(2400, 1350)
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
@@ -206,6 +209,8 @@ z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 480.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -219,10 +224,12 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
 
 [node name="SpeedHUD" type="BoxContainer" parent="UIContainer/SpeedHUD"]
 layout_mode = 2
+mouse_filter = 2
 vertical = true
 
 [node name="DistanceLabel" type="Label" parent="UIContainer/SpeedHUD/SpeedHUD"]
@@ -274,15 +281,18 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
 
 [node name="BoxContainer" type="BoxContainer" parent="UIContainer/MissionHUD"]
 layout_mode = 2
+mouse_filter = 2
 vertical = true
 
 [node name="MissionTitle" type="BoxContainer" parent="UIContainer/MissionHUD/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 
 [node name="MissionTitleLabel" type="Label" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle"]
 layout_mode = 2
@@ -301,6 +311,7 @@ metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="MissionContainer" type="BoxContainer" parent="UIContainer/MissionHUD/BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 vertical = true
 
 [node name="RewardHUD" type="PanelContainer" parent="UIContainer" node_paths=PackedStringArray("ui_reward_cards")]
@@ -1040,14 +1051,17 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
 
 [node name="Shop" type="BoxContainer" parent="UIContainer/ShopContainer"]
 layout_mode = 2
+mouse_filter = 2
 vertical = true
 
 [node name="TitleContainer" type="MarginContainer" parent="UIContainer/ShopContainer/Shop"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_right = 50
 
 [node name="ShopTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/TitleContainer"]
@@ -1055,66 +1069,68 @@ layout_mode = 2
 text = "Upgrades"
 label_settings = SubResource("LabelSettings_su33w")
 
-[node name="EngineTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+[node name="ShopShelfContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+layout_mode = 2
+vertical = true
+
+[node name="EngineTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 text = "Engine"
 label_settings = SubResource("LabelSettings_cfmqu")
 
-[node name="EngineShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+[node name="EngineShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 vertical = true
 
-[node name="RadarTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+[node name="RadarTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 text = "Radar"
 label_settings = SubResource("LabelSettings_cfmqu")
 
-[node name="RadarShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+[node name="RadarShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 vertical = true
 
-[node name="MiningTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+[node name="MiningTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 text = "Mining Laser"
 label_settings = SubResource("LabelSettings_cfmqu")
 
-[node name="MiningShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+[node name="MiningShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 vertical = true
 
-[node name="RefineryTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+[node name="RefineryTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 text = "Refinery"
 label_settings = SubResource("LabelSettings_cfmqu")
 
-[node name="RefineryShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+[node name="RefineryShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 vertical = true
 
-[node name="CoreTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+[node name="CoreTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 text = "Core"
 label_settings = SubResource("LabelSettings_cfmqu")
 
-[node name="CoreShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
+[node name="CoreShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 vertical = true
 
-[node name="NoneAvailableLabel" type="Label" parent="UIContainer/ShopContainer/Shop"]
+[node name="NoneAvailableLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
 layout_mode = 2
 text = "No upgrade available"
 label_settings = SubResource("LabelSettings_cfmqu")
 
-[node name="ShopEyeContainer" type="MarginContainer" parent="UIContainer"]
+[node name="ShopEye" type="MarginContainer" parent="UIContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="ShopEyeCheckBox" type="CheckBox" parent="UIContainer/ShopEyeContainer" node_paths=PackedStringArray("target")]
+[node name="ShopEyeCheckBox" type="CheckBox" parent="UIContainer/ShopEye" node_paths=PackedStringArray("target")]
 layout_mode = 2
 focus_mode = 0
 theme_override_icons/checked = ExtResource("3_ltq8v")
@@ -1158,23 +1174,23 @@ shortcut_keys_enabled = false
 material = ExtResource("3_v47jd")
 
 [node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_mission_container", "ui_mission_reward_hud", "ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_shop_container_no_upgrade_title", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
-position = Vector2(960, 540)
+position = Vector2(1200, 675)
 script = ExtResource("1_tp0y5")
 ui_mission_container = NodePath("../../UIContainer/MissionHUD/BoxContainer/MissionContainer")
 ui_mission_reward_hud = NodePath("../../UIContainer/RewardHUD")
-ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/CoreTitleLabel")
-ui_shop_container_core = NodePath("../../UIContainer/ShopContainer/Shop/CoreShopBoxContainer")
-ui_shop_container_engine_title = NodePath("../../UIContainer/ShopContainer/Shop/EngineTitleLabel")
-ui_shop_container_engine = NodePath("../../UIContainer/ShopContainer/Shop/EngineShopBoxContainer")
-ui_shop_container_radar_title = NodePath("../../UIContainer/ShopContainer/Shop/RadarTitleLabel")
-ui_shop_container_radar = NodePath("../../UIContainer/ShopContainer/Shop/RadarShopBoxContainer")
-ui_shop_container_mining_title = NodePath("../../UIContainer/ShopContainer/Shop/MiningTitleLabel")
-ui_shop_container_mining = NodePath("../../UIContainer/ShopContainer/Shop/MiningShopBoxContainer")
-ui_shop_container_refinery_title = NodePath("../../UIContainer/ShopContainer/Shop/RefineryTitleLabel")
-ui_shop_container_refinery = NodePath("../../UIContainer/ShopContainer/Shop/RefineryShopBoxContainer")
-ui_shop_container_no_upgrade_title = NodePath("../../UIContainer/ShopContainer/Shop/NoneAvailableLabel")
+ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/CoreTitleLabel")
+ui_shop_container_core = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/CoreShopBoxContainer")
+ui_shop_container_engine_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/EngineTitleLabel")
+ui_shop_container_engine = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/EngineShopBoxContainer")
+ui_shop_container_radar_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RadarTitleLabel")
+ui_shop_container_radar = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RadarShopBoxContainer")
+ui_shop_container_mining_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/MiningTitleLabel")
+ui_shop_container_mining = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/MiningShopBoxContainer")
+ui_shop_container_refinery_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RefineryTitleLabel")
+ui_shop_container_refinery = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RefineryShopBoxContainer")
+ui_shop_container_no_upgrade_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/NoneAvailableLabel")
 ui_tooltip = NodePath("../../UIContainer/RichTextTooltip")
-ui_shop_eye = NodePath("../../UIContainer/ShopEyeContainer/ShopEyeCheckBox")
+ui_shop_eye = NodePath("../../UIContainer/ShopEye/ShopEyeCheckBox")
 core = NodePath("CoreModule")
 engine = NodePath("EngineModule")
 radar = NodePath("RadarModule")
@@ -1223,15 +1239,6 @@ children_scale_factor = 2.0
 children_scale = Vector2(1, 1)
 metadata/_custom_type_script = "uid://gvinpfgame2m"
 
-[node name="Smoke1" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Smoke"]
-material = ExtResource("8_su33w")
-custom_minimum_size = Vector2(64, 64)
-offset_left = -324.0
-offset_top = -201.0
-offset_right = -196.0
-offset_bottom = -73.0
-pivot_offset = Vector2(128, 64)
-
 [node name="Smoke2" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Smoke"]
 material = ExtResource("8_su33w")
 custom_minimum_size = Vector2(64, 64)
@@ -1250,6 +1257,15 @@ offset_right = -176.0
 offset_bottom = 105.0
 pivot_offset = Vector2(128, 64)
 
+[node name="Smoke1" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Smoke"]
+material = ExtResource("8_su33w")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -324.0
+offset_top = -201.0
+offset_right = -196.0
+offset_bottom = -73.0
+pivot_offset = Vector2(128, 64)
+
 [node name="Smoke4" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Smoke"]
 material = ExtResource("8_su33w")
 custom_minimum_size = Vector2(64, 64)
@@ -1265,15 +1281,6 @@ script = ExtResource("6_7ev53")
 children_scale_factor = 2.0
 children_scale = Vector2(1, 1)
 metadata/_custom_type_script = "uid://gvinpfgame2m"
-
-[node name="Fireball1" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Fireballs"]
-material = ExtResource("7_g8p7d")
-custom_minimum_size = Vector2(64, 64)
-offset_left = -330.0
-offset_top = -201.0
-offset_right = -202.0
-offset_bottom = -73.0
-pivot_offset = Vector2(128, 64)
 
 [node name="Fireball2" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Fireballs"]
 material = ExtResource("7_g8p7d")
@@ -1291,6 +1298,15 @@ offset_left = -310.0
 offset_top = -23.0
 offset_right = -182.0
 offset_bottom = 105.0
+pivot_offset = Vector2(128, 64)
+
+[node name="Fireball1" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Fireballs"]
+material = ExtResource("7_g8p7d")
+custom_minimum_size = Vector2(64, 64)
+offset_left = -330.0
+offset_top = -201.0
+offset_right = -202.0
+offset_bottom = -73.0
 pivot_offset = Vector2(128, 64)
 
 [node name="Fireball4" type="ColorRect" parent="ShipCanvasGroup/Ship/EngineModule/Fireballs"]
@@ -1351,8 +1367,8 @@ metadata/_custom_type_script = "uid://clj13cjwr8vtd"
 [connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel" method="_on_check_box_toggled"]
 [connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel" method="_on_check_box_toggled"]
 [connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel" method="_on_check_box_toggled"]
-[connection signal="mouse_entered" from="UIContainer/ShopEyeContainer/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_entered"]
-[connection signal="mouse_exited" from="UIContainer/ShopEyeContainer/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_exited"]
+[connection signal="mouse_entered" from="UIContainer/ShopEye/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_entered"]
+[connection signal="mouse_exited" from="UIContainer/ShopEye/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_exited"]
 [connection signal="input_event" from="ShipCanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="ShipCanvasGroup/Ship/EngineModule" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="ShipCanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="ShipCanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="ShipCanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="ShipCanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_exited"]

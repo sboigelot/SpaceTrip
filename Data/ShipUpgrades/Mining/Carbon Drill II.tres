@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_05hqg"]
 script = ExtResource("2_ruxya")
-mantissa = 1.0
-exponent = 3
+mantissa = 400.0
+exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_fmixv"]
@@ -16,7 +16,7 @@ impact_explanation = ""
 ship_module = "mining"
 property_impacted = "carbon_per_second_factor"
 impact_method = 1
-impact_value = 2.0
+impact_value = 5.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 

@@ -27,11 +27,19 @@ func update_stats(delta: float) -> void:
 	
 func spawn_asteroids():
 	
+	var real_max_asteroids = max_asteroids * (
+		asteroid_spawn_titanium_chance +
+		asteroid_spawn_carbon_chance +
+		asteroid_spawn_water_chance +
+		asteroid_spawn_palladium_chance +
+		asteroid_spawn_pyralium_chance
+	)
+	
 	var distance_since_asteroid_spawn = ship.core.distance_travelled.minus(last_asteroid_spawn_distance)
 	while distance_since_asteroid_spawn.isGreaterThan(asteroid_spawn_min_distance):
 		last_asteroid_spawn_distance = Big.new(ship.core.distance_travelled)
 		distance_since_asteroid_spawn = ship.core.distance_travelled.minus(last_asteroid_spawn_distance)
-		if asteroids.size() >= max_asteroids:
+		if asteroids.size() >= real_max_asteroids:
 			break
 		
 		spawn_asteroid()
@@ -77,9 +85,10 @@ func spawn_asteroid():
 	asteroid.clicked.connect(ship.mining.on_asteroid_clicked)
 	asteroid_placeholder.add_child(asteroid)
 	
-	var viewport_size = asteroid.get_viewport_rect().size
-	var y_position = randf_range(64, viewport_size.y - 64)
-	var center_y = viewport_size.y / 2.0
+	var viewport_size = Vector2(get_viewport().size)
+	var capture_size = viewport_size / get_viewport().get_camera_2d().zoom
+	var y_position = randf_range(64, capture_size.y - 64)
+	var center_y = capture_size.y / 2.0
 	const center_margin: float = 128.0
 	if y_position > center_y - center_margin and y_position < center_y + center_margin:
 		if y_position < center_y:
@@ -88,7 +97,7 @@ func spawn_asteroid():
 			y_position += center_margin
 		
 	asteroid.position = Vector2(
-		viewport_size.x + 64,
+		capture_size.x + 64,
 		y_position
 	)
 	

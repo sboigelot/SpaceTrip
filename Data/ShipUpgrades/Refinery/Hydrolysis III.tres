@@ -42,7 +42,7 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_q8isv"]
 script = ExtResource("1_rnurq")
-mantissa = 20.0
+mantissa = 10.0
 exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 

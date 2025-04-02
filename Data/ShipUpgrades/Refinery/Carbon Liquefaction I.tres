@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_1kivu"]
 script = ExtResource("3_wl0pt")
-mantissa = 1.0
-exponent = 3
+mantissa = 500.0
+exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_w3jwx"]

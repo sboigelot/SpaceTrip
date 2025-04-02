@@ -52,9 +52,25 @@ var mission_completed: Array[String]
 func _ready() -> void:
 	load_missions()
 	load_shop()
-	check_shop_dependencies()
-	check_mission_dependencies()
+	check_data()
 	update_ui()
+	
+func check_data():
+	var missing_property_display_names:Array = []
+	check_shop_dependencies(missing_property_display_names)
+	check_mission_dependencies(missing_property_display_names)
+	var ignored_properties = [
+		"titanium",
+		"plate",
+		"carbon",
+		"liquid_fuel"
+	]
+	for ignored_property in ignored_properties:
+		missing_property_display_names.erase(ignored_property)
+	if missing_property_display_names.size() > 0:
+		print("Missing in ShipUpgradeImpact.property_display_suffixes:")
+		for missing_property_display_name in missing_property_display_names:
+			print(missing_property_display_name)
 
 func load_missions():
 	missions.assign(ResourceFinder.get_resources_in_folder("res://Data/Missions/", ".tres", true))
@@ -104,7 +120,7 @@ func mission_exist(display_name: String)-> bool:
 			break
 	return found
 	
-func check_shop_dependencies():
+func check_shop_dependencies(missing_property_display_names: Array):
 	for shop_item in shop_items:
 		for parent_shop_item in shop_item.parent_purchases:
 			if not shop_item_exist(parent_shop_item):
@@ -118,8 +134,13 @@ func check_shop_dependencies():
 					shop_item.display_name,
 					parent_mission
 				])
+				
+		for impact in shop_item.impacts:
+			if not ShipUpgradeImpact.property_display_names.has(impact.property_impacted):
+				if not missing_property_display_names.has(impact.property_impacted):
+					missing_property_display_names.append(impact.property_impacted)
 
-func check_mission_dependencies():
+func check_mission_dependencies(missing_property_display_names: Array):
 	for mission in missions:
 		for parent_shop_item in mission.parent_purchases:
 			if not shop_item_exist(parent_shop_item):
@@ -133,6 +154,11 @@ func check_mission_dependencies():
 					mission.display_name,
 					parent_mission
 				])
+				
+		for reward in mission.rewards:
+			if not ShipUpgradeImpact.property_display_names.has(reward.property_impacted):
+				if not missing_property_display_names.has(reward.property_impacted):
+					missing_property_display_names.append(reward.property_impacted)
 
 func update_ui():
 	ui_shop_container_core_title.visible = 		any_child_visible(ui_shop_container_core)
@@ -219,9 +245,8 @@ func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 		match(impact.impact_method):
 			ShipUpgradeImpact.IMPACT_METHOD.ADD:
 				property.plusEquals(impact.impact_big)
-			ShipUpgradeImpact.IMPACT_METHOD.ADD_PERCENT:
-				var percent = property.times(impact.impact_value)
-				property.plusEquals(percent)
+			ShipUpgradeImpact.IMPACT_METHOD.MULTIPLY_BY:
+				property.timesEquals(impact.impact_value)
 			ShipUpgradeImpact.IMPACT_METHOD.REMOVE:
 				property.minusEquals(impact.impact_big)
 			ShipUpgradeImpact.IMPACT_METHOD.REMOVE_PERCENT:
@@ -234,9 +259,8 @@ func _apply_ship_upgrade_impact(impact:ShipUpgradeImpact):
 		match(impact.impact_method):
 			ShipUpgradeImpact.IMPACT_METHOD.ADD:
 				module[impact.property_impacted] += impact.impact_value
-			ShipUpgradeImpact.IMPACT_METHOD.ADD_PERCENT:
-				var percent = module[impact.property_impacted] * impact.impact_value
-				module[impact.property_impacted] += percent
+			ShipUpgradeImpact.IMPACT_METHOD.MULTIPLY_BY:
+				module[impact.property_impacted] *= impact.impact_value
 			ShipUpgradeImpact.IMPACT_METHOD.REMOVE:
 				module[impact.property_impacted] -= impact.impact_value
 			ShipUpgradeImpact.IMPACT_METHOD.REMOVE_PERCENT:

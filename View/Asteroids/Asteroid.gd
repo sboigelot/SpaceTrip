@@ -80,7 +80,9 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	screen_exited.emit(self)
 	if respawn_on_screen_exit:
-		position.x = get_viewport_rect().size.x + 64
+		var viewport_size = Vector2(get_viewport().size)
+		var capture_size = viewport_size / get_viewport().get_camera_2d().zoom
+		position.x = capture_size.x + 64
 	else:
 		queue_free()
 
@@ -92,4 +94,6 @@ func _on_area_2d_mouse_exited() -> void:
 	pressed = false
 
 func can_be_auto_mined() -> bool:
-	return position.x < get_viewport_rect().size.x - 128
+	var viewport_size = Vector2(get_viewport().size)
+	var capture_size = viewport_size / get_viewport().get_camera_2d().zoom
+	return position.x < capture_size.x - 128

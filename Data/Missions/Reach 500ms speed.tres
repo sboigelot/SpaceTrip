@@ -13,36 +13,36 @@ mantissa = 500.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
-[sub_resource type="Resource" id="Resource_6hy8p"]
+[sub_resource type="Resource" id="Resource_livas"]
 script = ExtResource("2_uwopa")
 icon = ExtResource("3_r6l6k")
 impact_explanation = ""
 ship_module = "refinery"
 property_impacted = "plate"
 impact_method = 0
-impact_value = 50.0
-impact_exponent = 0
+impact_value = 1.0
+impact_exponent = 3
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
-[sub_resource type="Resource" id="Resource_lqsdd"]
+[sub_resource type="Resource" id="Resource_6hy8p"]
 script = ExtResource("2_uwopa")
 icon = ExtResource("4_livas")
 impact_explanation = ""
 ship_module = "mining"
 property_impacted = "titanium"
 impact_method = 0
-impact_value = 1.0
+impact_value = 20.0
 impact_exponent = 3
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
-[sub_resource type="Resource" id="Resource_h40ej"]
+[sub_resource type="Resource" id="Resource_lqsdd"]
 script = ExtResource("2_uwopa")
 icon = ExtResource("5_livas")
-impact_explanation = "mining"
-ship_module = "carbon"
-property_impacted = "100"
-impact_method = 4
-impact_value = 0.0
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "carbon"
+impact_method = 0
+impact_value = 250.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
@@ -59,5 +59,5 @@ goal_module = "core"
 goal_property = "speed"
 goal_target_value = SubResource("Resource_r6l6k")
 auto_complete = false
-rewards = Array[ExtResource("2_uwopa")]([SubResource("Resource_6hy8p"), SubResource("Resource_lqsdd"), SubResource("Resource_h40ej")])
+rewards = Array[ExtResource("2_uwopa")]([SubResource("Resource_livas"), SubResource("Resource_6hy8p"), SubResource("Resource_lqsdd")])
 metadata/_custom_type_script = "uid://dwx7xej5040qf"

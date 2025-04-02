@@ -5,5 +5,6 @@
 [resource]
 shader = ExtResource("1_77j4b")
 shader_parameter/mouse_position = Vector2(0.5, 0.5)
-shader_parameter/wave_color = Color(0.768627, 0.741176, 4, 1)
+shader_parameter/wave_color = Color(0.547667, 0.54, 1, 1)
 shader_parameter/wave_transparency = 1.0
+shader_parameter/slowdown = 8.0

@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_dgif7"]
 script = ExtResource("1_dgif7")
-mantissa = 1.0
-exponent = 4
+mantissa = 5.0
+exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_4qqt1"]
@@ -48,8 +48,8 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_4gqyc"]
 script = ExtResource("1_dgif7")
-mantissa = 1.0
-exponent = 6
+mantissa = 450.0
+exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]

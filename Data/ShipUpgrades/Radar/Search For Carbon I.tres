@@ -10,7 +10,7 @@ impact_explanation = ""
 ship_module = "radar"
 property_impacted = "asteroid_spawn_carbon_chance"
 impact_method = 0
-impact_value = 0.5
+impact_value = 0.25
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 

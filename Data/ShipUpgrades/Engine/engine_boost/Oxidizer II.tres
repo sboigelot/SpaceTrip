@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_nkteo"]
 script = ExtResource("3_8r8rp")
-mantissa = 100.0
+mantissa = 20.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 

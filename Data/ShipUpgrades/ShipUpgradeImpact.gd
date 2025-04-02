@@ -23,6 +23,15 @@ const property_display_names: Dictionary = {
 	"asteroid_spawn_warter_chance": "Chance of water asteroid",
 	"asteroid_spawn_palladium_chance": "Chance of palladium asteroid",
 	"asteroid_spawn_pyralium_chance": "Chance of pyralium asteroid",
+	"dimension_index": "Travel dimension",
+	"global_mining_speed_factor": "General mining speed",
+	"carbon_per_second_factor": "Carbon mining speed",
+	"water_per_second_factor": "Water mining speed",
+	"asteroid_spawn_water_chance": "Chance of water asteroid",
+	"hydrogen_refining_duration": "Hydrogen refining duration",
+	"hydrogen_refining_input_water": "Hydrogen refining input",
+	"hydrogen_refining_output_efficiency": "Hydrogen refining efficiency",
+	"plate_refining_passive_factor": "Passive plate refining speed",
 }
 
 const property_display_suffixes: Dictionary = {
@@ -33,20 +42,23 @@ const property_display_suffixes: Dictionary = {
 	"engine_boost_duration_cooldown_max": "s",
 	"plate_refining_duration": "s",
 	"plate_refining_input_titanium": "titanium",
+	"liquid_fuelrefining_duration": "s",
 	"liquid_fuel_refining_input_carbon": "carbon",
+	"hydrogen_refining_duration": "s",
+	"hydrogen_refining_input_water": "water",
 }
 
 const IMPACT_METHOD_FORMAT: Dictionary = {
-	IMPACT_METHOD.ADD: "+%s",
-	IMPACT_METHOD.ADD_PERCENT: "+%s%%",
-	IMPACT_METHOD.REMOVE: "-%s",
-	IMPACT_METHOD.REMOVE_PERCENT: "-%s%%",
+	IMPACT_METHOD.ADD: "+ %s",
+	IMPACT_METHOD.MULTIPLY_BY: "x %s",
+	IMPACT_METHOD.REMOVE: "- %s",
+	IMPACT_METHOD.REMOVE_PERCENT: "- %s%%",
 	IMPACT_METHOD.REPLACE_BY: "-> %s",
 }
 
 enum IMPACT_METHOD {
 	ADD,
-	ADD_PERCENT,
+	MULTIPLY_BY,
 	REMOVE,
 	REMOVE_PERCENT,
 	REPLACE_BY
@@ -81,16 +93,14 @@ func get_impact_description() -> String:
 		prop_suffix = " " + property_display_suffixes[property_impacted]
 	
 	var value = impact_big.setSmallDecimalsOverride(2)
-	if (impact_method in [
-		IMPACT_METHOD.ADD_PERCENT,
-		IMPACT_METHOD.REMOVE_PERCENT]):
+	if (impact_method == IMPACT_METHOD.REMOVE_PERCENT):
 		value = value.times(100)
 		value.setSmallDecimalsOverride(0)
 		
 	var impact_description = "%s %s%s" % [
 			prop_description,
 			(ShipUpgradeImpact.IMPACT_METHOD_FORMAT[impact_method] % [
-				value.toMetricSymbol(false)
+				value.toMetricSymbol(false, true)
 			]),
 			prop_suffix
 		]

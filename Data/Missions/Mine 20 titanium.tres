@@ -42,7 +42,7 @@ impact_explanation = ""
 ship_module = "engine"
 property_impacted = "engine_boost"
 impact_method = 1
-impact_value = 0.5
+impact_value = 1.05
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
@@ -53,6 +53,7 @@ start_trigger_module = ""
 start_trigger_property = ""
 parent_missions = Array[String](["Repair the mining laser"])
 parent_purchases = Array[String]([])
+goal_show_progress = true
 goal_text = "Mine 20 titanium"
 goal_module = "mining"
 goal_property = "titanium"

@@ -48,6 +48,7 @@ theme_override_constants/separation = 8
 [node name="BuyShipUpgradeButton" type="Button" parent="BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 mouse_filter = 1
 theme_override_font_sizes/font_size = 24
 text = "display name"

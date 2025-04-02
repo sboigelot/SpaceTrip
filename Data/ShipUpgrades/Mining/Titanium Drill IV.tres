@@ -10,7 +10,7 @@ impact_explanation = ""
 ship_module = "mining"
 property_impacted = "titanium_per_second_factor"
 impact_method = 1
-impact_value = 10.0
+impact_value = 100.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
