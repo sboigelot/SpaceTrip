@@ -8,9 +8,8 @@ Bugs / refinement:
 Gameplay todo:
 	
 	Normal Space:
-		stagger initial engine improvement cost +100 +150 +200 titanium
+		done for now
 		
-	
 	Wrap:
 		more engine and speed upgrades
 		hydrolosys IV

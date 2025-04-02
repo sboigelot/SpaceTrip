@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=7 format=3 uid="uid://dtgpabrrhgeu3"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_j5rf0"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="2_xknaw"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_0fcoi"]
+
+[sub_resource type="Resource" id="Resource_tlchd"]
+script = ExtResource("1_j5rf0")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_boost_duration_max"
+impact_method = 0
+impact_value = 6.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_c7bts"]
+script = ExtResource("2_xknaw")
+mantissa = 300.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_gcf17"]
+script = ExtResource("2_xknaw")
+mantissa = 1.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_0fcoi")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Turbo Booster II", "Carbon Liquefaction II"])
+parent_missions = Array[String]([])
+plate_cost = SubResource("Resource_gcf17")
+liquid_fuel_cost = SubResource("Resource_c7bts")
+impacts = Array[ExtResource("1_j5rf0")]([SubResource("Resource_tlchd")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

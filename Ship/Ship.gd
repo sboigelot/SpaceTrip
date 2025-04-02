@@ -7,6 +7,7 @@ extends Node2D
 
 @export_group("Debug")
 
+@export var dev_tweak_mode: bool = false
 @export var god_mode: bool = false
 
 @export_group("UI elements")

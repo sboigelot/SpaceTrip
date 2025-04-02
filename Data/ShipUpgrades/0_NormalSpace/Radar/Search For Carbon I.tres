@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=6 format=3 uid="uid://csxj2m1piylnk"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_2ctba"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_4f788"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="2_ejywe"]
+
+[sub_resource type="Resource" id="Resource_2ctba"]
+script = ExtResource("1_2ctba")
+impact_explanation = ""
+ship_module = "radar"
+property_impacted = "asteroid_spawn_carbon_chance"
+impact_method = 0
+impact_value = 0.25
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_x0yi4"]
+script = ExtResource("2_ejywe")
+mantissa = 600.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("2_4f788")
+debug_hook = false
+lore_descripton = "We need a more advance material, tweak the radar to search for carbon asteroids"
+parent_purchases = Array[String](["Scaning Range I", "Plate Refining II"])
+parent_missions = Array[String]([])
+plate_cost = SubResource("Resource_x0yi4")
+impacts = Array[ExtResource("1_2ctba")]([SubResource("Resource_2ctba")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

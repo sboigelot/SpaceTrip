@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=7 format=3 uid="uid://cf3hrhdx5x4p"]
+
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="1_sm0hy"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="2_g7mxj"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="3_vi7il"]
+
+[sub_resource type="Resource" id="Resource_5kvjv"]
+script = ExtResource("1_sm0hy")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "carbon_per_second_factor"
+impact_method = 1
+impact_value = 2.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_tiadr"]
+script = ExtResource("3_vi7il")
+mantissa = 1.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_sm0hy"]
+script = ExtResource("3_vi7il")
+mantissa = 2.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("2_g7mxj")
+debug_hook = false
+lore_descripton = "Imrpove our mining techniques"
+parent_purchases = Array[String](["Search For Carbon I"])
+parent_missions = Array[String]([])
+titanium_cost = SubResource("Resource_sm0hy")
+plate_cost = SubResource("Resource_tiadr")
+impacts = Array[ExtResource("1_sm0hy")]([SubResource("Resource_5kvjv")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

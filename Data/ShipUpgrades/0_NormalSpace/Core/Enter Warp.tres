@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=11 format=3 uid="uid://bptxcdgcggall"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_c65fe"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_hx7wn"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_qp4q6"]
+
+[sub_resource type="Resource" id="Resource_1v32i"]
+script = ExtResource("1_c65fe")
+mantissa = 100.0
+exponent = 0
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_c65fe"]
+script = ExtResource("2_hx7wn")
+impact_explanation = "Enter Wrap Speed"
+ship_module = "core"
+property_impacted = "dimension_index"
+impact_method = 4
+impact_value = 1.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_hx7wn"]
+script = ExtResource("2_hx7wn")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "base_acceleration"
+impact_method = 0
+impact_value = 100.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_qp4q6"]
+script = ExtResource("2_hx7wn")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_boost"
+impact_method = 0
+impact_value = 50.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_d3kl0"]
+script = ExtResource("2_hx7wn")
+impact_explanation = ""
+ship_module = "radar"
+property_impacted = "asteroid_spawn_carbon_chance"
+impact_method = 0
+impact_value = 0.5
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_fe344"]
+script = ExtResource("1_c65fe")
+mantissa = 1.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_q57ax"]
+script = ExtResource("1_c65fe")
+mantissa = 1.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_qp4q6")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String]([])
+parent_missions = Array[String](["Reach 500ms speed"])
+titanium_cost = SubResource("Resource_q57ax")
+plate_cost = SubResource("Resource_fe344")
+carbon_cost = SubResource("Resource_1v32i")
+impacts = Array[ExtResource("2_hx7wn")]([SubResource("Resource_c65fe"), SubResource("Resource_hx7wn"), SubResource("Resource_qp4q6"), SubResource("Resource_d3kl0")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

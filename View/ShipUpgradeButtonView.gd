@@ -89,10 +89,14 @@ func check_availability(force_check:bool):
 	visible = true
 	
 func _process(delta: float) -> void:
-	update_ui()
 	
-	if Input.is_action_just_pressed("refresh_shop"):
+	if ship.dev_tweak_mode  and Input.is_action_just_pressed("refresh_shop"):
+		check_availability(true)
+		
+	if ship.dev_tweak_mode or Input.is_action_just_pressed("refresh_shop"):
 		first_update_ui()
+		
+	update_ui()
 	
 func update_ui() -> void:
 	assert(ship != null)
