@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=8 format=3 uid="uid://bnawibpw0qsge"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_soqfa"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_7d0nb"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_bq8t4"]
+
+[sub_resource type="Resource" id="Resource_le12c"]
+script = ExtResource("1_soqfa")
+mantissa = 3.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_d4cru"]
+script = ExtResource("2_7d0nb")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "base_acceleration"
+impact_method = 1
+impact_value = 5.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_soqfa"]
+script = ExtResource("1_soqfa")
+mantissa = 10.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_8vttn"]
+script = ExtResource("1_soqfa")
+mantissa = 20.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_bq8t4")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Constant Acceleration IV", "Hydrolysis IV"])
+parent_missions = Array[String]([])
+titanium_cost = SubResource("Resource_8vttn")
+liquid_fuel_cost = SubResource("Resource_soqfa")
+hydrogen_cost = SubResource("Resource_le12c")
+impacts = Array[ExtResource("2_7d0nb")]([SubResource("Resource_d4cru")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

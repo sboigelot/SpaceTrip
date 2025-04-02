@@ -14,9 +14,7 @@ Gameplay todo:
 		
 	Wrap:
 		more engine and speed upgrades
-		hydrolosys IV
-		1000 km/s rewards are ridiculus now
-		passive carbon I after hydrolisis I (0.1)
+		1000 km/s rewards are ridiculus nowµ
 	
 	Subspace: 
 		When enter:
