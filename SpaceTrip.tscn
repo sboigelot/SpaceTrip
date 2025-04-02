@@ -153,6 +153,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ScrollingStars" type="ColorRect" parent="BackgroundEffects"]
+visible = false
 material = ExtResource("1_gxo1i")
 custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0

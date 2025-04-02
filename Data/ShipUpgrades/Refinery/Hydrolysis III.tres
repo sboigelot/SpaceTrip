@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_e27nv"]
 script = ExtResource("1_rnurq")
-mantissa = 200.0
+mantissa = 100.0
 exponent = 0
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_r5ms3"]
 script = ExtResource("1_rnurq")
-mantissa = 100.0
+mantissa = 50.0
 exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 

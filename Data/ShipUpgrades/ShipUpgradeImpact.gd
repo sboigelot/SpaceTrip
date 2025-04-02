@@ -11,7 +11,7 @@ const property_display_names: Dictionary = {
 	"max_asteroids": "Maximum asteroid",
 	"engine_boost_duration_max": "Engine boost duration",
 	"engine_boost_duration_cooldown_max": "Engine boost cooldown",
-	"titanium_per_second_factor": "Titanium mining efficiency",
+	"titanium_per_second_factor": "Titanium mining speed",
 	"plate_refining_duration": "Plate refining duration",
 	"plate_refining_input_titanium": "Plate refining input",
 	"plate_refining_output_efficiency": "Plate refining efficiency",

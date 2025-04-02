@@ -54,7 +54,7 @@ func _ready() -> void:
 	load_shop()
 	check_data()
 	update_ui()
-	
+		
 func check_data():
 	var missing_property_display_names:Array = []
 	check_shop_dependencies(missing_property_display_names)

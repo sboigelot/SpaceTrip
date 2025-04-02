@@ -26,7 +26,7 @@ func update_ui():
 	
 	if property is Big:
 		visible = visible_once or property.isGreaterThan(0.0)
-		ui_label.text = "%s" % property.setSmallDecimalsOverride(2).toMetricSymbol(true)
+		ui_label.text = "%s" % property.setSmallDecimalsOverride(2).toMetricSymbol(true, false)
 	else:
 		visible = visible_once or property > 0.0
 		ui_label.text = "%s" % property

@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_f5s1g"]
 script = ExtResource("1_6tmg8")
-mantissa = 100.0
-exponent = 0
+mantissa = 10.0
+exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_6tmg8"]
@@ -43,12 +43,12 @@ metadata/_custom_type_script = "uid://bpmbd62jur6if"
 [sub_resource type="Resource" id="Resource_gsnj5"]
 script = ExtResource("1_6tmg8")
 mantissa = 1.0
-exponent = 3
+exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_fuvnh"]
 script = ExtResource("1_6tmg8")
-mantissa = 10.0
+mantissa = 100.0
 exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 

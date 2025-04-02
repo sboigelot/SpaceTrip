@@ -15,7 +15,7 @@ script = ExtResource("1_tfdi4")
 impact_explanation = ""
 ship_module = "mining"
 property_impacted = "global_mining_speed_factor"
-impact_method = 4
+impact_method = 1
 impact_value = 5.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_s3fyn"]
 script = ExtResource("2_2sofu")
-mantissa = 1.0
+mantissa = 10.0
 exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 

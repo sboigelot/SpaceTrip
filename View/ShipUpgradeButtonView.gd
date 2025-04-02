@@ -41,7 +41,7 @@ func first_update_ui():
 	assert(data != null)
 	
 	ui_buy_button.text = data.display_name
-	
+
 	update_resouce_cost(data.titanium_cost, 	ui_panel_titanium,		ui_label_titanium)
 	update_resouce_cost(data.plate_cost,		ui_panel_plate,			ui_label_plate)
 	update_resouce_cost(data.carbon_cost,		ui_panel_carbon,		ui_label_carbon)
@@ -55,8 +55,9 @@ func first_update_ui():
 
 func update_resouce_cost(cost: Big, ui_panel: PanelContainer, ui_label: Label):
 	if cost == null or cost.isLessThanOrEqualTo(0.0):
-		ui_panel.queue_free()
+		ui_panel.visible = false
 	else:
+		ui_panel.visible = true
 		ui_label.text = cost.toMetricSymbol(true, true)
 	
 func on_new_ship_purchase_done(purchase_name):
@@ -89,6 +90,9 @@ func check_availability(force_check:bool):
 	
 func _process(delta: float) -> void:
 	update_ui()
+	
+	if Input.is_action_just_pressed("refresh_shop"):
+		first_update_ui()
 	
 func update_ui() -> void:
 	assert(ship != null)
