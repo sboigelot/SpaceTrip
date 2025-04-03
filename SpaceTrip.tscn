@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=93 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
 [ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship/Ship.gd" id="1_tp0y5"]
@@ -52,7 +52,9 @@
 [ext_resource type="PackedScene" uid="uid://cg2jdyvr16f3" path="res://View/Asteroids/Ore/OreAsteroid5.tscn" id="33_lx2c6"]
 [ext_resource type="PackedScene" uid="uid://dauvhpoq5jl01" path="res://View/Asteroids/Ore/OreAsteroid6.tscn" id="34_26kmh"]
 [ext_resource type="Script" uid="uid://c7kqwa7motfk4" path="res://GameOccluder.gd" id="34_lxkps"]
+[ext_resource type="Material" uid="uid://cntygdn4nuwv7" path="res://Shaders/explosion_shader_material.tres" id="35_creav"]
 [ext_resource type="PackedScene" uid="uid://c82e6qtgjgt83" path="res://View/Asteroids/Ore/OreAsteroid7.tscn" id="35_fmtom"]
+[ext_resource type="Script" uid="uid://cej6shtmep7ir" path="res://Explosion.gd" id="36_fotvt"]
 [ext_resource type="PackedScene" uid="uid://bt7my1ihwpqo" path="res://View/Asteroids/Ore/OreAsteroid8.tscn" id="36_v2ctf"]
 [ext_resource type="PackedScene" uid="uid://41du24e1jakv" path="res://View/Asteroids/Ore/OreAsteroid9.tscn" id="37_hmren"]
 [ext_resource type="PackedScene" uid="uid://bilg03h80ot6k" path="res://View/MiningRays/BlueMiningRay.tscn" id="50_ee6t8"]
@@ -171,10 +173,118 @@ tracks/8/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../UILayer/GameHUDContainer:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion1:queue")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion2:queue")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion3:queue")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion4:queue")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../UILayer/StoryTextHUD:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../UILayer/StoryTextHUD/StoryText/StoryTextLabel:text")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../UILayer/StoryTextHUD/StoryText/StoryTextLabel:visible_ratio")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../ShipCanvasGroup:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_3bhce"]
 resource_name = "Intro"
-length = 10.0
+length = 26.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -182,10 +292,10 @@ tracks/0/path = NodePath("MarsColorRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 6.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -194,10 +304,10 @@ tracks/1/path = NodePath("MarsColorRect:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.94242, 3.96667),
+"times": PackedFloat32Array(0, 5.34242, 6.4),
 "transitions": PackedFloat32Array(2, 1, 1),
 "update": 0,
-"values": [Vector2(32, 96), Vector2(-582, 96), Vector2(-1229, 96)]
+"values": [Vector2(32, 96), Vector2(-582, 96), Vector2(-2346, 96)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -206,10 +316,10 @@ tracks/2/path = NodePath("../ShipCanvasGroup/Ship/EngineModule/Fireballs:visible
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(2.4, 18.3333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -218,10 +328,10 @@ tracks/3/path = NodePath("../ShipCanvasGroup/Ship/EngineModule/Fireballs/Firebal
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.0118, 3.96667),
-"transitions": PackedFloat32Array(2, 1, 1),
+"times": PackedFloat32Array(2.4, 4.4118, 16.1667, 16.4667, 16.7, 16.9667, 17.2667, 17.5, 17.7667, 18, 18.2667),
+"transitions": PackedFloat32Array(2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(5, 5), Vector2(5, 5)]
+"values": [Vector2(1, 1), Vector2(5, 5), Vector2(10, 10), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(3, 3), Vector2(0.1, 0.1), Vector2(2, 2), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(0.1, 0.1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -230,10 +340,10 @@ tracks/4/path = NodePath("../ShipCanvasGroup/Ship/EngineModule/Fireballs/Firebal
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.0118, 3.96667),
-"transitions": PackedFloat32Array(2, 1, 1),
+"times": PackedFloat32Array(2.4, 4.4118, 16.1667, 16.4667, 16.7, 16.9667, 17.2667, 17.5, 17.7667, 18, 18.2667),
+"transitions": PackedFloat32Array(2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(5, 5), Vector2(5, 5)]
+"values": [Vector2(1, 1), Vector2(5, 5), Vector2(10, 10), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(3, 3), Vector2(0.1, 0.1), Vector2(2, 2), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(0.1, 0.1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -242,10 +352,10 @@ tracks/5/path = NodePath("../ShipCanvasGroup/Ship/EngineModule/Fireballs/Firebal
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.0118, 3.96667),
-"transitions": PackedFloat32Array(2, 1, 1),
+"times": PackedFloat32Array(2.4, 4.4118, 16.1667, 16.4667, 16.7, 16.9667, 17.2667, 17.5, 17.7667, 18, 18.2667),
+"transitions": PackedFloat32Array(2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(5, 5), Vector2(5, 5)]
+"values": [Vector2(1, 1), Vector2(5, 5), Vector2(10, 10), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(3, 3), Vector2(0.1, 0.1), Vector2(2, 2), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(0.1, 0.1)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -254,10 +364,10 @@ tracks/6/path = NodePath("../ShipCanvasGroup/Ship/EngineModule/Fireballs/Firebal
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 2.0118, 3.96667),
-"transitions": PackedFloat32Array(2, 1, 1),
+"times": PackedFloat32Array(2.4, 4.4118, 16.1667, 16.4667, 16.7, 16.9667, 17.2667, 17.5, 17.7667, 18, 18.2667),
+"transitions": PackedFloat32Array(2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(5, 5), Vector2(5, 5)]
+"values": [Vector2(1, 1), Vector2(5, 5), Vector2(10, 10), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(3, 3), Vector2(0.1, 0.1), Vector2(2, 2), Vector2(0.1, 0.1), Vector2(3, 3), Vector2(0.1, 0.1)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -266,7 +376,7 @@ tracks/7/path = NodePath("SpeedLines:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 1, 5.5),
+"times": PackedFloat32Array(0, 4.33333, 9.26667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -278,16 +388,160 @@ tracks/8/path = NodePath("SpeedLines:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 1, 3, 5, 5.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 4.33333, 5.83333, 7.6, 9.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 2, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../UILayer/GameHUDContainer:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../ShipCanvasGroup/Ship/CoreModule")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(6.9, 14.9333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [3],
+"method": &"force_dimension_transition"
+}, {
+"args": [0],
+"method": &"force_dimension_transition"
+}]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion1:queue")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 14.6333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion2:queue")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 15.4256, 16.6256),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 1]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion3:queue")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 15.9619),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../ShipCanvasGroup/Ship/Decorations/IntroExplosions/Explosion4:queue")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 16.259),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../UILayer/StoryTextHUD:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../UILayer/StoryTextHUD/StoryText/StoryTextLabel:text")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 7.5, 13.8666, 19.2433),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["By the order of Emperor Kin II
+We started our journey to Proxima Centaury", "Everything was going smoothly,
+We would arrive on time.", "Until suddenly !", "We became stranded in the void of space.
+Will we ever reach our destination?"]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../UILayer/StoryTextHUD/StoryText/StoryTextLabel:visible_ratio")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 2, 7.49, 7.5, 8.5, 13.8566, 13.8666, 14.3667, 19.2333, 19.2433, 19.7434),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../ShipCanvasGroup:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 16.1742, 16.7162, 17.4293, 18.2851),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.123918, 0.122173, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fotvt"]
+resource_name = "Skip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarsColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_creav"]
 _data = {
 &"Intro": SubResource("Animation_3bhce"),
-&"RESET": SubResource("Animation_5366v")
+&"RESET": SubResource("Animation_5366v"),
+&"Skip": SubResource("Animation_fotvt")
 }
 
 [sub_resource type="Animation" id="Animation_8aiju"]
@@ -524,6 +778,11 @@ mouse_filter = 2
 
 [node name="IntroMovie" type="Node2D" parent="."]
 
+[node name="IntroAnimationPlayer" type="AnimationPlayer" parent="IntroMovie"]
+libraries = {
+&"": SubResource("AnimationLibrary_creav")
+}
+
 [node name="MarsColorRect" type="ColorRect" parent="IntroMovie"]
 material = ExtResource("7_3bhce")
 custom_minimum_size = Vector2(10, 10)
@@ -532,11 +791,6 @@ offset_top = 96.0
 offset_right = 1532.0
 offset_bottom = 1596.0
 mouse_filter = 2
-
-[node name="IntroAnimationPlayer" type="AnimationPlayer" parent="IntroMovie"]
-libraries = {
-&"": SubResource("AnimationLibrary_creav")
-}
 
 [node name="SpeedLines" type="ColorRect" parent="IntroMovie"]
 visible = false
@@ -554,9 +808,10 @@ grow_vertical = 2
 material = ExtResource("3_v47jd")
 position = Vector2(1200, 675)
 
-[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("ui_mission_container", "ui_mission_reward_hud", "ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_shop_container_no_upgrade_title", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
+[node name="Ship" type="Node2D" parent="ShipCanvasGroup" node_paths=PackedStringArray("intro_movie", "ui_mission_container", "ui_mission_reward_hud", "ui_shop_container_core_title", "ui_shop_container_core", "ui_shop_container_engine_title", "ui_shop_container_engine", "ui_shop_container_radar_title", "ui_shop_container_radar", "ui_shop_container_mining_title", "ui_shop_container_mining", "ui_shop_container_refinery_title", "ui_shop_container_refinery", "ui_shop_container_no_upgrade_title", "ui_tooltip", "ui_shop_eye", "core", "engine", "radar", "mining", "refinery")]
 script = ExtResource("1_tp0y5")
 dev_tweak_mode = true
+intro_movie = NodePath("../../IntroMovie/IntroAnimationPlayer")
 ui_mission_container = NodePath("../../UILayer/GameHUDContainer/MissionHUD/BoxContainer/MissionContainer")
 ui_mission_reward_hud = NodePath("../../UILayer/RewardHUD")
 ui_shop_container_core_title = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/CoreTitleLabel")
@@ -735,12 +990,97 @@ texture = ExtResource("14_20yo5")
 script = ExtResource("32_7aab3")
 metadata/_custom_type_script = "uid://clj13cjwr8vtd"
 
+[node name="Decorations" type="Node2D" parent="ShipCanvasGroup/Ship"]
+
+[node name="IntroExplosions" type="Node2D" parent="ShipCanvasGroup/Ship/Decorations"]
+
+[node name="Explosion1" type="ColorRect" parent="ShipCanvasGroup/Ship/Decorations/IntroExplosions"]
+visible = false
+z_index = 2
+material = ExtResource("35_creav")
+offset_left = -110.0
+offset_top = -96.0
+offset_right = 146.0
+offset_bottom = 160.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(128, 128)
+mouse_filter = 2
+color = Color(0.816415, 0.33249, 0.2636, 1)
+script = ExtResource("36_fotvt")
+explode_time = 0.5
+min_delay = 0.15
+
+[node name="Explosion2" type="ColorRect" parent="ShipCanvasGroup/Ship/Decorations/IntroExplosions"]
+visible = false
+z_index = 2
+material = ExtResource("35_creav")
+offset_left = -158.0
+offset_top = -162.0
+offset_right = 98.0
+offset_bottom = 94.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(128, 128)
+mouse_filter = 2
+color = Color(0.816415, 0.33249, 0.2636, 1)
+script = ExtResource("36_fotvt")
+explode_time = 0.4
+min_delay = 0.2
+
+[node name="Explosion3" type="ColorRect" parent="ShipCanvasGroup/Ship/Decorations/IntroExplosions"]
+visible = false
+z_index = 2
+material = ExtResource("35_creav")
+offset_left = -202.0
+offset_top = 13.0
+offset_right = 54.0
+offset_bottom = 269.0
+pivot_offset = Vector2(128, 128)
+mouse_filter = 2
+color = Color(0.816415, 0.33249, 0.2636, 1)
+script = ExtResource("36_fotvt")
+explode_time = 0.75
+
+[node name="Explosion4" type="ColorRect" parent="ShipCanvasGroup/Ship/Decorations/IntroExplosions"]
+visible = false
+z_index = 2
+material = ExtResource("35_creav")
+offset_left = -235.0
+offset_top = -250.0
+offset_right = 21.0
+offset_bottom = 5.99998
+pivot_offset = Vector2(128, 128)
+mouse_filter = 2
+color = Color(0.816415, 0.33249, 0.2636, 1)
+script = ExtResource("36_fotvt")
+explode_time = 0.65
+
 [node name="Asteroids" type="Node2D" parent="."]
 
 [node name="ForegroundEffects" type="Node2D" parent="."]
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 100
+
+[node name="StoryTextHUD" type="MarginContainer" parent="UILayer"]
+visible = false
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 2385.0
+offset_bottom = 1335.0
+mouse_filter = 2
+theme_override_constants/margin_bottom = 128
+
+[node name="StoryText" type="PanelContainer" parent="UILayer/StoryTextHUD"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="StoryTextLabel" type="Label" parent="UILayer/StoryTextHUD/StoryText"]
+custom_minimum_size = Vector2(600, 85)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_su33w")
 
 [node name="GameHUDContainer" type="MarginContainer" parent="UILayer"]
 anchors_preset = 15
@@ -1723,7 +2063,7 @@ script = ExtResource("58_tlg5r")
 metadata/_custom_type_script = "uid://rdua1ig1bpr7"
 metadata/_edit_lock_ = true
 
-[node name="MenuHUD" type="MarginContainer" parent="UILayer" node_paths=PackedStringArray("ship", "intro_movie", "menu_occluder", "overall_occluder", "fullscreen_check_box", "audio_h_slider", "default_container", "confirm_container", "game_hud", "continue_button_container")]
+[node name="MenuHUD" type="MarginContainer" parent="UILayer" node_paths=PackedStringArray("ship", "menu_occluder", "overall_occluder", "fullscreen_check_box", "audio_h_slider", "default_container", "confirm_container", "game_hud", "continue_button_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1732,19 +2072,20 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/margin_left = 165
-theme_override_constants/margin_top = 165
+theme_override_constants/margin_left = 135
+theme_override_constants/margin_top = 135
+theme_override_constants/margin_right = 135
+theme_override_constants/margin_bottom = 135
 script = ExtResource("54_lxkps")
 ship = NodePath("../../ShipCanvasGroup/Ship")
-intro_movie = NodePath("../../IntroMovie/IntroAnimationPlayer")
 menu_occluder = NodePath("../MenuOccluder")
 overall_occluder = NodePath("../OverallOccluder")
-fullscreen_check_box = NodePath("BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox")
-audio_h_slider = NodePath("BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer/AudioHSlider")
-default_container = NodePath("BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer")
-confirm_container = NodePath("BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer")
+fullscreen_check_box = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox")
+audio_h_slider = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer/AudioHSlider")
+default_container = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer")
+confirm_container = NodePath("MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer")
 game_hud = NodePath("../GameHUDContainer")
-continue_button_container = NodePath("BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1")
+continue_button_container = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1")
 metadata/_custom_type_script = "uid://cu5p1l7ag35dh"
 metadata/_edit_lock_ = true
 
@@ -1776,25 +2117,26 @@ text = "A Gate Builders tale"
 label_settings = SubResource("LabelSettings_creav")
 horizontal_alignment = 2
 
-[node name="MenuMarginContainer" type="MarginContainer" parent="UILayer/MenuHUD/BoxContainer"]
+[node name="MenuMarginContainer" type="MarginContainer" parent="UILayer/MenuHUD"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 8
+size_flags_vertical = 8
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="MenuPanelContainer" type="PanelContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer"]
-custom_minimum_size = Vector2(450, 260)
+[node name="MenuPanelContainer" type="PanelContainer" parent="UILayer/MenuHUD/MenuMarginContainer"]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3bhce")
 
-[node name="DefaultBoxContainer" type="BoxContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer"]
+[node name="DefaultBoxContainer" type="BoxContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer"]
 layout_mode = 2
 vertical = true
 
-[node name="FullscreenCheckBox" type="CheckBox" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+[node name="FullscreenCheckBox" type="CheckBox" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
@@ -1803,12 +2145,12 @@ theme_override_icons/checked = ExtResource("3_5wn8v")
 theme_override_icons/unchecked = ExtResource("4_lx2c6")
 text = "Fullscreen"
 
-[node name="ButtonContainer1" type="MarginContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+[node name="ButtonContainer1" type="MarginContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = -6
 theme_override_constants/margin_right = 6
 
-[node name="ContinueButton" type="Button" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1"]
+[node name="ContinueButton" type="Button" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxFlat_a3gry")
@@ -1817,12 +2159,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_hx8kt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vndvs")
 text = "Continue"
 
-[node name="ButtonContainer2" type="MarginContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+[node name="ButtonContainer2" type="MarginContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = -2
 theme_override_constants/margin_right = 2
 
-[node name="RestartButton" type="Button" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer2"]
+[node name="RestartButton" type="Button" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxFlat_a3gry")
@@ -1831,12 +2173,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_hx8kt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vndvs")
 text = "New game"
 
-[node name="ButtonContainer3" type="MarginContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+[node name="ButtonContainer3" type="MarginContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_right = -2
 
-[node name="QuitButton" type="Button" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer3"]
+[node name="QuitButton" type="Button" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxFlat_u70mk")
@@ -1845,17 +2187,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cc3yg")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s4f20")
 text = "Quit"
 
-[node name="BoxContainer" type="BoxContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
 layout_mode = 2
 
-[node name="AudioTextureRect" type="TextureRect" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer"]
+[node name="AudioTextureRect" type="TextureRect" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer"]
 modulate = Color(0.788068, 0.345033, 0.865908, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("56_86oec")
 expand_mode = 3
 
-[node name="AudioHSlider" type="HSlider" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer"]
+[node name="AudioHSlider" type="HSlider" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1863,13 +2205,13 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_1caes")
 max_value = 1.0
 step = 0.05
 
-[node name="ConfirmationBoxContainer" type="BoxContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer"]
+[node name="ConfirmationBoxContainer" type="BoxContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 4
 vertical = true
 
-[node name="Label" type="Label" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+[node name="Label" type="Label" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
 layout_mode = 2
 text = "Starting a new game:
 All progress will be lost."
@@ -1877,16 +2219,16 @@ label_settings = SubResource("LabelSettings_86oec")
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Spacer" type="MarginContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+[node name="Spacer" type="MarginContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 12
 
-[node name="ConfirmContainer" type="MarginContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+[node name="ConfirmContainer" type="MarginContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = -2
 theme_override_constants/margin_right = 2
 
-[node name="ConfirmNewGameButton" type="Button" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/ConfirmContainer"]
+[node name="ConfirmNewGameButton" type="Button" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/ConfirmContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxFlat_a3gry")
@@ -1895,12 +2237,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_hx8kt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vndvs")
 text = "Reset my progress"
 
-[node name="CancelContainer" type="MarginContainer" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+[node name="CancelContainer" type="MarginContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_right = -2
 
-[node name="CancelNewGamebutton" type="Button" parent="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/CancelContainer"]
+[node name="CancelNewGamebutton" type="Button" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/CancelContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxFlat_u70mk")
@@ -1969,10 +2311,10 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard" method="_on_choose_reward_button_pressed"]
 [connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2" method="_on_choose_reward_button_pressed"]
 [connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3" method="_on_choose_reward_button_pressed"]
-[connection signal="toggled" from="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox" to="UILayer/MenuHUD" method="_on_fullscreen_check_box_toggled"]
-[connection signal="pressed" from="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1/ContinueButton" to="UILayer/MenuHUD" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer2/RestartButton" to="UILayer/MenuHUD" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer3/QuitButton" to="UILayer/MenuHUD" method="_on_quit_button_pressed"]
-[connection signal="drag_ended" from="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer/AudioHSlider" to="UILayer/MenuHUD" method="_on_audio_h_slider_drag_ended"]
-[connection signal="pressed" from="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/ConfirmContainer/ConfirmNewGameButton" to="UILayer/MenuHUD" method="_on_confirm_new_game_button_pressed"]
-[connection signal="pressed" from="UILayer/MenuHUD/BoxContainer/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/CancelContainer/CancelNewGamebutton" to="UILayer/MenuHUD" method="_on_cancel_new_gamebutton_pressed"]
+[connection signal="toggled" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox" to="UILayer/MenuHUD" method="_on_fullscreen_check_box_toggled"]
+[connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1/ContinueButton" to="UILayer/MenuHUD" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer2/RestartButton" to="UILayer/MenuHUD" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer3/QuitButton" to="UILayer/MenuHUD" method="_on_quit_button_pressed"]
+[connection signal="drag_ended" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer/AudioHSlider" to="UILayer/MenuHUD" method="_on_audio_h_slider_drag_ended"]
+[connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/ConfirmContainer/ConfirmNewGameButton" to="UILayer/MenuHUD" method="_on_confirm_new_game_button_pressed"]
+[connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/CancelContainer/CancelNewGamebutton" to="UILayer/MenuHUD" method="_on_cancel_new_gamebutton_pressed"]

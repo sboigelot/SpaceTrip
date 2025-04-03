@@ -30,16 +30,17 @@ func _on_loaded():
 	update_background(true)
 
 func _ready() -> void:
+	super._ready()
 	update_background()
-	
-func _process(delta: float) -> void:
-	super._process(delta)
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		if Engine.time_scale == 1:
-			Engine.time_scale = 10
-		else:
-			Engine.time_scale = 1
+
+func update_stats(delta: float) -> void:
+	super.update_stats(delta)
+	distance_travelled.plusEquals(speed.times(delta))
+
+func update_ui():
+	super.update_ui()
+	ui_distance_label.text = "Distance: %sm" % distance_travelled.toMetricSymbol(false)
+	ui_speed_label.text = "Speed: %sm/s" % speed.toMetricSymbol(false)
 
 func update_background(skip_transition:bool = false):
 	var start_transition = false
@@ -63,7 +64,25 @@ func update_background(skip_transition:bool = false):
 		start_dimension_transition(current_dimension, next_dimension)
 	else:
 		dimension_transition_overlay.visible = false
-		
+
+func force_dimension_transition(target_dimension_id: int):
+	var current_dimension: ColorRect
+	var current_dimension_id : int = 0
+	for i in dimension_backgrounds.size():
+		if dimension_backgrounds[i].visible:
+			current_dimension_id = i
+			current_dimension = dimension_backgrounds[i]
+	
+	var next_dimension: ColorRect = dimension_backgrounds[target_dimension_id]
+	
+	if current_dimension_id < target_dimension_id:
+		start_dimension_transition(current_dimension, next_dimension)
+	else:
+		next_dimension.visible = true
+		next_dimension.modulate = Color.WHITE
+		current_dimension.visible = false
+		current_dimension.modulate = Color.TRANSPARENT
+
 func start_dimension_transition(current_dimension: ColorRect, next_dimension:ColorRect):
 	dimension_transition_overlay.visible = true
 	dimension_transition_overlay.modulate = Color.TRANSPARENT
@@ -79,12 +98,3 @@ func start_dimension_transition(current_dimension: ColorRect, next_dimension:Col
 	tween.tween_property(next_dimension, "modulate", Color.WHITE, 0.75)
 	tween.tween_property(dimension_transition_overlay, "modulate", Color.TRANSPARENT, 0.75).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(dimension_transition_overlay, "visible", false, 0.0)
-
-func update_stats(delta: float) -> void:
-	super.update_stats(delta)
-	distance_travelled.plusEquals(speed.times(delta))
-
-func update_ui():
-	super.update_ui()
-	ui_distance_label.text = "Distance: %sm" % distance_travelled.toMetricSymbol(false)
-	ui_speed_label.text = "Speed: %sm/s" % speed.toMetricSymbol(false)

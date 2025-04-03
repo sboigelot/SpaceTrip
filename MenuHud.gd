@@ -4,7 +4,6 @@ extends MarginContainer
 @export var ship: Ship
 
 @export_group("Visual Nodes")
-@export var intro_movie: AnimationPlayer
 @export var menu_occluder: FadingColorRect
 @export var overall_occluder: FadingColorRect
 @export var fullscreen_check_box: CheckBox
@@ -34,6 +33,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle()
+		
+	if Input.is_action_just_pressed("ui_accept"):
+		if Engine.time_scale == 1:
+			Engine.time_scale = 10
+		else:
+			Engine.time_scale = 1
 
 func toggle():
 	if visible:
@@ -69,8 +74,12 @@ func _on_load_button_pressed() -> void:
 	close()
 
 func _on_restart_button_pressed() -> void:
-	default_container.visible = false
-	confirm_container.visible = true
+	if SaveHelper.savegame_exist():
+		default_container.visible = false
+		confirm_container.visible = true
+	else:
+		close()
+		ship.play_intro()
 	
 func _on_confirm_new_game_button_pressed() -> void:
 	Engine.time_scale = 1.0
@@ -78,10 +87,6 @@ func _on_confirm_new_game_button_pressed() -> void:
 	overall_occluder.fade_out()
 	await overall_occluder.fade_out_completed
 	get_tree().reload_current_scene()
-	
-func start_new_game():
-	intro_movie.play("Intro")
-	await intro_movie.animation_finished
 
 func _on_cancel_new_gamebutton_pressed() -> void:
 	default_container.visible = true
@@ -96,6 +101,7 @@ func _on_quit_button_pressed() -> void:
 		get_tree().quit()
 
 func _on_continue_button_pressed() -> void:
+	ship.skip_intro()
 	close()
 
 func _on_menu_button_pressed() -> void:

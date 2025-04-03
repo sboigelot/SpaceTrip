@@ -19,6 +19,8 @@ signal save_loaded()
 @export var god_mode: bool = false
 
 @export_group("UI elements")
+@export var intro_movie: AnimationPlayer
+
 @export var ui_mission_container: Container
 @export var ui_mission_reward_hud: RewardHUD
 @export var ui_shop_container_core_title: Label
@@ -51,8 +53,11 @@ var purchased_items: Array[String]
 var missions: Array[Mission]
 var mission_completed: Array[String]
 
+var intro_played: bool
+
 func get_savable_properties() -> Array[String]:
 	return [
+		"intro_played",
 		"core",
 		"engine",
 		"radar",
@@ -61,6 +66,17 @@ func get_savable_properties() -> Array[String]:
 		"purchased_items",
 		"mission_completed"
 	]
+	
+func skip_intro():
+	intro_movie.play("Skip")
+	intro_played = true
+	update_ui()
+	
+func play_intro():
+	intro_movie.play("Intro")
+	await intro_movie.animation_finished
+	intro_played = true
+	update_ui()
 	
 func _on_loaded():
 	load_missions(false, true)

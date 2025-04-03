@@ -131,6 +131,10 @@ func _on_boost_engine_button_pressed() -> void:
 func on_click():
 	if ui_boost_button.disabled:
 		return
+	
+	if not ship.intro_played:
+		return
+		
 	boost_engine()
 
 func _on_area_2d_mouse_entered() -> void:
