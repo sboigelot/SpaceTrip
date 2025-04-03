@@ -1,5 +1,4 @@
 Main Menu
-	toggle_fullscreen_mode not working
 	save settings, allow option sound volume + fullscreen on /off
 	add "check out our other games"
 
@@ -43,8 +42,7 @@ Gameplay todo:
 
 Polish:
 	
-	begining animation and mini text (in Hyperspace, explosion + stop)
-	end animation reach planet
+	Outro: end animation reach planet
 
 	maybe use slow version of grim music
 	add sfx

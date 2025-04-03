@@ -28,7 +28,7 @@ func _ready() -> void:
 	else:
 		continue_button_container.visible = false
 	#continue_button_container.visible = SaveHelper.savegame_exist()
-	open(false)
+	open(true, false)
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -46,11 +46,13 @@ func toggle():
 	else:
 		open()
 
-func open(pause_game:bool = true):
+func open(pause_game:bool = true, show_menu_occluder: bool = true):
 	if pause_game:
 		get_tree().paused = true
-		menu_occluder.fade_in(false)
 		continue_button_container.visible = true
+		
+	if show_menu_occluder:
+		menu_occluder.fade_in(false)
 	
 	on_open_game_hud_visibility = game_hud.visible
 	game_hud.visible = false
