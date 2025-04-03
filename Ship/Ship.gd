@@ -50,43 +50,64 @@ var purchased_items: Array[String]
 var missions: Array[Mission]
 var mission_completed: Array[String]
 
+func get_savable_properties() -> Array[String]:
+	return [
+		"core",
+		"engine",
+		"radar",
+		"mining",
+		"refinery",
+		"purchased_items",
+		"mission_completed"
+	]
+	
+func _on_loaded():
+	load_missions(false, true)
+	load_shop(false, true)
+	update_ui()
+
 func _ready() -> void:
 	load_missions()
 	load_shop()
 	check_data()
 	update_ui()
-		
-func check_data():
-	var missing_property_display_names:Array = []
-	check_shop_dependencies(missing_property_display_names)
-	check_mission_dependencies(missing_property_display_names)
-	var ignored_properties = [
-		"titanium",
-		"plate",
-		"carbon",
-		"liquid_fuel"
-	]
-	for ignored_property in ignored_properties:
-		missing_property_display_names.erase(ignored_property)
-	if missing_property_display_names.size() > 0:
-		print("Missing in ShipUpgradeImpact.property_display_suffixes:")
-		for missing_property_display_name in missing_property_display_names:
-			print(missing_property_display_name)
-
-func load_missions():
-	missions.assign(ResourceFinder.get_resources_in_folder("res://Data/Missions/", ".tres", true))
+	
+func load_missions(reload_resources: bool = true, clear_views: bool = false):
+	if reload_resources:
+		missions.clear()
+		missions.assign(ResourceFinder.get_resources_in_folder("res://Data/Missions/", ".tres", true))
+	
+	if clear_views:
+		for mission_view in ui_mission_container.get_children():
+			mission_view.queue_free()
 	
 	for mission in missions:
+		if mission_completed.has(mission.display_name):
+			continue
 		var mission_view:MissionView = mission.mission_view.instantiate()
 		mission_view.ship = self
 		mission_view.data = mission
 		mission_view.ui_mission_reward_hud = ui_mission_reward_hud
 		ui_mission_container.add_child(mission_view)
 	
-func load_shop():
-	shop_items.assign(ResourceFinder.get_resources_in_folder("res://Data/ShipUpgrades/", ".tres", true))
+func load_shop(reload_resources: bool = true, clear_views: bool = false):
+	if reload_resources:
+		shop_items.clear()
+		shop_items.assign(ResourceFinder.get_resources_in_folder("res://Data/ShipUpgrades/", ".tres", true))
+	
+	if clear_views:
+		for ui_placeholder in [ui_shop_container_core,
+								ui_shop_container_engine,
+								ui_shop_container_radar,
+								ui_shop_container_mining,
+								ui_shop_container_refinery]:
+			for shop_item_view in ui_placeholder.get_children():
+				shop_item_view.queue_free()
 	
 	for shop_item in shop_items:
+		if purchased_items.has(shop_item.display_name):
+			continue
+			
 		var shop_item_view:ShopItemViewBase = shop_item.shop_item_button_view.instantiate()
 		shop_item_view.ship = self
 		shop_item_view.data = shop_item
@@ -104,6 +125,23 @@ func load_shop():
 			"refinery":
 				ui_shop_container = ui_shop_container_refinery
 		ui_shop_container.add_child(shop_item_view)
+
+func check_data():
+	var missing_property_display_names:Array = []
+	check_shop_dependencies(missing_property_display_names)
+	check_mission_dependencies(missing_property_display_names)
+	var ignored_properties = [
+		"titanium",
+		"plate",
+		"carbon",
+		"liquid_fuel"
+	]
+	for ignored_property in ignored_properties:
+		missing_property_display_names.erase(ignored_property)
+	if missing_property_display_names.size() > 0:
+		print("Missing in ShipUpgradeImpact.property_display_suffixes:")
+		for missing_property_display_name in missing_property_display_names:
+			print(missing_property_display_name)
 
 func shop_item_exist(display_name: String)-> bool:
 	var found = false
@@ -276,3 +314,12 @@ func _on_shop_eye_check_box_mouse_entered() -> void:
 
 func _on_shop_eye_check_box_mouse_exited() -> void:
 	ui_tooltip.close()
+
+func _on_save_button_pressed() -> void:
+	SaveHelper.save_game(self)
+	
+func _on_load_button_pressed() -> void:
+	SaveHelper.load_game(self)
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

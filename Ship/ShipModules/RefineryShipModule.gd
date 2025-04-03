@@ -44,6 +44,18 @@ var mana_refining_output_efficiency: float
 var mana_refining_active_factor: float = 1.0
 var mana_refining_passive_factor: float = 0.0
 
+func get_savable_properties() -> Array[String]:
+	return [
+		"plate*",
+		"liquid_fuel*",
+		"hydrogen*",
+		"electronic*",
+		"mana*",
+	]
+	
+func _on_loaded():
+	pass
+	
 func update_stats(delta: float) -> void:
 	
 	plate_refining_progress = refine_resource(

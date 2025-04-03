@@ -19,6 +19,16 @@ var dimension_index: int:
 @export var dimension_backgrounds: Array[ColorRect]
 @export var dimension_transition_overlay: ColorRect
 
+func get_savable_properties() -> Array[String]:
+	return [
+		"speed",
+		"distance_travelled",
+		"dimension_index"
+	]
+	
+func _on_loaded():
+	update_background(true)
+
 func _ready() -> void:
 	update_background()
 	
@@ -31,7 +41,7 @@ func _process(delta: float) -> void:
 		else:
 			Engine.time_scale = 1
 
-func update_background():
+func update_background(skip_transition:bool = false):
 	var start_transition = false
 	
 	var current_dimension: ColorRect
@@ -47,7 +57,7 @@ func update_background():
 			if current_dimension == null:
 				current_dimension = next_dimension
 				current_dimension.visible = true
-			start_transition =  current_dimension != next_dimension
+			start_transition = current_dimension != next_dimension and not skip_transition
 	
 	if start_transition:
 		start_dimension_transition(current_dimension, next_dimension)

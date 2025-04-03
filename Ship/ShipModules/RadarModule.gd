@@ -2,10 +2,10 @@ class_name RadarShipModule
 extends ShipModule
 
 @export_group("UI elements")
-@export var asteroid_placeholder: Node2D
+@export var ui_asteroid_placeholder: Node2D
+@export var ui_asteroid_scenes: Array[PackedScene]
 
 @export_group("Module Properties")
-@export var asteroid_scenes: Array[PackedScene]
 
 var asteroids: Array[Asteroid]
 
@@ -21,6 +21,18 @@ var asteroid_spawn_carbon_chance: float = 0.0
 var asteroid_spawn_water_chance: float = 0.0
 var asteroid_spawn_palladium_chance: float = 0.0
 var asteroid_spawn_pyralium_chance: float = 0.0
+	
+func get_savable_properties() -> Array[String]:
+	return [
+		"max_asteroids",
+		"asteroid_*",
+		"last_asteroid_spawn_distance",
+	]
+	
+func _on_loaded():
+	for asteroid in asteroids:
+		asteroid.queue_free()
+	asteroids.clear()
 	
 func update_stats(delta: float) -> void:
 	spawn_asteroids()
@@ -67,7 +79,7 @@ func get_random_asteroid_resource() -> String:
 
 func spawn_asteroid():
 	
-	var asteroid_scene = asteroid_scenes.pick_random()
+	var asteroid_scene = ui_asteroid_scenes.pick_random()
 	var asteroid:Asteroid = asteroid_scene.instantiate()
 	asteroid.ship = ship
 	
@@ -83,7 +95,7 @@ func spawn_asteroid():
 	asteroid.screen_exited.connect(_on_asteroid_screen_exited)
 	asteroid.screen_exited.connect(ship.mining.on_asteroid_screen_exited)
 	asteroid.clicked.connect(ship.mining.on_asteroid_clicked)
-	asteroid_placeholder.add_child(asteroid)
+	ui_asteroid_placeholder.add_child(asteroid)
 	
 	var viewport_size = Vector2(get_viewport().size)
 	var capture_size = viewport_size / get_viewport().get_camera_2d().zoom

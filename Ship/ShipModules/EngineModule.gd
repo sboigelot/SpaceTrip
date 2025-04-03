@@ -20,7 +20,7 @@ var engine_boost_duration_cooldown_max: float = 5.0
 var engine_boost_duration_left: float = 0.0
 var engine_boost_duration_cooldown: float = 0.0
 var engine_boost := Big.ONE()
-@export var engine_boost_curve: Curve
+@export var boost_curve: Curve
 
 var engine_auto_boost_cooldown_max: float = 0.0
 var engine_auto_boost_cooldown: float = 0.0
@@ -28,12 +28,22 @@ var engine_auto_boost_cooldown: float = 0.0
 var boosted_acceleration := Big.ZERO().setSuffixSeparatorOverride(" ")
 var mouse_over:bool = false
 
+func get_savable_properties() -> Array[String]:
+	return [
+		"base_acceleration",
+		"engine*",
+		"boosted_acceleration",
+	]
+	
+func _on_loaded():
+	pass
+	
 func get_boost_progress() -> float:
 	var boost_progress = 1.0 - engine_boost_duration_left / engine_boost_duration_max
 	return boost_progress
 	
 func get_boost_strength() -> float:
-	return engine_boost_curve.sample(get_boost_progress())
+	return boost_curve.sample(get_boost_progress())
 	
 func update_stats(delta: float) -> void:
 	super.update_stats(delta)

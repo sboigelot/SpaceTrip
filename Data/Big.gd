@@ -19,6 +19,12 @@ extends Resource
 ## Big Number Exponent
 @export var exponent: int
 
+func get_savable_properties() -> Array[String]:
+	return [
+		"mantissa",
+		"exponent"
+	]
+
 ## Metric Symbol Suffixes
 const suffixes_metric_symbol: Dictionary = {
 	"0": "", 

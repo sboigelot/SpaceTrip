@@ -26,6 +26,23 @@ var max_targeted_asteroids: int = 0
 var auto_mine_asteroid_count: int = 0
 var targeted_asteroids: Array[Asteroid]
 
+func get_savable_properties() -> Array[String]:
+	return [
+		"titanium*",
+		"carbon*",
+		"water*",
+		"palladium*",
+		"pyralium*",
+		
+		"global_mining_speed_factor",
+		
+		"max_targeted_asteroids",
+		"auto_mine_asteroid_count",
+	]
+	
+func _on_loaded():
+	targeted_asteroids.clear()
+	
 func update_stats(delta: float) -> void:
 	auto_mine_asteroids()
 	
