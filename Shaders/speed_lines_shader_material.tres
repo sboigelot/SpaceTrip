@@ -1,21 +1,25 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://2oytawmobjpl"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://2oytawmobjpl"]
 
 [ext_resource type="Shader" uid="uid://bm8siarq5cmfw" path="res://Shaders/speed_lines_shader_material.gdshader" id="1_bihtb"]
 
+[sub_resource type="Gradient" id="Gradient_bihtb"]
+interpolation_mode = 2
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bihtb"]
-noise_type = 2
 frequency = 0.025
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bihtb"]
 generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_bihtb")
 noise = SubResource("FastNoiseLite_bihtb")
 
 [resource]
 shader = ExtResource("1_bihtb")
 shader_parameter/noise = SubResource("NoiseTexture2D_bihtb")
-shader_parameter/line_color_a = Color(0.647059, 0.647059, 0.866667, 1)
-shader_parameter/line_color_b = Color(0, 1, 1, 0.243137)
-shader_parameter/line_threshold = 0.6
-shader_parameter/inverse_speed = 100.0
-shader_parameter/line_length = 100.0
+shader_parameter/line_color_a = Color(1, 1, 1, 0.588235)
+shader_parameter/line_color_b = Color(0, 1, 1, 0.588235)
+shader_parameter/line_threshold = 0.78
+shader_parameter/inverse_speed = 50.0
+shader_parameter/line_length = 1000.0
 shader_parameter/angle = 0.0

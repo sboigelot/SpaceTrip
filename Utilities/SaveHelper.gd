@@ -1,6 +1,13 @@
 class_name SaveHelper
 extends Node
 
+static func savegame_exist() -> bool:
+	var save_path = "user://savegame.json"
+	return FileAccess.file_exists(save_path)
+	
+static func delete_savegame():
+	var save_path = "user://savegame.json"
+	DirAccess.remove_absolute(save_path)
 
 static func save_game(node: Node):
 	var save_file = FileAccess.open("user://savegame.json", FileAccess.WRITE)

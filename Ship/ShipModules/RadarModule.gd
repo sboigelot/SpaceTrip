@@ -11,7 +11,7 @@ var asteroids: Array[Asteroid]
 
 var max_asteroids: int = 3
 var asteroid_spawn_min_distance: Big = Big.new(50.0)
-var last_asteroid_spawn_distance: Big = Big.ONE().timesEquals(-25.0)
+var last_asteroid_spawn_distance: Big = Big.ONE().plusEquals(asteroid_spawn_min_distance.times(1.5))
 
 var asteroid_spawn_min_mining_time_available: float = 20.0
 var asteroid_spawn_max_mining_time_available: float = 30.0
@@ -97,21 +97,22 @@ func spawn_asteroid():
 	asteroid.clicked.connect(ship.mining.on_asteroid_clicked)
 	ui_asteroid_placeholder.add_child(asteroid)
 	
-	var viewport_size = Vector2(get_viewport().size)
-	var capture_size = viewport_size / get_viewport().get_camera_2d().zoom
-	var y_position = randf_range(64, capture_size.y - 64)
-	var center_y = capture_size.y / 2.0
-	const center_margin: float = 128.0
-	if y_position > center_y - center_margin and y_position < center_y + center_margin:
-		if y_position < center_y:
-			y_position -= center_margin
-		else:
-			y_position += center_margin
-		
-	asteroid.position = Vector2(
-		capture_size.x + 64,
-		y_position
+	var viewport_size = get_viewport().get_visible_rect().size
+	
+	var spawn_position = Vector2(
+		viewport_size.x + 64,
+		randf_range(64, viewport_size.y - 64)
 	)
+	
+	var center_y = viewport_size.y / 2.0
+	const center_margin: float = 128.0
+	if spawn_position.y > center_y - center_margin and spawn_position.y < center_y + center_margin:
+		if spawn_position.y < center_y:
+			spawn_position.y -= center_margin
+		else:
+			spawn_position.y += center_margin
+		
+	asteroid.position = spawn_position
 	
 	
 func _on_asteroid_screen_exited(asteroid:Asteroid):

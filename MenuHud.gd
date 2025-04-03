@@ -1,27 +1,35 @@
 class_name MenuHUD
-extends BoxContainer
+extends MarginContainer
 
 @export var ship: Ship
 
 @export_group("Visual Nodes")
+@export var intro_movie: AnimationPlayer
+@export var menu_occluder: FadingColorRect
 @export var overall_occluder: FadingColorRect
 @export var fullscreen_check_box: CheckBox
 @export var audio_h_slider: HSlider
 @export var default_container: Container
 @export var confirm_container: Container
 @export var game_hud: Container
+@export var continue_button_container: Container
 
 var on_open_game_hud_visibility: bool
-var time_scale_on_open: float
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	fullscreen_check_box.set_pressed_no_signal(is_fullscreen())
-	
 	AudioServer.set_bus_volume_linear(0, 0.5)
 	var audio_volume = AudioServer.get_bus_volume_linear(0)
 	audio_h_slider.set_value_no_signal(audio_volume)
 	
-	visible = false
+	if SaveHelper.savegame_exist():
+		SaveHelper.load_game(ship)
+		continue_button_container.visible = true
+	else:
+		continue_button_container.visible = false
+	#continue_button_container.visible = SaveHelper.savegame_exist()
+	open(false)
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -33,9 +41,11 @@ func toggle():
 	else:
 		open()
 
-func open():
-	time_scale_on_open = Engine.time_scale
-	Engine.time_scale = 0
+func open(pause_game:bool = true):
+	if pause_game:
+		get_tree().paused = true
+		menu_occluder.fade_in(false)
+		continue_button_container.visible = true
 	
 	on_open_game_hud_visibility = game_hud.visible
 	game_hud.visible = false
@@ -45,7 +55,8 @@ func open():
 	confirm_container.visible = false
 	
 func close():
-	Engine.time_scale = max(1.0, time_scale_on_open)
+	get_tree().paused = false
+	menu_occluder.fade_out(false)
 	game_hud.visible = on_open_game_hud_visibility
 	visible = false
 
@@ -63,9 +74,14 @@ func _on_restart_button_pressed() -> void:
 	
 func _on_confirm_new_game_button_pressed() -> void:
 	Engine.time_scale = 1.0
+	SaveHelper.delete_savegame()
 	overall_occluder.fade_out()
 	await overall_occluder.fade_out_completed
 	get_tree().reload_current_scene()
+	
+func start_new_game():
+	intro_movie.play("Intro")
+	await intro_movie.animation_finished
 
 func _on_cancel_new_gamebutton_pressed() -> void:
 	default_container.visible = true

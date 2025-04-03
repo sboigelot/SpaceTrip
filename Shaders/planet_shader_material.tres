@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8vao6iqwb8kv"]
+
+[ext_resource type="Shader" uid="uid://bqrhjixbh58ab" path="res://Shaders/planet_shader_material.gdshader" id="1_m6yb4"]
+
+[resource]
+shader = ExtResource("1_m6yb4")
+shader_parameter/rotation_speed = 0.1
+shader_parameter/radius = 0.3
+shader_parameter/cell_amount = 3
+shader_parameter/period = Vector3(9.5, 9.5, 9.5)
+shader_parameter/cloud_cell_amount = 5
+shader_parameter/cloud_period = Vector3(500, 500, 500)
+shader_parameter/tangerine = Color(0.968, 0.573, 0.337, 1)
+shader_parameter/sunset = Color(0.984, 0.82, 0.635, 1)
+shader_parameter/moonstone = Color(0, 0.698, 0.792, 1)
+shader_parameter/ylnmn_blue = Color(0.114, 0.306, 0.537, 1)
+shader_parameter/emerald = Color(0.2, 0.792, 0.498, 1)
+shader_parameter/cal_poly_green = Color(0.078, 0.349, 0.114, 1)
+shader_parameter/clouds_color = Color(1, 1, 1, 1)
