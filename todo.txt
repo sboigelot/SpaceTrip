@@ -1,11 +1,18 @@
+Main Menu
+	toggle_fullscreen_mode not working
+	save settings, allow option sound volume + fullscreen on /off
+	add "check out our other games"
+
 Bugs / refinement:
+
+	split manually targeted asteroids and auto targetted asteroid
 
 	add obsoleted_by_purchase in shop upgrade to disable normal laser upgrade if not bougth before ble laser?
 		if order even possible
 		
 	first time tooltip is show, it is max size Y
 	
-	click on reward icon doesn't activate button
+	on other screen resolution game space is not aligned (issue with asteroids spawns)
 
 Gameplay todo:
 	
@@ -14,7 +21,7 @@ Gameplay todo:
 		
 	Wrap:
 		more engine and speed upgrades
-		1000 km/s rewards are ridiculus nowµ
+		1000 km/s rewards are ridiculus now
 	
 	Subspace: 
 		When enter:
@@ -35,11 +42,6 @@ Gameplay todo:
 			allow infuse mana from pyralium
 
 Polish:
-	
-	add main menu + pause menu (same?)
-	add savegame / loadgame / reset progress
-	save settings, allow option sound volume + fullscreen on /off
-	add "check out our other games"
 	
 	begining animation and mini text (in Hyperspace, explosion + stop)
 	end animation reach planet

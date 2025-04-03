@@ -2,6 +2,14 @@ class_name Ship
 extends Node2D
 
 #####################
+#		SIGNALS		#
+#####################
+
+signal new_purchase_done(purchase_name)
+signal new_mission_completed(mission_name)
+signal save_loaded()
+
+#####################
 #		EXPORTS		#
 #####################
 
@@ -36,13 +44,6 @@ extends Node2D
 @export var refinery: RefineryShipModule
 
 #####################
-#		SIGNALS		#
-#####################
-
-signal new_purchase_done(purchase_name)
-signal new_mission_completed(mission_name)
-
-#####################
 
 var shop_items: Array[ShipUpgrade]
 var purchased_items: Array[String]
@@ -65,6 +66,7 @@ func _on_loaded():
 	load_missions(false, true)
 	load_shop(false, true)
 	update_ui()
+	save_loaded.emit()
 
 func _ready() -> void:
 	load_missions()
@@ -124,6 +126,7 @@ func load_shop(reload_resources: bool = true, clear_views: bool = false):
 				ui_shop_container = ui_shop_container_mining
 			"refinery":
 				ui_shop_container = ui_shop_container_refinery
+		shop_item_view.check_availability(true)
 		ui_shop_container.add_child(shop_item_view)
 
 func check_data():
@@ -314,12 +317,3 @@ func _on_shop_eye_check_box_mouse_entered() -> void:
 
 func _on_shop_eye_check_box_mouse_exited() -> void:
 	ui_tooltip.close()
-
-func _on_save_button_pressed() -> void:
-	SaveHelper.save_game(self)
-	
-func _on_load_button_pressed() -> void:
-	SaveHelper.load_game(self)
-
-func _on_quit_button_pressed() -> void:
-	get_tree().quit()

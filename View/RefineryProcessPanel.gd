@@ -5,6 +5,7 @@ extends BoxContainer
 @export var resource_input: String
 @export var resource_output: String
 
+@export var ui_check_box: CheckBox
 @export var ui_input_label: Label
 @export var ui_progress_bar: ProgressBar
 @export var ui_output_label: Label
@@ -45,9 +46,12 @@ func update_ui():
 	ui_progress_bar.max_value = 1.0
 	ui_progress_bar.value = get_refining_progress() / get_refining_duration()
 
+func _silent_reset_check_box_toggled():
+	ui_check_box.set_pressed_no_signal(ship.refinery.active_refining == resource_output)
+
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		ship.refinery.active_refining_output = ship.refinery["%s" % resource_output]
-	elif ship.refinery["%s" % resource_output] == ship.refinery.active_refining_output:
-		ship.refinery.active_refining_output = null
+		ship.refinery.active_refining = resource_output
+	elif ship.refinery.active_refining == resource_output:
+		ship.refinery.active_refining = ""
 		

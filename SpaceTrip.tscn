@@ -1,6 +1,5 @@
-[gd_scene load_steps=68 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=85 format=3 uid="uid://clw4hwx1ukirp"]
 
-[ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="1_ahis8"]
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
 [ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship/Ship.gd" id="1_tp0y5"]
 [ext_resource type="Material" uid="uid://d2vvp5ec8hglv" path="res://Shaders/background_wrap_shader_material.tres" id="2_fmtom"]
@@ -50,50 +49,15 @@
 [ext_resource type="Script" uid="uid://clj13cjwr8vtd" path="res://Ship/ShipModules/RefineryShipModule.gd" id="32_7aab3"]
 [ext_resource type="PackedScene" uid="uid://cg2jdyvr16f3" path="res://View/Asteroids/Ore/OreAsteroid5.tscn" id="33_lx2c6"]
 [ext_resource type="PackedScene" uid="uid://dauvhpoq5jl01" path="res://View/Asteroids/Ore/OreAsteroid6.tscn" id="34_26kmh"]
+[ext_resource type="Script" uid="uid://c7kqwa7motfk4" path="res://GameOccluder.gd" id="34_lxkps"]
 [ext_resource type="PackedScene" uid="uid://c82e6qtgjgt83" path="res://View/Asteroids/Ore/OreAsteroid7.tscn" id="35_fmtom"]
 [ext_resource type="PackedScene" uid="uid://bt7my1ihwpqo" path="res://View/Asteroids/Ore/OreAsteroid8.tscn" id="36_v2ctf"]
 [ext_resource type="PackedScene" uid="uid://41du24e1jakv" path="res://View/Asteroids/Ore/OreAsteroid9.tscn" id="37_hmren"]
 [ext_resource type="PackedScene" uid="uid://bilg03h80ot6k" path="res://View/MiningRays/BlueMiningRay.tscn" id="50_ee6t8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20yo5"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(1, 0.294118, 1, 0.419608)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.29, 1, 0.65098)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 5
-
-[sub_resource type="LabelSettings" id="LabelSettings_su33w"]
-font_size = 28
-
-[sub_resource type="LabelSettings" id="LabelSettings_ahis8"]
-font_size = 28
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee6t8"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_qktbg"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_sbeg1"]
-font_size = 28
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_y637g"]
-allow_unpress = true
-
-[sub_resource type="LabelSettings" id="LabelSettings_gxo1i"]
-font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_cfmqu"]
-font_size = 18
+[ext_resource type="Script" uid="uid://cu5p1l7ag35dh" path="res://MenuHud.gd" id="54_lxkps"]
+[ext_resource type="Texture2D" uid="uid://dwtd2tirnagw5" path="res://Sprites/UI/burger.png" id="55_niyfj"]
+[ext_resource type="Texture2D" uid="uid://corjac1oe8xyl" path="res://Sprites/UI/icon_sound.png" id="56_86oec"]
+[ext_resource type="Script" uid="uid://rdua1ig1bpr7" path="res://OverallOccluder.gd" id="58_tlg5r"]
 
 [sub_resource type="Animation" id="Animation_8aiju"]
 resource_name = "Bop"
@@ -137,11 +101,143 @@ _data = {
 _data = [Vector2(0, 0), 0.0, 8.36947, 0, 0, Vector2(0.377104, 1), 0.0, 0.0, 0, 0, Vector2(0.777778, 0.741781), -0.909055, -0.909055, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20yo5"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 0.294118, 1, 0.419608)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.29, 1, 0.65098)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_su33w"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahis8"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_sbeg1"]
+font_size = 28
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_y637g"]
+allow_unpress = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxo1i"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfmqu"]
+font_size = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee6t8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qktbg"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_fotvt"]
+font_size = 128
+font_color = Color(0, 0.968627, 1, 1)
+outline_size = 20
+outline_color = Color(1, 0.294118, 1, 1)
+shadow_size = 16
+shadow_color = Color(0.972549, 1, 0.686275, 0.533333)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_creav"]
+font_size = 48
+font_color = Color(0, 0.968627, 1, 1)
+outline_size = 4
+outline_color = Color(1, 0.294118, 1, 1)
+shadow_size = 8
+shadow_color = Color(0.972549, 1, 0.686275, 0.533333)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpbsu"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(1, 0.294118, 1, 0.419608)
+skew = Vector2(-0.1, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3gry"]
+bg_color = Color(0.773225, 0.000488623, 0.778561, 0.419608)
+skew = Vector2(-0.1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0117647, 0.952941, 0.992157, 1)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a765y"]
+bg_color = Color(0.773225, 0.000488623, 0.778561, 0.419608)
+skew = Vector2(-0.1, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hx8kt"]
+bg_color = Color(1, 0.388235, 1, 0.419608)
+skew = Vector2(-0.1, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vndvs"]
+bg_color = Color(1, 0.294118, 1, 0.419608)
+skew = Vector2(-0.1, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u70mk"]
+bg_color = Color(0.773225, 0.000488623, 0.778561, 0.419608)
+skew = Vector2(-0.1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0117647, 0.952941, 0.992157, 1)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5nee"]
+bg_color = Color(0.773225, 0.000488623, 0.778561, 0.419608)
+skew = Vector2(-0.1, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cc3yg"]
+bg_color = Color(1, 0.388235, 1, 0.419608)
+skew = Vector2(-0.1, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4f20"]
+bg_color = Color(1, 0.294118, 1, 0.419608)
+skew = Vector2(-0.1, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1caes"]
+content_margin_top = 16.0
+bg_color = Color(0.662745, 0.2, 0.741176, 1)
+border_color = Color(0.0117647, 0.952941, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_86oec"]
+font_size = 24
+
 [node name="SpaceTrip" type="Node"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(1200, 675)
-zoom = Vector2(0.8, 0.8)
+position = Vector2(1200, 675)
 
 [node name="BackgroundEffects" type="Node2D" parent="."]
 
@@ -153,7 +249,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ScrollingStars" type="ColorRect" parent="BackgroundEffects"]
-visible = false
 material = ExtResource("1_gxo1i")
 custom_minimum_size = Vector2(2400, 1350)
 offset_right = 1920.0
@@ -196,1020 +291,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 
-[node name="SpeedLines" type="ColorRect" parent="BackgroundEffects"]
-visible = false
-material = ExtResource("1_ahis8")
-custom_minimum_size = Vector2(2400, 1350)
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="UIContainer" type="MarginContainer" parent="."]
-z_index = 4096
-z_as_relative = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 480.0
-offset_bottom = 270.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="SpeedHUD" type="PanelContainer" parent="UIContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-
-[node name="SpeedHUD" type="BoxContainer" parent="UIContainer/SpeedHUD"]
-layout_mode = 2
-mouse_filter = 2
-vertical = true
-
-[node name="DistanceLabel" type="Label" parent="UIContainer/SpeedHUD/SpeedHUD"]
-layout_mode = 2
-text = "Distance: 0.0"
-label_settings = SubResource("LabelSettings_su33w")
-
-[node name="SpeedLabel" type="Label" parent="UIContainer/SpeedHUD/SpeedHUD"]
-layout_mode = 2
-text = "Speed: 0.0"
-label_settings = SubResource("LabelSettings_ahis8")
-
-[node name="AccelerationLabel" type="Label" parent="UIContainer/SpeedHUD/SpeedHUD"]
-layout_mode = 2
-text = "Acceleration: 0.0"
-label_settings = SubResource("LabelSettings_ahis8")
-
-[node name="BoostContainer" type="MarginContainer" parent="UIContainer/SpeedHUD/SpeedHUD"]
-custom_minimum_size = Vector2(0, 31)
-layout_mode = 2
-
-[node name="BoostEngineButton" type="Button" parent="UIContainer/SpeedHUD/SpeedHUD/BoostContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "Boost Engine"
-
-[node name="BoostEngineProgressBar" type="ProgressBar" parent="UIContainer/SpeedHUD/SpeedHUD/BoostContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-value = 50.0
-show_percentage = false
-
-[node name="AutoBoostContainer" type="MarginContainer" parent="UIContainer/SpeedHUD/SpeedHUD"]
-custom_minimum_size = Vector2(0, 31)
-layout_mode = 2
-
-[node name="AutoBoostLabel" type="Label" parent="UIContainer/SpeedHUD/SpeedHUD/AutoBoostContainer"]
-layout_mode = 2
-text = "Auto boost"
-horizontal_alignment = 1
-
-[node name="AutoBoostEngineProgressBar" type="ProgressBar" parent="UIContainer/SpeedHUD/SpeedHUD/AutoBoostContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-value = 50.0
-show_percentage = false
-
-[node name="MenuHUD" type="PanelContainer" parent="UIContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-
-[node name="MenuHUDBox" type="BoxContainer" parent="UIContainer/MenuHUD"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="MenuBoxContainer" type="BoxContainer" parent="UIContainer/MenuHUD/MenuHUDBox"]
-layout_mode = 2
-
-[node name="SaveButton" type="Button" parent="UIContainer/MenuHUD/MenuHUDBox/MenuBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "Save"
-
-[node name="LoadButton" type="Button" parent="UIContainer/MenuHUD/MenuHUDBox/MenuBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "Load"
-
-[node name="QuitButton" type="Button" parent="UIContainer/MenuHUD/MenuHUDBox/MenuBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "Quit"
-
-[node name="MenuEyeButton" type="CheckBox" parent="UIContainer/MenuHUD/MenuHUDBox" node_paths=PackedStringArray("target")]
-layout_mode = 2
-focus_mode = 0
-theme_override_icons/checked = ExtResource("3_ltq8v")
-theme_override_icons/unchecked = ExtResource("4_sbeg1")
-button_pressed = true
-script = ExtResource("5_sbeg1")
-target = NodePath("../MenuBoxContainer")
-metadata/_custom_type_script = "uid://bdvfbm07hftq3"
-
-[node name="MissionHUD" type="PanelContainer" parent="UIContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MissionHUD"]
-layout_mode = 2
-mouse_filter = 2
-vertical = true
-
-[node name="MissionTitle" type="BoxContainer" parent="UIContainer/MissionHUD/BoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-mouse_filter = 2
-
-[node name="MissionTitleLabel" type="Label" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle"]
-layout_mode = 2
-text = "Missions"
-label_settings = SubResource("LabelSettings_su33w")
-
-[node name="MissionEyeCheckBox" type="CheckBox" parent="UIContainer/MissionHUD/BoxContainer/MissionTitle" node_paths=PackedStringArray("target")]
-layout_mode = 2
-focus_mode = 0
-theme_override_icons/checked = ExtResource("3_ltq8v")
-theme_override_icons/unchecked = ExtResource("4_sbeg1")
-button_pressed = true
-script = ExtResource("5_sbeg1")
-target = NodePath("../../MissionContainer")
-metadata/_custom_type_script = "uid://bdvfbm07hftq3"
-
-[node name="MissionContainer" type="BoxContainer" parent="UIContainer/MissionHUD/BoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-vertical = true
-
-[node name="RewardHUD" type="PanelContainer" parent="UIContainer" node_paths=PackedStringArray("ui_reward_cards")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("11_v4jsj")
-ui_reward_cards = [NodePath("BoxContainer/RewardCardContainer/RewardCard"), NodePath("BoxContainer/RewardCardContainer/RewardCard2"), NodePath("BoxContainer/RewardCardContainer/RewardCard3")]
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD"]
-layout_mode = 2
-vertical = true
-
-[node name="RewardTitleLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer"]
-layout_mode = 2
-text = "Choose a reward"
-label_settings = SubResource("LabelSettings_su33w")
-horizontal_alignment = 1
-
-[node name="RewardCardContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="RewardCard" type="PanelContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
-custom_minimum_size = Vector2(192, 267)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
-script = ExtResource("11_qktbg")
-ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
-ui_label = NodePath("BoxContainer/RewardLabel")
-
-[node name="ChooseRewardButton" type="Button" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard"]
-layout_mode = 2
-focus_mode = 0
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard"]
-layout_mode = 2
-mouse_filter = 2
-vertical = true
-
-[node name="CenterContainer" type="CenterContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer"]
-custom_minimum_size = Vector2(0, 164)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RewardTextureRect" type="TextureRect" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("3_svbfm")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="RewardLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer"]
-custom_minimum_size = Vector2(192, 34)
-layout_mode = 2
-size_flags_vertical = 1
-text = "5 titanium"
-label_settings = SubResource("LabelSettings_qktbg")
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="RewardCard2" type="PanelContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
-custom_minimum_size = Vector2(192, 267)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
-script = ExtResource("11_qktbg")
-ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
-ui_label = NodePath("BoxContainer/RewardLabel")
-
-[node name="ChooseRewardButton" type="Button" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2"]
-layout_mode = 2
-focus_mode = 0
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2"]
-layout_mode = 2
-mouse_filter = 2
-vertical = true
-
-[node name="CenterContainer" type="CenterContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer"]
-custom_minimum_size = Vector2(0, 164)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RewardTextureRect" type="TextureRect" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("3_svbfm")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="RewardLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer"]
-custom_minimum_size = Vector2(192, 34)
-layout_mode = 2
-size_flags_vertical = 1
-text = "5 titanium"
-label_settings = SubResource("LabelSettings_qktbg")
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="RewardCard3" type="PanelContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
-custom_minimum_size = Vector2(192, 267)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
-script = ExtResource("11_qktbg")
-ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
-ui_label = NodePath("BoxContainer/RewardLabel")
-
-[node name="ChooseRewardButton" type="Button" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3"]
-layout_mode = 2
-focus_mode = 0
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3"]
-layout_mode = 2
-mouse_filter = 2
-vertical = true
-
-[node name="CenterContainer" type="CenterContainer" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer"]
-custom_minimum_size = Vector2(0, 164)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RewardTextureRect" type="TextureRect" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("3_svbfm")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="RewardLabel" type="Label" parent="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer"]
-custom_minimum_size = Vector2(192, 34)
-layout_mode = 2
-size_flags_vertical = 1
-text = "5 titanium"
-label_settings = SubResource("LabelSettings_qktbg")
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="MiningHUD" type="BoxContainer" parent="UIContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-vertical = true
-
-[node name="MiningHUD" type="PanelContainer" parent="UIContainer/MiningHUD"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-
-[node name="MiningLaserLabel" type="Label" parent="UIContainer/MiningHUD/MiningHUD"]
-layout_mode = 2
-text = "Mining Laser: 1 / 1 (1 auto)"
-label_settings = SubResource("LabelSettings_sbeg1")
-
-[node name="RefineryHUD" type="PanelContainer" parent="UIContainer/MiningHUD" node_paths=PackedStringArray("ship", "process_container")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_26kmh")
-ship = NodePath("../../../ShipCanvasGroup/Ship")
-process_container = NodePath("BoxContainer/ProcessBoxContainer")
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD"]
-layout_mode = 2
-vertical = true
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer"]
-layout_mode = 2
-
-[node name="RefineryEyeCheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer" node_paths=PackedStringArray("target")]
-layout_mode = 2
-focus_mode = 0
-theme_override_icons/checked = ExtResource("3_ltq8v")
-theme_override_icons/unchecked = ExtResource("4_sbeg1")
-button_pressed = true
-script = ExtResource("5_sbeg1")
-target = NodePath("../../ProcessBoxContainer")
-metadata/_custom_type_script = "uid://bdvfbm07hftq3"
-
-[node name="RefineryTitleLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer"]
-layout_mode = 2
-text = "Refinery"
-label_settings = SubResource("LabelSettings_su33w")
-
-[node name="ProcessBoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer"]
-layout_mode = 2
-vertical = true
-
-[node name="PlateRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
-layout_mode = 2
-script = ExtResource("3_lx2c6")
-ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
-resource_input = "titanium"
-resource_output = "plate"
-ui_input_label = NodePath("InputLabel")
-ui_progress_bar = NodePath("ProgressBar")
-ui_output_label = NodePath("OutputLabel")
-metadata/_custom_type_script = "uid://cnar8mct5q1t3"
-
-[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_icons/radio_checked = ExtResource("3_5wn8v")
-theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
-button_group = SubResource("ButtonGroup_y637g")
-
-[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_svbfm")
-expand_mode = 3
-
-[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
-custom_minimum_size = Vector2(24, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_26kmh")
-expand_mode = 1
-
-[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_j376e")
-expand_mode = 3
-
-[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-value = 0.3
-show_percentage = false
-
-[node name="LiquiFuelRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
-layout_mode = 2
-script = ExtResource("3_lx2c6")
-ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
-resource_input = "carbon"
-resource_output = "liquid_fuel"
-ui_input_label = NodePath("InputLabel")
-ui_progress_bar = NodePath("ProgressBar")
-ui_output_label = NodePath("OutputLabel")
-metadata/_custom_type_script = "uid://cnar8mct5q1t3"
-
-[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_icons/radio_checked = ExtResource("3_5wn8v")
-theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
-button_group = SubResource("ButtonGroup_y637g")
-
-[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("5_pljlk")
-expand_mode = 3
-
-[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
-custom_minimum_size = Vector2(24, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_26kmh")
-expand_mode = 1
-
-[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_7aab3")
-expand_mode = 3
-
-[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-value = 0.3
-show_percentage = false
-
-[node name="HydrogenRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
-layout_mode = 2
-script = ExtResource("3_lx2c6")
-ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
-resource_input = "water"
-resource_output = "hydrogen"
-ui_input_label = NodePath("InputLabel")
-ui_progress_bar = NodePath("ProgressBar")
-ui_output_label = NodePath("OutputLabel")
-metadata/_custom_type_script = "uid://cnar8mct5q1t3"
-
-[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_icons/radio_checked = ExtResource("3_5wn8v")
-theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
-button_group = SubResource("ButtonGroup_y637g")
-
-[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("7_dqp5x")
-expand_mode = 3
-
-[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
-custom_minimum_size = Vector2(24, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_26kmh")
-expand_mode = 1
-
-[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("8_segi0")
-expand_mode = 3
-
-[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-value = 0.3
-show_percentage = false
-
-[node name="ElectronicRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
-layout_mode = 2
-script = ExtResource("3_lx2c6")
-ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
-resource_input = "palladium"
-resource_output = "electronic"
-ui_input_label = NodePath("InputLabel")
-ui_progress_bar = NodePath("ProgressBar")
-ui_output_label = NodePath("OutputLabel")
-metadata/_custom_type_script = "uid://cnar8mct5q1t3"
-
-[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_icons/radio_checked = ExtResource("3_5wn8v")
-theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
-button_group = SubResource("ButtonGroup_y637g")
-
-[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("9_b1kpa")
-expand_mode = 3
-
-[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
-custom_minimum_size = Vector2(24, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_26kmh")
-expand_mode = 1
-
-[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("11_7aab3")
-expand_mode = 3
-
-[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-value = 0.3
-show_percentage = false
-
-[node name="ManaRefineryPanel" type="BoxContainer" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_input_label", "ui_progress_bar", "ui_output_label")]
-layout_mode = 2
-script = ExtResource("3_lx2c6")
-ship = NodePath("../../../../../../ShipCanvasGroup/Ship")
-resource_input = "pyralium"
-resource_output = "mana"
-ui_input_label = NodePath("InputLabel")
-ui_progress_bar = NodePath("ProgressBar")
-ui_output_label = NodePath("OutputLabel")
-metadata/_custom_type_script = "uid://cnar8mct5q1t3"
-
-[node name="CheckBox" type="CheckBox" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_icons/radio_checked = ExtResource("3_5wn8v")
-theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
-button_group = SubResource("ButtonGroup_y637g")
-
-[node name="InputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("10_ejfde")
-expand_mode = 3
-
-[node name="InputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ArrowTextureRext" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
-custom_minimum_size = Vector2(24, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_26kmh")
-expand_mode = 1
-
-[node name="OutputTextureRect" type="TextureRect" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_j376e")
-expand_mode = 3
-
-[node name="OutputLabel" type="Label" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ProgressBar" type="ProgressBar" parent="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-value = 0.3
-show_percentage = false
-
-[node name="Resources" type="BoxContainer" parent="UIContainer/MiningHUD"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="TitaniumPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "mining"
-property_bound = "titanium"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/TitaniumPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/TitaniumPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("3_svbfm")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/TitaniumPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="PlatePanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "refinery"
-property_bound = "plate"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/PlatePanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/PlatePanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_j376e")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/PlatePanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="CarbonPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "mining"
-property_bound = "carbon"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/CarbonPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/CarbonPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_pljlk")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/CarbonPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="LiquidFuelPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "refinery"
-property_bound = "liquid_fuel"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/LiquidFuelPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/LiquidFuelPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_7aab3")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/LiquidFuelPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="WaterPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "mining"
-property_bound = "water"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/WaterPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/WaterPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("7_dqp5x")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/WaterPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="HydrogenPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "refinery"
-property_bound = "hydrogen"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/HydrogenPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/HydrogenPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("8_segi0")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/HydrogenPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="PalladiumPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "mining"
-property_bound = "palladium"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/PalladiumPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/PalladiumPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("9_b1kpa")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/PalladiumPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ElectronicPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "refinery"
-property_bound = "electronic"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/ElectronicPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/ElectronicPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("11_7aab3")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/ElectronicPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="PyraliumPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "mining"
-property_bound = "pyralium"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/PyraliumPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/PyraliumPanel/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("10_ejfde")
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/PyraliumPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ManaPanel" type="PanelContainer" parent="UIContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-script = ExtResource("3_pljlk")
-ui_label = NodePath("BoxContainer/Label")
-ship = NodePath("../../../../ShipCanvasGroup/Ship")
-ship_module = "refinery"
-property_bound = "mana"
-metadata/_custom_type_script = "uid://b20qytjxlvosn"
-
-[node name="BoxContainer" type="BoxContainer" parent="UIContainer/MiningHUD/Resources/ManaPanel"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIContainer/MiningHUD/Resources/ManaPanel/BoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UIContainer/MiningHUD/Resources/ManaPanel/BoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_gxo1i")
-
-[node name="ShopContainer" type="PanelContainer" parent="UIContainer"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-
-[node name="Shop" type="BoxContainer" parent="UIContainer/ShopContainer"]
-layout_mode = 2
-mouse_filter = 2
-vertical = true
-
-[node name="TitleContainer" type="MarginContainer" parent="UIContainer/ShopContainer/Shop"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_right = 50
-
-[node name="ShopTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/TitleContainer"]
-layout_mode = 2
-text = "Upgrades"
-label_settings = SubResource("LabelSettings_su33w")
-
-[node name="ShopShelfContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop"]
-layout_mode = 2
-vertical = true
-
-[node name="EngineTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-text = "Engine"
-label_settings = SubResource("LabelSettings_cfmqu")
-
-[node name="EngineShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-vertical = true
-
-[node name="RadarTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-text = "Radar"
-label_settings = SubResource("LabelSettings_cfmqu")
-
-[node name="RadarShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-vertical = true
-
-[node name="MiningTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-text = "Mining Laser"
-label_settings = SubResource("LabelSettings_cfmqu")
-
-[node name="MiningShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-vertical = true
-
-[node name="RefineryTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-text = "Refinery"
-label_settings = SubResource("LabelSettings_cfmqu")
-
-[node name="RefineryShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-vertical = true
-
-[node name="CoreTitleLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-text = "Core"
-label_settings = SubResource("LabelSettings_cfmqu")
-
-[node name="CoreShopBoxContainer" type="BoxContainer" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-vertical = true
-
-[node name="NoneAvailableLabel" type="Label" parent="UIContainer/ShopContainer/Shop/ShopShelfContainer"]
-layout_mode = 2
-text = "No upgrade available"
-label_settings = SubResource("LabelSettings_cfmqu")
-
-[node name="ShopEye" type="MarginContainer" parent="UIContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-
-[node name="ShopEyeCheckBox" type="CheckBox" parent="UIContainer/ShopEye" node_paths=PackedStringArray("target")]
-layout_mode = 2
-focus_mode = 0
-theme_override_icons/checked = ExtResource("3_ltq8v")
-theme_override_icons/unchecked = ExtResource("4_sbeg1")
-button_pressed = true
-script = ExtResource("5_sbeg1")
-target = NodePath("../../ShopContainer/Shop")
-metadata/_custom_type_script = "uid://bdvfbm07hftq3"
-
-[node name="RichTextTooltip" type="Node2D" parent="UIContainer" node_paths=PackedStringArray("ui_tooltip_container", "ui_tooltip_rich_text_label")]
-visible = false
-script = ExtResource("3_cfmqu")
-ui_tooltip_container = NodePath("TooltipContainer")
-ui_tooltip_rich_text_label = NodePath("TooltipContainer/TooltipRichTextLabel")
-
-[node name="TooltipContainer" type="PanelContainer" parent="UIContainer/RichTextTooltip"]
-custom_minimum_size = Vector2(600, 0)
-offset_left = 400.0
-offset_right = 840.0
-offset_bottom = 137.0
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
-
-[node name="TooltipRichTextLabel" type="RichTextLabel" parent="UIContainer/RichTextTooltip/TooltipContainer"]
-layout_mode = 2
-theme_override_font_sizes/bold_italics_font_size = 25
-theme_override_font_sizes/italics_font_size = 25
-theme_override_font_sizes/mono_font_size = 25
-theme_override_font_sizes/normal_font_size = 28
-theme_override_font_sizes/bold_font_size = 25
-bbcode_enabled = true
-text = "this is a test
-this is a test
-this is a test"
-fit_content = true
-scroll_active = false
-shortcut_keys_enabled = false
-
 [node name="ShipCanvasGroup" type="CanvasGroup" parent="."]
 material = ExtResource("3_v47jd")
 
@@ -1217,21 +298,21 @@ material = ExtResource("3_v47jd")
 position = Vector2(1200, 675)
 script = ExtResource("1_tp0y5")
 dev_tweak_mode = true
-ui_mission_container = NodePath("../../UIContainer/MissionHUD/BoxContainer/MissionContainer")
-ui_mission_reward_hud = NodePath("../../UIContainer/RewardHUD")
-ui_shop_container_core_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/CoreTitleLabel")
-ui_shop_container_core = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/CoreShopBoxContainer")
-ui_shop_container_engine_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/EngineTitleLabel")
-ui_shop_container_engine = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/EngineShopBoxContainer")
-ui_shop_container_radar_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RadarTitleLabel")
-ui_shop_container_radar = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RadarShopBoxContainer")
-ui_shop_container_mining_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/MiningTitleLabel")
-ui_shop_container_mining = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/MiningShopBoxContainer")
-ui_shop_container_refinery_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RefineryTitleLabel")
-ui_shop_container_refinery = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/RefineryShopBoxContainer")
-ui_shop_container_no_upgrade_title = NodePath("../../UIContainer/ShopContainer/Shop/ShopShelfContainer/NoneAvailableLabel")
-ui_tooltip = NodePath("../../UIContainer/RichTextTooltip")
-ui_shop_eye = NodePath("../../UIContainer/ShopEye/ShopEyeCheckBox")
+ui_mission_container = NodePath("../../UILayer/GameHUDContainer/MissionHUD/BoxContainer/MissionContainer")
+ui_mission_reward_hud = NodePath("../../UILayer/RewardHUD")
+ui_shop_container_core_title = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/CoreTitleLabel")
+ui_shop_container_core = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/CoreShopBoxContainer")
+ui_shop_container_engine_title = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/EngineTitleLabel")
+ui_shop_container_engine = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/EngineShopBoxContainer")
+ui_shop_container_radar_title = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/RadarTitleLabel")
+ui_shop_container_radar = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/RadarShopBoxContainer")
+ui_shop_container_mining_title = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/MiningTitleLabel")
+ui_shop_container_mining = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/MiningShopBoxContainer")
+ui_shop_container_refinery_title = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/RefineryTitleLabel")
+ui_shop_container_refinery = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/RefineryShopBoxContainer")
+ui_shop_container_no_upgrade_title = NodePath("../../UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer/NoneAvailableLabel")
+ui_tooltip = NodePath("../../UILayer/RichTextTooltip")
+ui_shop_eye = NodePath("../../UILayer/GameHUDContainer/ShopEye/ShopEyeCheckBox")
 core = NodePath("CoreModule")
 engine = NodePath("EngineModule")
 radar = NodePath("RadarModule")
@@ -1250,8 +331,8 @@ metadata/_custom_type_script = "uid://0epgfa68wioe"
 
 [node name="CoreModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_distance_label", "ui_speed_label", "dimension_backgrounds", "dimension_transition_overlay")]
 script = ExtResource("2_i2c18")
-ui_distance_label = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/DistanceLabel")
-ui_speed_label = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/SpeedLabel")
+ui_distance_label = NodePath("../../../UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/DistanceLabel")
+ui_speed_label = NodePath("../../../UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/SpeedLabel")
 dimension_backgrounds = [NodePath("../../../BackgroundEffects/ScrollingStars"), NodePath("../../../BackgroundEffects/WrapSpace"), NodePath("../../../BackgroundEffects/SubSpace"), NodePath("../../../BackgroundEffects/HyperSpace")]
 dimension_transition_overlay = NodePath("../../../BackgroundEffects/TransitionOverlay")
 metadata/_custom_type_script = "uid://bf3mh7sr0282d"
@@ -1264,11 +345,11 @@ script = ExtResource("3_wqs7w")
 ui_engine_sprite = NodePath("EngineSprite2D")
 ui_engine_fireballs = NodePath("Fireballs")
 ui_engine_smoke = NodePath("Smoke")
-ui_acceleration_label = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/AccelerationLabel")
-ui_boost_button = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineButton")
-ui_boost_progress = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineProgressBar")
-ui_auto_boost_container = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/AutoBoostContainer")
-ui_auto_boost_progress = NodePath("../../../UIContainer/SpeedHUD/SpeedHUD/AutoBoostContainer/AutoBoostEngineProgressBar")
+ui_acceleration_label = NodePath("../../../UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/AccelerationLabel")
+ui_boost_button = NodePath("../../../UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineButton")
+ui_boost_progress = NodePath("../../../UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineProgressBar")
+ui_auto_boost_container = NodePath("../../../UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/AutoBoostContainer")
+ui_auto_boost_progress = NodePath("../../../UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/AutoBoostContainer/AutoBoostEngineProgressBar")
 boost_curve = SubResource("Curve_wqs7w")
 metadata/_custom_type_script = "uid://b36s11j48be0a"
 
@@ -1376,8 +457,8 @@ metadata/_custom_type_script = "uid://iigsupy7ia7q"
 
 [node name="MiningModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_mining_laser_container", "ui_mining_laser_label", "mining_ray_placeholder")]
 script = ExtResource("4_qkquj")
-ui_mining_laser_container = NodePath("../../../UIContainer/MiningHUD/MiningHUD")
-ui_mining_laser_label = NodePath("../../../UIContainer/MiningHUD/MiningHUD/MiningLaserLabel")
+ui_mining_laser_container = NodePath("../../../UILayer/GameHUDContainer/MiningHUD/MiningHUD")
+ui_mining_laser_label = NodePath("../../../UILayer/GameHUDContainer/MiningHUD/MiningHUD/MiningLaserLabel")
 mining_ray_placeholder = NodePath("MiningRays")
 mining_ray_scenes_per_global_mining_speed = Dictionary[float, PackedScene]({
 0.0: ExtResource("14_g7nme"),
@@ -1399,20 +480,1246 @@ metadata/_custom_type_script = "uid://clj13cjwr8vtd"
 
 [node name="ForegroundEffects" type="Node2D" parent="."]
 
-[connection signal="pressed" from="UIContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineButton" to="ShipCanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
-[connection signal="pressed" from="UIContainer/MenuHUD/MenuHUDBox/MenuBoxContainer/SaveButton" to="ShipCanvasGroup/Ship" method="_on_save_button_pressed"]
-[connection signal="pressed" from="UIContainer/MenuHUD/MenuHUDBox/MenuBoxContainer/LoadButton" to="ShipCanvasGroup/Ship" method="_on_load_button_pressed"]
-[connection signal="pressed" from="UIContainer/MenuHUD/MenuHUDBox/MenuBoxContainer/QuitButton" to="ShipCanvasGroup/Ship" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/ChooseRewardButton" to="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard" method="_on_choose_reward_button_pressed"]
-[connection signal="pressed" from="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/ChooseRewardButton" to="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2" method="_on_choose_reward_button_pressed"]
-[connection signal="pressed" from="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/ChooseRewardButton" to="UIContainer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3" method="_on_choose_reward_button_pressed"]
-[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel" method="_on_check_box_toggled"]
-[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel" method="_on_check_box_toggled"]
-[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel" method="_on_check_box_toggled"]
-[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel" method="_on_check_box_toggled"]
-[connection signal="toggled" from="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel/CheckBox" to="UIContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel" method="_on_check_box_toggled"]
-[connection signal="mouse_entered" from="UIContainer/ShopEye/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_entered"]
-[connection signal="mouse_exited" from="UIContainer/ShopEye/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_exited"]
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="GameHUDContainer" type="MarginContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+metadata/_edit_lock_ = true
+
+[node name="SpeedHUD" type="PanelContainer" parent="UILayer/GameHUDContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="SpeedHUD" type="BoxContainer" parent="UILayer/GameHUDContainer/SpeedHUD"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="DistanceLabel" type="Label" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD"]
+layout_mode = 2
+text = "Distance: 0.0"
+label_settings = SubResource("LabelSettings_su33w")
+
+[node name="SpeedLabel" type="Label" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD"]
+layout_mode = 2
+text = "Speed: 0.0"
+label_settings = SubResource("LabelSettings_ahis8")
+
+[node name="AccelerationLabel" type="Label" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD"]
+layout_mode = 2
+text = "Acceleration: 0.0"
+label_settings = SubResource("LabelSettings_ahis8")
+
+[node name="BoostContainer" type="MarginContainer" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="BoostEngineButton" type="Button" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/BoostContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Boost Engine"
+
+[node name="BoostEngineProgressBar" type="ProgressBar" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/BoostContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+value = 50.0
+show_percentage = false
+
+[node name="AutoBoostContainer" type="MarginContainer" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="AutoBoostLabel" type="Label" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/AutoBoostContainer"]
+layout_mode = 2
+text = "Auto boost"
+horizontal_alignment = 1
+
+[node name="AutoBoostEngineProgressBar" type="ProgressBar" parent="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/AutoBoostContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+value = 50.0
+show_percentage = false
+
+[node name="MissionHUD" type="PanelContainer" parent="UILayer/GameHUDContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MissionHUD"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="MissionTitle" type="BoxContainer" parent="UILayer/GameHUDContainer/MissionHUD/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="MissionTitleLabel" type="Label" parent="UILayer/GameHUDContainer/MissionHUD/BoxContainer/MissionTitle"]
+layout_mode = 2
+text = "Missions"
+label_settings = SubResource("LabelSettings_su33w")
+
+[node name="MissionEyeCheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MissionHUD/BoxContainer/MissionTitle" node_paths=PackedStringArray("target")]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("3_ltq8v")
+theme_override_icons/unchecked = ExtResource("4_sbeg1")
+button_pressed = true
+script = ExtResource("5_sbeg1")
+target = NodePath("../../MissionContainer")
+metadata/_custom_type_script = "uid://bdvfbm07hftq3"
+
+[node name="MissionContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MissionHUD/BoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="MiningHUD" type="BoxContainer" parent="UILayer/GameHUDContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+vertical = true
+
+[node name="MiningHUD" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="MiningLaserLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD"]
+layout_mode = 2
+text = "Mining Laser: 1 / 1 (1 auto)"
+label_settings = SubResource("LabelSettings_sbeg1")
+
+[node name="RefineryHUD" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD" node_paths=PackedStringArray("ship", "process_container")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_26kmh")
+ship = NodePath("../../../../ShipCanvasGroup/Ship")
+process_container = NodePath("BoxContainer/ProcessBoxContainer")
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD"]
+layout_mode = 2
+vertical = true
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer"]
+layout_mode = 2
+
+[node name="RefineryEyeCheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer" node_paths=PackedStringArray("target")]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("3_ltq8v")
+theme_override_icons/unchecked = ExtResource("4_sbeg1")
+button_pressed = true
+script = ExtResource("5_sbeg1")
+target = NodePath("../../ProcessBoxContainer")
+metadata/_custom_type_script = "uid://bdvfbm07hftq3"
+
+[node name="RefineryTitleLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer"]
+layout_mode = 2
+text = "Refinery"
+label_settings = SubResource("LabelSettings_su33w")
+
+[node name="ProcessBoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="PlateRefineryPanel" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_check_box", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../../ShipCanvasGroup/Ship")
+resource_input = "titanium"
+resource_output = "plate"
+ui_check_box = NodePath("CheckBox")
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_svbfm")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_j376e")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="LiquiFuelRefineryPanel" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_check_box", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../../ShipCanvasGroup/Ship")
+resource_input = "carbon"
+resource_output = "liquid_fuel"
+ui_check_box = NodePath("CheckBox")
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_pljlk")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_7aab3")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="HydrogenRefineryPanel" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_check_box", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../../ShipCanvasGroup/Ship")
+resource_input = "water"
+resource_output = "hydrogen"
+ui_check_box = NodePath("CheckBox")
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_dqp5x")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_segi0")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="ElectronicRefineryPanel" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_check_box", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../../ShipCanvasGroup/Ship")
+resource_input = "palladium"
+resource_output = "electronic"
+ui_check_box = NodePath("CheckBox")
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_b1kpa")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_7aab3")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="ManaRefineryPanel" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer" node_paths=PackedStringArray("ship", "ui_check_box", "ui_input_label", "ui_progress_bar", "ui_output_label")]
+layout_mode = 2
+script = ExtResource("3_lx2c6")
+ship = NodePath("../../../../../../../ShipCanvasGroup/Ship")
+resource_input = "pyralium"
+resource_output = "mana"
+ui_check_box = NodePath("CheckBox")
+ui_input_label = NodePath("InputLabel")
+ui_progress_bar = NodePath("ProgressBar")
+ui_output_label = NodePath("OutputLabel")
+metadata/_custom_type_script = "uid://cnar8mct5q1t3"
+
+[node name="CheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/radio_checked = ExtResource("3_5wn8v")
+theme_override_icons/radio_unchecked = ExtResource("4_lx2c6")
+button_group = SubResource("ButtonGroup_y637g")
+
+[node name="InputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_ejfde")
+expand_mode = 3
+
+[node name="InputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ArrowTextureRext" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(24, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_26kmh")
+expand_mode = 1
+
+[node name="OutputTextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_j376e")
+expand_mode = 3
+
+[node name="OutputLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.3
+show_percentage = false
+
+[node name="Resources" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="TitaniumPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "mining"
+property_bound = "titanium"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/TitaniumPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/TitaniumPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_svbfm")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/TitaniumPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="PlatePanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "refinery"
+property_bound = "plate"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PlatePanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PlatePanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_j376e")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PlatePanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="CarbonPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "mining"
+property_bound = "carbon"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/CarbonPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/CarbonPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_pljlk")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/CarbonPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="LiquidFuelPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "refinery"
+property_bound = "liquid_fuel"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/LiquidFuelPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/LiquidFuelPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_7aab3")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/LiquidFuelPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="WaterPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "mining"
+property_bound = "water"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/WaterPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/WaterPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_dqp5x")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/WaterPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="HydrogenPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "refinery"
+property_bound = "hydrogen"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/HydrogenPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/HydrogenPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_segi0")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/HydrogenPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="PalladiumPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "mining"
+property_bound = "palladium"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PalladiumPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PalladiumPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_b1kpa")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PalladiumPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ElectronicPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "refinery"
+property_bound = "electronic"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/ElectronicPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/ElectronicPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_7aab3")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/ElectronicPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="PyraliumPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "mining"
+property_bound = "pyralium"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PyraliumPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PyraliumPanel/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_ejfde")
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/PyraliumPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ManaPanel" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources" node_paths=PackedStringArray("ui_label", "ship")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("3_pljlk")
+ui_label = NodePath("BoxContainer/Label")
+ship = NodePath("../../../../../ShipCanvasGroup/Ship")
+ship_module = "refinery"
+property_bound = "mana"
+metadata/_custom_type_script = "uid://b20qytjxlvosn"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/Resources/ManaPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/Resources/ManaPanel/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/Resources/ManaPanel/BoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_gxo1i")
+
+[node name="ShopContainer" type="PanelContainer" parent="UILayer/GameHUDContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="Shop" type="BoxContainer" parent="UILayer/GameHUDContainer/ShopContainer"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="TitleContainer" type="MarginContainer" parent="UILayer/GameHUDContainer/ShopContainer/Shop"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_right = 50
+
+[node name="ShopTitleLabel" type="Label" parent="UILayer/GameHUDContainer/ShopContainer/Shop/TitleContainer"]
+layout_mode = 2
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_su33w")
+
+[node name="ShopShelfContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/ShopContainer/Shop"]
+layout_mode = 2
+vertical = true
+
+[node name="EngineTitleLabel" type="Label" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+text = "Engine"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="EngineShopBoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="RadarTitleLabel" type="Label" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+text = "Radar"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="RadarShopBoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="MiningTitleLabel" type="Label" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+text = "Mining Laser"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="MiningShopBoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="RefineryTitleLabel" type="Label" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+text = "Refinery"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="RefineryShopBoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="CoreTitleLabel" type="Label" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+text = "Core"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="CoreShopBoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="NoneAvailableLabel" type="Label" parent="UILayer/GameHUDContainer/ShopContainer/Shop/ShopShelfContainer"]
+layout_mode = 2
+text = "No upgrade available"
+label_settings = SubResource("LabelSettings_cfmqu")
+
+[node name="ShopEye" type="MarginContainer" parent="UILayer/GameHUDContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="ShopEyeCheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/ShopEye" node_paths=PackedStringArray("target")]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("3_ltq8v")
+theme_override_icons/unchecked = ExtResource("4_sbeg1")
+button_pressed = true
+script = ExtResource("5_sbeg1")
+target = NodePath("../../ShopContainer/Shop")
+metadata/_custom_type_script = "uid://bdvfbm07hftq3"
+
+[node name="MenuButton" type="Button" parent="UILayer/GameHUDContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+focus_mode = 0
+icon = ExtResource("55_niyfj")
+
+[node name="GameOccluder" type="ColorRect" parent="UILayer" node_paths=PackedStringArray("other_nodes")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.282353)
+script = ExtResource("34_lxkps")
+other_nodes = [NodePath("../RewardHUD")]
+metadata/_custom_type_script = "uid://c7kqwa7motfk4"
+metadata/_edit_lock_ = true
+
+[node name="RewardHUD" type="PanelContainer" parent="UILayer" node_paths=PackedStringArray("ui_reward_cards")]
+process_mode = 3
+visible = false
+offset_left = 884.0
+offset_top = 510.0
+offset_right = 1516.0
+offset_bottom = 840.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+script = ExtResource("11_v4jsj")
+ui_reward_cards = [NodePath("BoxContainer/RewardCardContainer/RewardCard"), NodePath("BoxContainer/RewardCardContainer/RewardCard2"), NodePath("BoxContainer/RewardCardContainer/RewardCard3")]
+metadata/_edit_lock_ = true
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/RewardHUD"]
+layout_mode = 2
+vertical = true
+
+[node name="RewardTitleLabel" type="Label" parent="UILayer/RewardHUD/BoxContainer"]
+layout_mode = 2
+text = "Choose a reward"
+label_settings = SubResource("LabelSettings_su33w")
+horizontal_alignment = 1
+
+[node name="RewardCardContainer" type="BoxContainer" parent="UILayer/RewardHUD/BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="RewardCard" type="PanelContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
+custom_minimum_size = Vector2(192, 267)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
+script = ExtResource("11_qktbg")
+ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
+ui_label = NodePath("BoxContainer/RewardLabel")
+
+[node name="ChooseRewardButton" type="Button" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer"]
+custom_minimum_size = Vector2(0, 164)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RewardTextureRect" type="TextureRect" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_svbfm")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="RewardLabel" type="Label" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/BoxContainer"]
+custom_minimum_size = Vector2(192, 34)
+layout_mode = 2
+size_flags_vertical = 1
+text = "5 titanium"
+label_settings = SubResource("LabelSettings_qktbg")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardCard2" type="PanelContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
+custom_minimum_size = Vector2(192, 267)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
+script = ExtResource("11_qktbg")
+ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
+ui_label = NodePath("BoxContainer/RewardLabel")
+
+[node name="ChooseRewardButton" type="Button" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer"]
+custom_minimum_size = Vector2(0, 164)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RewardTextureRect" type="TextureRect" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_svbfm")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="RewardLabel" type="Label" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/BoxContainer"]
+custom_minimum_size = Vector2(192, 34)
+layout_mode = 2
+size_flags_vertical = 1
+text = "5 titanium"
+label_settings = SubResource("LabelSettings_qktbg")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardCard3" type="PanelContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer" node_paths=PackedStringArray("ui_icon_texture_rect", "ui_label")]
+custom_minimum_size = Vector2(192, 267)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ee6t8")
+script = ExtResource("11_qktbg")
+ui_icon_texture_rect = NodePath("BoxContainer/CenterContainer/RewardTextureRect")
+ui_label = NodePath("BoxContainer/RewardLabel")
+
+[node name="ChooseRewardButton" type="Button" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3"]
+layout_mode = 2
+mouse_filter = 2
+vertical = true
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer"]
+custom_minimum_size = Vector2(0, 164)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RewardTextureRect" type="TextureRect" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_svbfm")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="RewardLabel" type="Label" parent="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/BoxContainer"]
+custom_minimum_size = Vector2(192, 34)
+layout_mode = 2
+size_flags_vertical = 1
+text = "5 titanium"
+label_settings = SubResource("LabelSettings_qktbg")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MenuOccluder" type="ColorRect" parent="UILayer" node_paths=PackedStringArray("other_nodes")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.823529)
+script = ExtResource("34_lxkps")
+other_nodes = [NodePath("../MenuHUDContainer/MenuHUD")]
+metadata/_custom_type_script = "uid://c7kqwa7motfk4"
+metadata/_edit_lock_ = true
+
+[node name="MenuHUDContainer" type="MarginContainer" parent="UILayer"]
+z_index = 4096
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+metadata/_edit_lock_ = true
+
+[node name="MenuHUD" type="BoxContainer" parent="UILayer/MenuHUDContainer" node_paths=PackedStringArray("ship", "overall_occluder", "fullscreen_check_box", "audio_h_slider", "default_container", "confirm_container", "game_hud")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -14
+vertical = true
+script = ExtResource("54_lxkps")
+ship = NodePath("../../../ShipCanvasGroup/Ship")
+overall_occluder = NodePath("../../OverallOccluder")
+fullscreen_check_box = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox")
+audio_h_slider = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer/AudioHSlider")
+default_container = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer")
+confirm_container = NodePath("MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer")
+game_hud = NodePath("../../GameHUDContainer")
+metadata/_custom_type_script = "uid://cu5p1l7ag35dh"
+
+[node name="TitleBoxContainer" type="BoxContainer" parent="UILayer/MenuHUDContainer/MenuHUD"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = -16
+vertical = true
+
+[node name="TitleLabel" type="Label" parent="UILayer/MenuHUDContainer/MenuHUD/TitleBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Space Trip  "
+label_settings = SubResource("LabelSettings_fotvt")
+
+[node name="SubTitleLabel" type="Label" parent="UILayer/MenuHUDContainer/MenuHUD/TitleBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "A Gate Builders tale"
+label_settings = SubResource("LabelSettings_creav")
+horizontal_alignment = 2
+
+[node name="MenuMarginContainer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="MenuPanelContainer" type="PanelContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer"]
+custom_minimum_size = Vector2(450, 260)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mpbsu")
+
+[node name="DefaultBoxContainer" type="BoxContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+theme_override_icons/checked = ExtResource("3_5wn8v")
+theme_override_icons/unchecked = ExtResource("4_lx2c6")
+text = "Fullscreen"
+
+[node name="RestartContainer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -6
+theme_override_constants/margin_right = 6
+
+[node name="RestartButton" type="Button" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/RestartContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_a3gry")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a765y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hx8kt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vndvs")
+text = "New game"
+
+[node name="ContinueContainer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -2
+theme_override_constants/margin_right = 2
+
+[node name="ContinueButton" type="Button" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ContinueContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_a3gry")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a765y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hx8kt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vndvs")
+text = "Continue"
+
+[node name="QuitContainer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = -2
+
+[node name="QuitButton" type="Button" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/QuitContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_u70mk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m5nee")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cc3yg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s4f20")
+text = "Quit"
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+layout_mode = 2
+
+[node name="AudioTextureRect" type="TextureRect" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer"]
+modulate = Color(0.788068, 0.345033, 0.865908, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("56_86oec")
+expand_mode = 3
+
+[node name="AudioHSlider" type="HSlider" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxFlat_1caes")
+max_value = 1.0
+step = 0.05
+
+[node name="ConfirmationBoxContainer" type="BoxContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+vertical = true
+
+[node name="Label" type="Label" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+layout_mode = 2
+text = "Starting a new game:
+All progress will be lost."
+label_settings = SubResource("LabelSettings_86oec")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Spacer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="ConfirmContainer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -2
+theme_override_constants/margin_right = 2
+
+[node name="ConfirmNewGameButton" type="Button" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/ConfirmContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_a3gry")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a765y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hx8kt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vndvs")
+text = "Reset my progress"
+
+[node name="CancelContainer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = -2
+
+[node name="CancelNewGamebutton" type="Button" parent="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/CancelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_u70mk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m5nee")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cc3yg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s4f20")
+text = "Cancel"
+
+[node name="BottomSpacer" type="MarginContainer" parent="UILayer/MenuHUDContainer/MenuHUD"]
+custom_minimum_size = Vector2(0, 228)
+layout_mode = 2
+
+[node name="RichTextTooltip" type="Node2D" parent="UILayer" node_paths=PackedStringArray("ui_tooltip_container", "ui_tooltip_rich_text_label")]
+visible = false
+script = ExtResource("3_cfmqu")
+ui_tooltip_container = NodePath("TooltipContainer")
+ui_tooltip_rich_text_label = NodePath("TooltipContainer/TooltipRichTextLabel")
+
+[node name="TooltipContainer" type="PanelContainer" parent="UILayer/RichTextTooltip"]
+custom_minimum_size = Vector2(600, 0)
+offset_left = 400.0
+offset_right = 840.0
+offset_bottom = 137.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
+
+[node name="TooltipRichTextLabel" type="RichTextLabel" parent="UILayer/RichTextTooltip/TooltipContainer"]
+layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "this is a test
+this is a test
+this is a test"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="OverallOccluder" type="ColorRect" parent="UILayer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+script = ExtResource("58_tlg5r")
+metadata/_custom_type_script = "uid://rdua1ig1bpr7"
+metadata/_edit_lock_ = true
+
 [connection signal="input_event" from="ShipCanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="ShipCanvasGroup/Ship/EngineModule" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="ShipCanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="ShipCanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="ShipCanvasGroup/Ship/EngineModule/EngineSprite2D/Area2D" to="ShipCanvasGroup/Ship/EngineModule" method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="UILayer/GameHUDContainer/SpeedHUD/SpeedHUD/BoostContainer/BoostEngineButton" to="ShipCanvasGroup/Ship/EngineModule" method="_on_boost_engine_button_pressed"]
+[connection signal="toggled" from="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel/CheckBox" to="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/PlateRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel/CheckBox" to="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/LiquiFuelRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel/CheckBox" to="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/HydrogenRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel/CheckBox" to="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ElectronicRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="toggled" from="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel/CheckBox" to="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/ProcessBoxContainer/ManaRefineryPanel" method="_on_check_box_toggled"]
+[connection signal="mouse_entered" from="UILayer/GameHUDContainer/ShopEye/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/GameHUDContainer/ShopEye/ShopEyeCheckBox" to="ShipCanvasGroup/Ship" method="_on_shop_eye_check_box_mouse_exited"]
+[connection signal="pressed" from="UILayer/GameHUDContainer/MenuButton" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard" method="_on_choose_reward_button_pressed"]
+[connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2" method="_on_choose_reward_button_pressed"]
+[connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3" method="_on_choose_reward_button_pressed"]
+[connection signal="toggled" from="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_fullscreen_check_box_toggled"]
+[connection signal="pressed" from="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/RestartContainer/RestartButton" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ContinueContainer/ContinueButton" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/QuitContainer/QuitButton" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_quit_button_pressed"]
+[connection signal="drag_ended" from="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer/AudioHSlider" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_audio_h_slider_drag_ended"]
+[connection signal="pressed" from="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/ConfirmContainer/ConfirmNewGameButton" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_confirm_new_game_button_pressed"]
+[connection signal="pressed" from="UILayer/MenuHUDContainer/MenuHUD/MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer/CancelContainer/CancelNewGamebutton" to="UILayer/MenuHUDContainer/MenuHUD" method="_on_cancel_new_gamebutton_pressed"]
