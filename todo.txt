@@ -3,6 +3,8 @@ Main Menu
 	add "check out our other games"
 
 Bugs / refinement:
+	
+	on load game, all asteroid spawn in a row
 
 	add obsoleted_by_purchase in shop upgrade to disable normal laser upgrade if not bougth before ble laser?
 		if order even possible
