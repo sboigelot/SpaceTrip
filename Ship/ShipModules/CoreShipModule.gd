@@ -27,7 +27,7 @@ func get_savable_properties() -> Array[String]:
 	]
 	
 func _on_loaded():
-	update_background(true)
+	update_background()
 
 func _ready() -> void:
 	super._ready()
@@ -42,7 +42,7 @@ func update_ui():
 	ui_distance_label.text = "Distance: %sm" % distance_travelled.toMetricSymbol(false)
 	ui_speed_label.text = "Speed: %sm/s" % speed.toMetricSymbol(false)
 
-func update_background(skip_transition:bool = false):
+func update_background():
 	var start_transition = false
 	
 	var current_dimension: ColorRect
@@ -58,7 +58,7 @@ func update_background(skip_transition:bool = false):
 			if current_dimension == null:
 				current_dimension = next_dimension
 				current_dimension.visible = true
-			start_transition = current_dimension != next_dimension and not skip_transition
+			start_transition = current_dimension != next_dimension
 	
 	if start_transition:
 		start_dimension_transition(current_dimension, next_dimension)
@@ -91,6 +91,7 @@ func start_dimension_transition(current_dimension: ColorRect, next_dimension:Col
 	next_dimension.visible = false
 	next_dimension.modulate = Color.TRANSPARENT
 	var tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(dimension_transition_overlay, "modulate", Color.WHITE, 0.75).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(current_dimension, "modulate", Color.TRANSPARENT, 0.75)
 	tween.tween_property(current_dimension, "visible", false, 0.0)

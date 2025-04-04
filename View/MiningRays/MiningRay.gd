@@ -2,6 +2,7 @@ class_name MiningRay
 extends MarginContainer
 
 @export var mining_particules: GPUParticles2D
+@export var laser_color_index: int
 
 func _process(delta: float) -> void:
 	update_ui()

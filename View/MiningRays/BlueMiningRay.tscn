@@ -53,7 +53,7 @@ color = Color(0, 0.9215, 0.97, 1)
 color_ramp = SubResource("GradientTexture1D_g643p")
 alpha_curve = SubResource("CurveTexture_dgagx")
 
-[node name="MiningRay" type="MarginContainer" node_paths=PackedStringArray("mining_particules")]
+[node name="BlueMiningRay" type="MarginContainer" node_paths=PackedStringArray("mining_particules")]
 offset_top = -20.0
 offset_right = 400.0
 offset_bottom = 20.0
@@ -61,6 +61,7 @@ pivot_offset = Vector2(0, 20)
 mouse_filter = 2
 script = ExtResource("1_8dyjr")
 mining_particules = NodePath("CenterContainer/GPUParticles2D")
+laser_color_index = 1
 
 [node name="Ray" type="ColorRect" parent="."]
 z_index = 1

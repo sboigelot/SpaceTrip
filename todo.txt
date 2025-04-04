@@ -4,14 +4,12 @@ Main Menu
 
 Bugs / refinement:
 
-	split manually targeted asteroids and auto targetted asteroid
-
 	add obsoleted_by_purchase in shop upgrade to disable normal laser upgrade if not bougth before ble laser?
 		if order even possible
 		
 	first time tooltip is show, it is max size Y
 	
-	on other screen resolution game space is not aligned (issue with asteroids spawns)
+	(Should be fixed): on other screen resolution game space is not aligned (issue with asteroids spawns)
 
 Gameplay todo:
 	
@@ -49,4 +47,6 @@ Polish:
 
 	add achievements? (take wake cup achievemnt layer)
 
-	end game unlock speed  multiplier purchase + speed button (work like boost engine: boost speed)
+	end game unlock speed multiplier purchase + speed button (work like boost engine: boost speed)
+
+	time in a bottle increase when not playing, can be used to speed up time while playing?

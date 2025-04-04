@@ -7,11 +7,13 @@ extends MarginContainer
 @export var menu_occluder: FadingColorRect
 @export var overall_occluder: FadingColorRect
 @export var fullscreen_check_box: CheckBox
+@export var skip_intro_check_box: CheckBox
 @export var audio_h_slider: HSlider
 @export var default_container: Container
 @export var confirm_container: Container
 @export var game_hud: Container
 @export var continue_button_container: Container
+@export var mars_planet: ColorRect
 
 var on_open_game_hud_visibility: bool
 
@@ -22,13 +24,14 @@ func _ready() -> void:
 	var audio_volume = AudioServer.get_bus_volume_linear(0)
 	audio_h_slider.set_value_no_signal(audio_volume)
 	
+	open(true, false)
+	
 	if SaveHelper.savegame_exist():
 		SaveHelper.load_game(ship)
+		mars_planet.visible = false
 		continue_button_container.visible = true
 	else:
 		continue_button_container.visible = false
-	#continue_button_container.visible = SaveHelper.savegame_exist()
-	open(true, false)
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -79,16 +82,21 @@ func _on_restart_button_pressed() -> void:
 	if SaveHelper.savegame_exist():
 		default_container.visible = false
 		confirm_container.visible = true
+		return
+	
+	close()
+	if skip_intro_check_box.button_pressed:	
+		ship.skip_intro()
 	else:
-		close()
 		ship.play_intro()
 	
 func _on_confirm_new_game_button_pressed() -> void:
 	Engine.time_scale = 1.0
 	SaveHelper.delete_savegame()
-	overall_occluder.fade_out()
+	overall_occluder.fade_out(false)
 	await overall_occluder.fade_out_completed
-	get_tree().reload_current_scene()
+	var scene_tree = get_tree()
+	scene_tree.reload_current_scene()
 
 func _on_cancel_new_gamebutton_pressed() -> void:
 	default_container.visible = true

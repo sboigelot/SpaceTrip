@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://clw4hwx1ukirp"]
+[gd_scene load_steps=97 format=3 uid="uid://clw4hwx1ukirp"]
 
 [ext_resource type="Material" uid="uid://cc6qruffc0jme" path="res://Shaders/scrolling_stars_material.tres" id="1_gxo1i"]
 [ext_resource type="Script" uid="uid://cb1uogjndktfp" path="res://Ship/Ship.gd" id="1_tp0y5"]
@@ -47,16 +47,20 @@
 [ext_resource type="PackedScene" uid="uid://buqwfkkpa0y3m" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="29_y637g"]
 [ext_resource type="PackedScene" uid="uid://cg2wv0ofa72p8" path="res://View/Asteroids/Ore/OreAsteroid2.tscn" id="30_m1228"]
 [ext_resource type="PackedScene" uid="uid://dg5njaekg65rb" path="res://View/Asteroids/Ore/OreAsteroid3.tscn" id="31_hibut"]
+[ext_resource type="Texture2D" uid="uid://4ldnuu1mpgh4" path="res://Sprites/UI/laser-on.png" id="31_hx8kt"]
 [ext_resource type="PackedScene" uid="uid://b8ig7wj0td7nm" path="res://View/Asteroids/Ore/OreAsteroid4.tscn" id="32_5wn8v"]
 [ext_resource type="Script" uid="uid://clj13cjwr8vtd" path="res://Ship/ShipModules/RefineryShipModule.gd" id="32_7aab3"]
 [ext_resource type="PackedScene" uid="uid://cg2jdyvr16f3" path="res://View/Asteroids/Ore/OreAsteroid5.tscn" id="33_lx2c6"]
+[ext_resource type="Texture2D" uid="uid://cvoocj6lapadl" path="res://Sprites/UI/laser-auto-on.png" id="33_vndvs"]
 [ext_resource type="PackedScene" uid="uid://dauvhpoq5jl01" path="res://View/Asteroids/Ore/OreAsteroid6.tscn" id="34_26kmh"]
 [ext_resource type="Script" uid="uid://c7kqwa7motfk4" path="res://GameOccluder.gd" id="34_lxkps"]
+[ext_resource type="Texture2D" uid="uid://btk4w57jboax3" path="res://Sprites/UI/laser-auto-off.png" id="34_u70mk"]
 [ext_resource type="Material" uid="uid://cntygdn4nuwv7" path="res://Shaders/explosion_shader_material.tres" id="35_creav"]
 [ext_resource type="PackedScene" uid="uid://c82e6qtgjgt83" path="res://View/Asteroids/Ore/OreAsteroid7.tscn" id="35_fmtom"]
 [ext_resource type="Script" uid="uid://cej6shtmep7ir" path="res://Explosion.gd" id="36_fotvt"]
 [ext_resource type="PackedScene" uid="uid://bt7my1ihwpqo" path="res://View/Asteroids/Ore/OreAsteroid8.tscn" id="36_v2ctf"]
 [ext_resource type="PackedScene" uid="uid://41du24e1jakv" path="res://View/Asteroids/Ore/OreAsteroid9.tscn" id="37_hmren"]
+[ext_resource type="Texture2D" uid="uid://dmos8y67rmdyr" path="res://Sprites/UI/laser-off.png" id="40_mpbsu"]
 [ext_resource type="PackedScene" uid="uid://bilg03h80ot6k" path="res://View/MiningRays/BlueMiningRay.tscn" id="50_ee6t8"]
 [ext_resource type="Script" uid="uid://cu5p1l7ag35dh" path="res://MenuHud.gd" id="54_lxkps"]
 [ext_resource type="Texture2D" uid="uid://dwtd2tirnagw5" path="res://Sprites/UI/burger.png" id="55_niyfj"]
@@ -969,10 +973,15 @@ ui_asteroid_placeholder = NodePath("../../../Asteroids")
 ui_asteroid_scenes = Array[PackedScene]([ExtResource("5_2xvgb"), ExtResource("29_y637g"), ExtResource("30_m1228"), ExtResource("31_hibut"), ExtResource("32_5wn8v"), ExtResource("33_lx2c6"), ExtResource("34_26kmh"), ExtResource("35_fmtom"), ExtResource("36_v2ctf"), ExtResource("37_hmren")])
 metadata/_custom_type_script = "uid://iigsupy7ia7q"
 
-[node name="MiningModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_mining_laser_container", "ui_mining_laser_label", "mining_ray_placeholder")]
+[node name="MiningModule" type="Node2D" parent="ShipCanvasGroup/Ship" node_paths=PackedStringArray("ui_mining_laser_container", "ui_mining_laser_icons_placeholder", "mining_ray_placeholder")]
 script = ExtResource("4_qkquj")
+laser_icon_on = ExtResource("31_hx8kt")
+laser_icon_off = ExtResource("40_mpbsu")
+laser_icon_auto_on = ExtResource("33_vndvs")
+laser_icon_auto_off = ExtResource("34_u70mk")
+laser_icon_colors = Array[Color]([Color(1, 1, 1, 1), Color(0.713726, 0.980392, 0.941176, 1), Color(0.662745, 0.992157, 0, 1)])
 ui_mining_laser_container = NodePath("../../../UILayer/GameHUDContainer/MiningHUD/MiningHUD")
-ui_mining_laser_label = NodePath("../../../UILayer/GameHUDContainer/MiningHUD/MiningHUD/MiningLaserLabel")
+ui_mining_laser_icons_placeholder = NodePath("../../../UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer")
 mining_ray_placeholder = NodePath("MiningRays")
 mining_ray_scenes_per_global_mining_speed = Dictionary[float, PackedScene]({
 0.0: ExtResource("14_g7nme"),
@@ -1203,10 +1212,70 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_20yo5")
 
-[node name="MiningLaserLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD"]
+[node name="BoxContainer2" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD"]
 layout_mode = 2
-text = "Mining Laser: 1 / 1 (1 auto)"
+vertical = true
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2"]
+layout_mode = 2
+
+[node name="MiningEyeCheckBox" type="CheckBox" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/BoxContainer" node_paths=PackedStringArray("target")]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("3_ltq8v")
+theme_override_icons/unchecked = ExtResource("4_sbeg1")
+button_pressed = true
+script = ExtResource("5_sbeg1")
+target = NodePath("../../LaserBoxContainer")
+metadata/_custom_type_script = "uid://bdvfbm07hftq3"
+
+[node name="MiningLaserLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/BoxContainer"]
+layout_mode = 2
+text = "Mining Lasers"
 label_settings = SubResource("LabelSettings_sbeg1")
+
+[node name="LaserBoxContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2"]
+layout_mode = 2
+
+[node name="LaserTextureRect1" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect2" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect3" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect4" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect5" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect6" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect7" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect8" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect9" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
+
+[node name="LaserTextureRect10" type="TextureRect" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/LaserBoxContainer"]
+layout_mode = 2
+texture = ExtResource("40_mpbsu")
 
 [node name="RefineryHUD" type="PanelContainer" parent="UILayer/GameHUDContainer/MiningHUD" node_paths=PackedStringArray("ship", "process_container")]
 layout_mode = 2
@@ -2063,7 +2132,7 @@ script = ExtResource("58_tlg5r")
 metadata/_custom_type_script = "uid://rdua1ig1bpr7"
 metadata/_edit_lock_ = true
 
-[node name="MenuHUD" type="MarginContainer" parent="UILayer" node_paths=PackedStringArray("ship", "menu_occluder", "overall_occluder", "fullscreen_check_box", "audio_h_slider", "default_container", "confirm_container", "game_hud", "continue_button_container")]
+[node name="MenuHUD" type="MarginContainer" parent="UILayer" node_paths=PackedStringArray("ship", "menu_occluder", "overall_occluder", "fullscreen_check_box", "skip_intro_check_box", "audio_h_slider", "default_container", "confirm_container", "game_hud", "continue_button_container", "mars_planet")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2080,12 +2149,14 @@ script = ExtResource("54_lxkps")
 ship = NodePath("../../ShipCanvasGroup/Ship")
 menu_occluder = NodePath("../MenuOccluder")
 overall_occluder = NodePath("../OverallOccluder")
-fullscreen_check_box = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox")
+fullscreen_check_box = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer2/FullscreenCheckBox")
+skip_intro_check_box = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer2/SkipIntroCheckBox")
 audio_h_slider = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer/AudioHSlider")
 default_container = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer")
 confirm_container = NodePath("MenuMarginContainer/MenuPanelContainer/ConfirmationBoxContainer")
 game_hud = NodePath("../GameHUDContainer")
 continue_button_container = NodePath("MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1")
+mars_planet = NodePath("../../IntroMovie/MarsColorRect")
 metadata/_custom_type_script = "uid://cu5p1l7ag35dh"
 metadata/_edit_lock_ = true
 
@@ -2136,7 +2207,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_3bhce")
 layout_mode = 2
 vertical = true
 
-[node name="FullscreenCheckBox" type="CheckBox" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+[node name="BoxContainer2" type="BoxContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
@@ -2144,6 +2218,15 @@ theme_override_font_sizes/font_size = 28
 theme_override_icons/checked = ExtResource("3_5wn8v")
 theme_override_icons/unchecked = ExtResource("4_lx2c6")
 text = "Fullscreen"
+
+[node name="SkipIntroCheckBox" type="CheckBox" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+theme_override_icons/checked = ExtResource("3_5wn8v")
+theme_override_icons/unchecked = ExtResource("4_lx2c6")
+text = "Skip Intro"
 
 [node name="ButtonContainer1" type="MarginContainer" parent="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer"]
 layout_mode = 2
@@ -2311,7 +2394,7 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard" method="_on_choose_reward_button_pressed"]
 [connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard2" method="_on_choose_reward_button_pressed"]
 [connection signal="pressed" from="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3/ChooseRewardButton" to="UILayer/RewardHUD/BoxContainer/RewardCardContainer/RewardCard3" method="_on_choose_reward_button_pressed"]
-[connection signal="toggled" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/FullscreenCheckBox" to="UILayer/MenuHUD" method="_on_fullscreen_check_box_toggled"]
+[connection signal="toggled" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/BoxContainer2/FullscreenCheckBox" to="UILayer/MenuHUD" method="_on_fullscreen_check_box_toggled"]
 [connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer1/ContinueButton" to="UILayer/MenuHUD" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer2/RestartButton" to="UILayer/MenuHUD" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="UILayer/MenuHUD/MenuMarginContainer/MenuPanelContainer/DefaultBoxContainer/ButtonContainer3/QuitButton" to="UILayer/MenuHUD" method="_on_quit_button_pressed"]

@@ -58,10 +58,17 @@ static func load_game(node: Node):
 	load_properties(node, node_data)
 	
 static func load_properties(node: Object, node_data: Dictionary):
+	
+	var node_properties = node.get_property_list()
+	var node_prop_names = node_properties.map(func(element): return element.name)
 	for property_name in node_data.keys():
 		
-		if property_name == "purchased_items":
+		if property_name == "debug_property_name_here":
 			pass
+		
+		if not node_prop_names.has(property_name):
+			print_debug("Node missing saved property: %s" % property_name)
+			continue
 		
 		var value = node_data[property_name]
 		if value is Dictionary and value.has("save_type") and value["save_type"] == "child":

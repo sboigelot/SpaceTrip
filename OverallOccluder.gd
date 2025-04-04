@@ -18,6 +18,10 @@ func fade_in(from_transparent: bool = true):
 	visible = true
 	if from_transparent:
 		modulate = Color.TRANSPARENT
+	elif modulate == Color.WHITE:
+		await get_tree().process_frame
+		fade_in_completed.emit()
+		return
 	
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -30,6 +34,11 @@ func fade_out(from_white: bool = true):
 	visible = true
 	if from_white:
 		modulate = Color.WHITE
+	elif modulate == Color.TRANSPARENT:
+		visible = false
+		await get_tree().process_frame
+		fade_out_completed.emit()
+		return
 	
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
