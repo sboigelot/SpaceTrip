@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bf3mh7sr0282d" path="res://Ship/ShipModules/CoreShipModule.gd" id="2_i2c18"]
 [ext_resource type="Material" uid="uid://cbk04h8i7wev0" path="res://Shaders/wrap_space_shader_material.tres" id="2_vvaot"]
 [ext_resource type="Texture2D" uid="uid://buu4g7yet06gd" path="res://Sprites/UI/cb-checked.png" id="3_5wn8v"]
-[ext_resource type="Script" uid="uid://cb64ig84dov3c" path="res://RefineryHud.gd" id="3_26kmh"]
+[ext_resource type="Script" uid="uid://cb64ig84dov3c" path="res://View/RefineryHud.gd" id="3_26kmh"]
 [ext_resource type="Script" uid="uid://ce3mk3t6pnsl0" path="res://Utilities/RichTextTooltip.gd" id="3_cfmqu"]
 [ext_resource type="Texture2D" uid="uid://b41b8pjawwt5t" path="res://Sprites/Ship/hull.png" id="3_i5j76"]
 [ext_resource type="Texture2D" uid="uid://db6jq7irrwpk1" path="res://Sprites/UI/cb-eye-opened.png" id="3_ltq8v"]
@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://bnwhr7jr64wwk" path="res://View/Asteroids/Ore/OreAsteroid0.tscn" id="5_2xvgb"]
 [ext_resource type="Script" uid="uid://iigsupy7ia7q" path="res://Ship/ShipModules/RadarModule.gd" id="5_dt3j3"]
 [ext_resource type="Texture2D" uid="uid://bg2ukgh2ok5f4" path="res://Sprites/Items/carbon.png" id="5_pljlk"]
-[ext_resource type="Script" uid="uid://bdvfbm07hftq3" path="res://VisibilityControlCheckBox.gd" id="5_sbeg1"]
+[ext_resource type="Script" uid="uid://bdvfbm07hftq3" path="res://View/VisibilityControlCheckBox.gd" id="5_sbeg1"]
 [ext_resource type="Texture2D" uid="uid://3i0hubt1jsm1" path="res://Sprites/Items/liquid-fuel.png" id="6_7aab3"]
 [ext_resource type="Script" uid="uid://gvinpfgame2m" path="res://Utilities/SynchronizedChildrenScale.gd" id="6_7ev53"]
 [ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/Ship/engine.png" id="6_8aiju"]
@@ -41,7 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_ejfde"]
 [ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="11_7aab3"]
 [ext_resource type="Script" uid="uid://j6plbtpej2uc" path="res://View/RewardCard.gd" id="11_qktbg"]
-[ext_resource type="Script" uid="uid://b51l8pt32jn3s" path="res://RewardHud.gd" id="11_v4jsj"]
+[ext_resource type="Script" uid="uid://b51l8pt32jn3s" path="res://View/RewardHud.gd" id="11_v4jsj"]
 [ext_resource type="Texture2D" uid="uid://ddqkrqg1s3qyk" path="res://Sprites/Ship/mining.png" id="14_20yo5"]
 [ext_resource type="PackedScene" uid="uid://br5g34mdxpnvq" path="res://View/MiningRays/MiningRay.tscn" id="14_g7nme"]
 [ext_resource type="PackedScene" uid="uid://buqwfkkpa0y3m" path="res://View/Asteroids/Ore/OreAsteroid1.tscn" id="29_y637g"]
@@ -53,19 +53,19 @@
 [ext_resource type="PackedScene" uid="uid://cg2jdyvr16f3" path="res://View/Asteroids/Ore/OreAsteroid5.tscn" id="33_lx2c6"]
 [ext_resource type="Texture2D" uid="uid://cvoocj6lapadl" path="res://Sprites/UI/laser-auto-on.png" id="33_vndvs"]
 [ext_resource type="PackedScene" uid="uid://dauvhpoq5jl01" path="res://View/Asteroids/Ore/OreAsteroid6.tscn" id="34_26kmh"]
-[ext_resource type="Script" uid="uid://c7kqwa7motfk4" path="res://GameOccluder.gd" id="34_lxkps"]
+[ext_resource type="Script" uid="uid://c7kqwa7motfk4" path="res://View/GameOccluder.gd" id="34_lxkps"]
 [ext_resource type="Texture2D" uid="uid://btk4w57jboax3" path="res://Sprites/UI/laser-auto-off.png" id="34_u70mk"]
 [ext_resource type="Material" uid="uid://cntygdn4nuwv7" path="res://Shaders/explosion_shader_material.tres" id="35_creav"]
 [ext_resource type="PackedScene" uid="uid://c82e6qtgjgt83" path="res://View/Asteroids/Ore/OreAsteroid7.tscn" id="35_fmtom"]
-[ext_resource type="Script" uid="uid://cej6shtmep7ir" path="res://Explosion.gd" id="36_fotvt"]
+[ext_resource type="Script" uid="uid://cej6shtmep7ir" path="res://View/Explosion.gd" id="36_fotvt"]
 [ext_resource type="PackedScene" uid="uid://bt7my1ihwpqo" path="res://View/Asteroids/Ore/OreAsteroid8.tscn" id="36_v2ctf"]
 [ext_resource type="PackedScene" uid="uid://41du24e1jakv" path="res://View/Asteroids/Ore/OreAsteroid9.tscn" id="37_hmren"]
 [ext_resource type="Texture2D" uid="uid://dmos8y67rmdyr" path="res://Sprites/UI/laser-off.png" id="40_mpbsu"]
 [ext_resource type="PackedScene" uid="uid://bilg03h80ot6k" path="res://View/MiningRays/BlueMiningRay.tscn" id="50_ee6t8"]
-[ext_resource type="Script" uid="uid://cu5p1l7ag35dh" path="res://MenuHud.gd" id="54_lxkps"]
+[ext_resource type="Script" uid="uid://cu5p1l7ag35dh" path="res://View/MenuHud.gd" id="54_lxkps"]
 [ext_resource type="Texture2D" uid="uid://dwtd2tirnagw5" path="res://Sprites/UI/burger.png" id="55_niyfj"]
 [ext_resource type="Texture2D" uid="uid://corjac1oe8xyl" path="res://Sprites/UI/icon_sound.png" id="56_86oec"]
-[ext_resource type="Script" uid="uid://rdua1ig1bpr7" path="res://OverallOccluder.gd" id="58_tlg5r"]
+[ext_resource type="Script" uid="uid://rdua1ig1bpr7" path="res://View/OverallOccluder.gd" id="58_tlg5r"]
 
 [sub_resource type="Animation" id="Animation_3bhce"]
 resource_name = "Intro"
@@ -1193,6 +1193,7 @@ theme_override_icons/unchecked = ExtResource("4_sbeg1")
 button_pressed = true
 script = ExtResource("5_sbeg1")
 target = NodePath("../../MissionContainer")
+override_method = null
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="MissionContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MissionHUD/BoxContainer"]
@@ -1227,6 +1228,7 @@ theme_override_icons/unchecked = ExtResource("4_sbeg1")
 button_pressed = true
 script = ExtResource("5_sbeg1")
 target = NodePath("../../LaserBoxContainer")
+override_method = null
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="MiningLaserLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/BoxContainer"]
@@ -1301,6 +1303,7 @@ theme_override_icons/unchecked = ExtResource("4_sbeg1")
 button_pressed = true
 script = ExtResource("5_sbeg1")
 target = NodePath("../../ProcessBoxContainer")
+override_method = null
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="RefineryTitleLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer"]
@@ -1947,7 +1950,8 @@ theme_override_icons/checked = ExtResource("3_ltq8v")
 theme_override_icons/unchecked = ExtResource("4_sbeg1")
 button_pressed = true
 script = ExtResource("5_sbeg1")
-target = NodePath("../../ShopContainer/Shop")
+target = NodePath("../../../../ShipCanvasGroup/Ship")
+override_method = "on_shop_eye_toggled"
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="MenuButton" type="Button" parent="UILayer/GameHUDContainer"]

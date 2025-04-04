@@ -32,6 +32,11 @@ const property_display_names: Dictionary = {
 	"hydrogen_refining_input_water": "Hydrogen refining input",
 	"hydrogen_refining_output_efficiency": "Hydrogen refining efficiency",
 	"plate_refining_passive_factor": "Passive plate refining speed",
+	"liquid_fuel_refining_passive_factor": "Passive liquid fuel refining speed",
+	"global_scanning_frequency_factor": "Asteroid discovery speed",
+	"asteroid_spawn_min_mining_time_available": "Min asteroid resource content",
+	"asteroid_spawn_max_mining_time_available": "Max asteroid resource content",
+	"global_refinery_speed_factor": "Global refinery speed",
 }
 
 const property_display_suffixes: Dictionary = {

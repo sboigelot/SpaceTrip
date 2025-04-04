@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://5f3evw36yhrq"]
+[gd_scene load_steps=16 format=3 uid="uid://5f3evw36yhrq"]
 
 [ext_resource type="Script" uid="uid://beoauneavc0r7" path="res://View/ShipUpgradeButtonView.gd" id="1_4cr3g"]
+[ext_resource type="Texture2D" uid="uid://kn2hms5kefdi" path="res://Sprites/UI/pin-checked.png" id="2_bnru3"]
 [ext_resource type="Texture2D" uid="uid://djx32u85qgjbj" path="res://Sprites/Items/titanium.png" id="2_cl15n"]
+[ext_resource type="Texture2D" uid="uid://bdklaey8nofme" path="res://Sprites/UI/pin-unchecked.png" id="3_2hx8k"]
 [ext_resource type="Texture2D" uid="uid://cw4ng3ompu6j" path="res://Sprites/Items/plate.png" id="3_b3dwt"]
+[ext_resource type="Script" uid="uid://cjt1dhb8am0rm" path="res://View/PinCheckBox.gd" id="4_2hx8k"]
 [ext_resource type="Texture2D" uid="uid://bg2ukgh2ok5f4" path="res://Sprites/Items/carbon.png" id="4_bnru3"]
 [ext_resource type="Texture2D" uid="uid://3i0hubt1jsm1" path="res://Sprites/Items/liquid-fuel.png" id="5_2hx8k"]
 [ext_resource type="Texture2D" uid="uid://duc4xdlobempm" path="res://Sprites/Items/water.png" id="6_hxcaf"]
@@ -16,9 +19,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_jppu1"]
 font_size = 24
 
-[node name="ShipUpgradeButtonView" type="MarginContainer" node_paths=PackedStringArray("ui_buy_button", "ui_panel_titanium", "ui_label_titanium", "ui_panel_plate", "ui_label_plate", "ui_panel_carbon", "ui_label_carbon", "ui_panel_liquid_fuel", "ui_label_liquid_fuel", "ui_panel_water", "ui_label_water", "ui_panel_hydrogen", "ui_label_hydrogen", "ui_panel_palladium", "ui_label_palladium", "ui_panel_electronic", "ui_label_electronic", "ui_panel_pyralium", "ui_label_pyralium", "ui_panel_mana", "ui_label_mana")]
+[node name="ShipUpgradeButtonView" type="MarginContainer" node_paths=PackedStringArray("ui_pin_check_box", "ui_buy_button", "ui_panel_titanium", "ui_label_titanium", "ui_panel_plate", "ui_label_plate", "ui_panel_carbon", "ui_label_carbon", "ui_panel_liquid_fuel", "ui_label_liquid_fuel", "ui_panel_water", "ui_label_water", "ui_panel_hydrogen", "ui_label_hydrogen", "ui_panel_palladium", "ui_label_palladium", "ui_panel_electronic", "ui_label_electronic", "ui_panel_pyralium", "ui_label_pyralium", "ui_panel_mana", "ui_label_mana")]
 size_flags_horizontal = 3
 script = ExtResource("1_4cr3g")
+ui_pin_check_box = NodePath("BoxContainer/PinCheckBox")
 ui_buy_button = NodePath("BoxContainer/BuyShipUpgradeButton")
 ui_panel_titanium = NodePath("BoxContainer/TitaniumPanel")
 ui_label_titanium = NodePath("BoxContainer/TitaniumPanel/BoxContainer/Label")
@@ -56,14 +60,17 @@ alignment = 0
 
 [node name="TitaniumPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/TitaniumPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/TitaniumPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_cl15n")
 expand_mode = 1
 
@@ -74,14 +81,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="PlatePanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/PlatePanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/PlatePanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("3_b3dwt")
 expand_mode = 1
 
@@ -92,14 +102,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="CarbonPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/CarbonPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/CarbonPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("4_bnru3")
 expand_mode = 1
 
@@ -110,14 +123,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="LiquidFuelPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/LiquidFuelPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/LiquidFuelPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("5_2hx8k")
 expand_mode = 1
 
@@ -128,14 +144,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="WaterPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/WaterPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/WaterPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("6_hxcaf")
 expand_mode = 1
 
@@ -146,14 +165,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="HydrogenPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/HydrogenPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/HydrogenPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("7_trqc2")
 expand_mode = 1
 
@@ -164,14 +186,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="PalladiumPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/PalladiumPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/PalladiumPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("8_erw57")
 expand_mode = 1
 
@@ -182,14 +207,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="ElectronicPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/ElectronicPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/ElectronicPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("9_d2plb")
 expand_mode = 1
 
@@ -200,14 +228,17 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="PyraliumPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/PyraliumPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/PyraliumPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("10_3g3lu")
 expand_mode = 1
 
@@ -218,20 +249,30 @@ label_settings = SubResource("LabelSettings_jppu1")
 
 [node name="ManaPanel" type="PanelContainer" parent="BoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_odi84")
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/ManaPanel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer/ManaPanel/BoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+mouse_filter = 2
 expand_mode = 1
 
 [node name="Label" type="Label" parent="BoxContainer/ManaPanel/BoxContainer"]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_jppu1")
+
+[node name="PinCheckBox" type="CheckBox" parent="BoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("2_bnru3")
+theme_override_icons/unchecked = ExtResource("3_2hx8k")
+script = ExtResource("4_2hx8k")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

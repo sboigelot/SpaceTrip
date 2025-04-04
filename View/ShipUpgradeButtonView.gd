@@ -5,6 +5,7 @@ class_name ShopItemViewBase
 var ship: Ship
 var data: ShipUpgrade
 
+@export var ui_pin_check_box: CheckBox
 @export var ui_buy_button: Button
 
 @export var ui_panel_titanium: PanelContainer
@@ -28,6 +29,18 @@ var data: ShipUpgrade
 @export var ui_panel_mana: PanelContainer
 @export var ui_label_mana: Label
 
+var _only_visible_if_pinned: bool = false
+var only_visible_if_pinned: bool:
+	get():
+		return _only_visible_if_pinned
+	set(value):
+		_only_visible_if_pinned = value
+		check_availability(true)
+
+var pinned: bool:
+	get():
+		return ui_pin_check_box.button_pressed
+
 func _ready() -> void:
 	ui_buy_button.pressed.connect(on_buy)
 	ship.new_purchase_done.connect(on_new_ship_purchase_done)
@@ -42,23 +55,25 @@ func first_update_ui():
 	
 	ui_buy_button.text = data.display_name
 
-	update_resouce_cost(data.titanium_cost, 	ui_panel_titanium,		ui_label_titanium)
-	update_resouce_cost(data.plate_cost,		ui_panel_plate,			ui_label_plate)
-	update_resouce_cost(data.carbon_cost,		ui_panel_carbon,		ui_label_carbon)
-	update_resouce_cost(data.liquid_fuel_cost,	ui_panel_liquid_fuel, 	ui_label_liquid_fuel)
-	update_resouce_cost(data.water_cost,		ui_panel_water,			ui_label_water)
-	update_resouce_cost(data.hydrogen_cost,		ui_panel_hydrogen,		ui_label_hydrogen)
-	update_resouce_cost(data.palladium_cost,	ui_panel_palladium,		ui_label_palladium)
-	update_resouce_cost(data.electronic_cost,	ui_panel_electronic,	ui_label_electronic)
-	update_resouce_cost(data.pyralium_cost,		ui_panel_pyralium,		ui_label_pyralium)
-	update_resouce_cost(data.mana_cost,			ui_panel_mana,			ui_label_mana)
+	update_resouce_cost(data.titanium_cost, 	ship.mining.titanium,		ui_panel_titanium,		ui_label_titanium)
+	update_resouce_cost(data.plate_cost,		ship.refinery.plate,		ui_panel_plate,			ui_label_plate)
+	update_resouce_cost(data.carbon_cost,		ship.mining.carbon,			ui_panel_carbon,		ui_label_carbon)
+	update_resouce_cost(data.liquid_fuel_cost,	ship.refinery.liquid_fuel,	ui_panel_liquid_fuel, 	ui_label_liquid_fuel)
+	update_resouce_cost(data.water_cost,		ship.mining.water,			ui_panel_water,			ui_label_water)
+	update_resouce_cost(data.hydrogen_cost,		ship.refinery.hydrogen,		ui_panel_hydrogen,		ui_label_hydrogen)
+	update_resouce_cost(data.palladium_cost,	ship.mining.palladium,		ui_panel_palladium,		ui_label_palladium)
+	update_resouce_cost(data.electronic_cost,	ship.refinery.electronic,	ui_panel_electronic,	ui_label_electronic)
+	update_resouce_cost(data.pyralium_cost,		ship.mining.pyralium,		ui_panel_pyralium,		ui_label_pyralium)
+	update_resouce_cost(data.mana_cost,			ship.refinery.mana,		ui_panel_mana,			ui_label_mana)
 
-func update_resouce_cost(cost: Big, ui_panel: PanelContainer, ui_label: Label):
+func update_resouce_cost(cost: Big, stock:Big, ui_panel: PanelContainer, ui_label: Label):
 	if cost == null or cost.isLessThanOrEqualTo(0.0):
 		ui_panel.visible = false
 	else:
 		ui_panel.visible = true
 		ui_label.text = cost.toMetricSymbol(true, true)
+		var stock_available = stock.isGreaterThanOrEqualTo(cost)
+		ui_label.modulate = Color.GRAY if stock_available else Color.WHITE 
 	
 func on_new_ship_purchase_done(purchase_name):
 	check_availability(false)
@@ -86,7 +101,10 @@ func check_availability(force_check:bool):
 	if data.debug_hook:
 		pass
 		
-	visible = true
+	if only_visible_if_pinned:
+		visible = pinned
+	else:
+		visible = true
 	
 func _process(delta: float) -> void:
 	

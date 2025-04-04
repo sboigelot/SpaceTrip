@@ -54,6 +54,7 @@ var missions: Array[Mission]
 var mission_completed: Array[String]
 
 var intro_played: bool
+var shop_eye_pressed: bool
 
 func get_savable_properties() -> Array[String]:
 	return [
@@ -181,18 +182,40 @@ func mission_exist(display_name: String)-> bool:
 func check_shop_dependencies(missing_property_display_names: Array):
 	for shop_item in shop_items:
 		for parent_shop_item in shop_item.parent_purchases:
+			if parent_shop_item == shop_item.display_name:
+				printerr("In shop item '%s', parent purchase is recursive: '%s'" % [
+									shop_item.display_name,
+									parent_shop_item
+								])
 			if not shop_item_exist(parent_shop_item):
 				printerr("In shop item '%s', parent purchase not found: '%s'" % [
 					shop_item.display_name,
 					parent_shop_item
 				])
+				
 		for parent_mission in shop_item.parent_missions:
 			if not mission_exist(parent_mission):
 				printerr("In shop item '%s', parent mission not found: '%s'" % [
 					shop_item.display_name,
 					parent_mission
 				])
-				
+		
+		for cost:Big in [shop_item.titanium_cost,
+						shop_item.plate_cost,
+						shop_item.carbon_cost,
+						shop_item.liquid_fuel_cost,
+						shop_item.water_cost,
+						shop_item.hydrogen_cost,
+						shop_item.palladium_cost,
+						shop_item.electronic_cost,
+						shop_item.pyralium_cost,
+						shop_item.mana_cost]:
+			if cost != null and cost.isLessThan(0.0):
+				printerr("In shop item '%s', negative cost found: '%s'" % [
+					shop_item.display_name,
+					cost.toMetricSymbol(false)
+				])
+		
 		for impact in shop_item.impacts:
 			if not ShipUpgradeImpact.property_display_names.has(impact.property_impacted):
 				if not missing_property_display_names.has(impact.property_impacted):
@@ -207,6 +230,11 @@ func check_mission_dependencies(missing_property_display_names: Array):
 					parent_shop_item
 				])
 		for parent_mission in mission.parent_missions:
+			if parent_mission == mission.display_name:
+				printerr("In shop item '%s', parent mission is recursive: '%s'" % [
+									mission.display_name,
+									parent_mission
+								])
 			if not mission_exist(parent_mission):
 				printerr("In mission '%s', parent mission not found: '%s'" % [
 					mission.display_name,
@@ -226,6 +254,7 @@ func update_ui():
 	ui_shop_container_refinery_title.visible =	any_child_visible(ui_shop_container_refinery)
 	
 	ui_shop_container_no_upgrade_title.visible = (
+		shop_eye_pressed and
 		not ui_shop_container_core_title.visible and
 		not ui_shop_container_engine_title.visible and
 		not ui_shop_container_radar_title.visible and
@@ -333,3 +362,14 @@ func _on_shop_eye_check_box_mouse_entered() -> void:
 
 func _on_shop_eye_check_box_mouse_exited() -> void:
 	ui_tooltip.close()
+	
+func on_shop_eye_toggled(button_pressed: bool) -> void:
+	var shop_eye_pressed = button_pressed
+	for ui_placeholder in [ui_shop_container_core,
+								ui_shop_container_engine,
+								ui_shop_container_radar,
+								ui_shop_container_mining,
+								ui_shop_container_refinery]:
+		for shop_item_view in ui_placeholder.get_children():
+			shop_item_view.only_visible_if_pinned = not button_pressed
+	update_ui()

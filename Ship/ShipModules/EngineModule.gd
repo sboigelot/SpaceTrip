@@ -96,7 +96,7 @@ func update_ui():
 		#effect_speed_lines.visible = true
 		#effect_speed_lines.modulate = Color.TRANSPARENT.lerp(Color.WHITE, get_boost_strength() / 2.0)
 		var boost_strength = get_boost_strength()
-		ui_engine_fireballs.children_scale_factor = engine_boost.mantissa + 2.0
+		ui_engine_fireballs.children_scale_factor = engine_boost.exponent + 2.0
 		ui_engine_fireballs.children_scale = Vector2.ONE * boost_strength
 		ui_engine_smoke.children_scale = Vector2.ONE
 		ui_engine_sprite.modulate = Color.WHITE

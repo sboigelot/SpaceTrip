@@ -13,6 +13,8 @@ var max_asteroids: int = 3
 var asteroid_spawn_min_distance: Big = Big.new(50.0)
 var last_asteroid_spawn_distance: Big = Big.ONE().plusEquals(asteroid_spawn_min_distance.times(1.5))
 
+var global_scanning_frequency_factor: float = 1.0
+
 var asteroid_spawn_min_mining_time_available: float = 20.0
 var asteroid_spawn_max_mining_time_available: float = 30.0
 
@@ -24,6 +26,7 @@ var asteroid_spawn_pyralium_chance: float = 0.0
 	
 func get_savable_properties() -> Array[String]:
 	return [
+		"global_scanning_frequency_factor",
 		"max_asteroids",
 		"asteroid_*",
 		"last_asteroid_spawn_distance",
@@ -46,6 +49,10 @@ func spawn_asteroids():
 		asteroid_spawn_palladium_chance +
 		asteroid_spawn_pyralium_chance
 	)
+	
+	var default_seconds = 1.5
+	var factorized_seconds = default_seconds * global_scanning_frequency_factor
+	asteroid_spawn_min_distance = ship.core.speed.times(factorized_seconds)
 	
 	var distance_since_asteroid_spawn = ship.core.distance_travelled.minus(last_asteroid_spawn_distance)
 	while distance_since_asteroid_spawn.isGreaterThan(asteroid_spawn_min_distance):

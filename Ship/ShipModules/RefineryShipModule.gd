@@ -9,6 +9,8 @@ var hydrogen:= Big.ZERO()
 var electronic:= Big.ZERO()
 var mana:= Big.ZERO()
 
+var global_refinery_speed_factor: float = 1.0
+
 var plate_refining_duration: float = 0.0
 var plate_refining_progress: float
 var plate_refining_input_titanium: Big = Big.ZERO()
@@ -46,6 +48,7 @@ var mana_refining_passive_factor: float = 0.0
 
 func get_savable_properties() -> Array[String]:
 	return [
+		"global_refinery_speed_factor",
 		"active_refining",
 		"plate*",
 		"liquid_fuel*",
@@ -58,11 +61,12 @@ func _on_loaded():
 	pass
 	
 func update_stats(delta: float) -> void:
-	plate_refining_progress = refine_resource("titanium", "plate", delta)
-	liquid_fuel_refining_progress = refine_resource("carbon", "liquid_fuel", delta)
-	hydrogen_refining_progress = refine_resource("water", "hydrogen",delta)
-	electronic_refining_progress = refine_resource("palladium", "electronic", delta)
-	mana_refining_progress = refine_resource("pyralium", "mana", delta)
+	var refining_delta = global_refinery_speed_factor * delta
+	plate_refining_progress = refine_resource("titanium", "plate", refining_delta)
+	liquid_fuel_refining_progress = refine_resource("carbon", "liquid_fuel", refining_delta)
+	hydrogen_refining_progress = refine_resource("water", "hydrogen", refining_delta)
+	electronic_refining_progress = refine_resource("palladium", "electronic", refining_delta)
+	mana_refining_progress = refine_resource("pyralium", "mana", refining_delta)
 				
 func refine_resource(input_resource_name: String, output_resource_name: String, delta: float) -> float:
 						
