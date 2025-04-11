@@ -21,18 +21,21 @@ Gameplay todo:
 		done for now
 		
 	Wrap:
-		more engine and speed upgrades
-		1000 km/s rewards are ridiculus now
+		done for now
 	
 	Subspace: 
-		When enter:
-			new impact that give more life to astroids (better radar)
-			allow search for palladium
-			allow craft electronics
+			mine palladium mission reward is copy of first mission
+			plate refining next 10M -> 5M 
+			auto hydro I
+			auto liquid next
+			refinery speed boost next
+			(large asteroid chance, scale ++, mining ++)
+			
 		half Subspace: 
+			allow craft electronics
 			green laser upgrade (clear ray and create new ones)
 		
-
+		
 	purchase "Enter Hyperspace" -> acc x 1000 -> require electronics (from palladium)
 
 	Hyperspace:

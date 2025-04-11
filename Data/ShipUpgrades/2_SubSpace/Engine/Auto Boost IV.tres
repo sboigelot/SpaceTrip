@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=8 format=3 uid="uid://ccrfc2ee4rm7s"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_0o5vn"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_hlw8a"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_jwnuf"]
+
+[sub_resource type="Resource" id="Resource_l5r64"]
+script = ExtResource("1_0o5vn")
+mantissa = 500.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_0o5vn"]
+script = ExtResource("2_hlw8a")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_auto_boost_cooldown_max"
+impact_method = 4
+impact_value = 50.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_6jnxg"]
+script = ExtResource("1_0o5vn")
+mantissa = 1.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_d3hs7"]
+script = ExtResource("1_0o5vn")
+mantissa = 10.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_jwnuf")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Auto Boost III"])
+parent_missions = Array[String]([])
+liquid_fuel_cost = SubResource("Resource_6jnxg")
+hydrogen_cost = SubResource("Resource_l5r64")
+palladium_cost = SubResource("Resource_d3hs7")
+impacts = Array[ExtResource("2_hlw8a")]([SubResource("Resource_0o5vn")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"
