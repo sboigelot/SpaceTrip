@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=8 format=3 uid="uid://dd82b0mi0fcbs"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_pyesb"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_85c3s"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_omb8q"]
+
+[sub_resource type="Resource" id="Resource_ra4kw"]
+script = ExtResource("2_85c3s")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_boost"
+impact_method = 1
+impact_value = 10.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_d5c12"]
+script = ExtResource("1_pyesb")
+mantissa = 10.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_2qbju"]
+script = ExtResource("1_pyesb")
+mantissa = 50.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_14wkg"]
+script = ExtResource("1_pyesb")
+mantissa = 1.0
+exponent = 9
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_omb8q")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Carbon Liquefaction VI", "Titanium Drill VI"])
+parent_missions = Array[String]([])
+titanium_cost = SubResource("Resource_14wkg")
+plate_cost = SubResource("Resource_2qbju")
+liquid_fuel_cost = SubResource("Resource_d5c12")
+impacts = Array[ExtResource("2_85c3s")]([SubResource("Resource_ra4kw")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

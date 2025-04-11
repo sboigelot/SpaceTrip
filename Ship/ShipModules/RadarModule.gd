@@ -13,6 +13,10 @@ var max_asteroids: int = 3
 var asteroid_spawn_min_distance: Big = Big.new(50.0)
 var last_asteroid_spawn_distance: Big = Big.ONE().plusEquals(asteroid_spawn_min_distance.times(1.5))
 
+var rich_asteroid_chance: float = 0.0
+var rich_asteroid_min_richness: float = 1.5
+var rich_asteroid_max_richness: float = 2.0
+
 var global_scanning_frequency_factor: float = 1.0
 
 var asteroid_spawn_min_mining_time_available: float = 20.0
@@ -30,6 +34,9 @@ func get_savable_properties() -> Array[String]:
 		"max_asteroids",
 		"asteroid_*",
 		"last_asteroid_spawn_distance",
+		"rich_asteroid_chance",
+		"rich_asteroid_max_richness",
+		"rich_asteroid_min_richness",
 	]
 	
 func _on_loaded():
@@ -91,7 +98,11 @@ func spawn_asteroid():
 	asteroid.ship = ship
 	
 	var asteroid_resource = get_random_asteroid_resource()
-	asteroid["%s_richness" % asteroid_resource] =  1.0
+	
+	var richness = 1.0
+	if randf() < rich_asteroid_chance:
+		richness = randf_range(rich_asteroid_min_richness, rich_asteroid_max_richness)
+	asteroid["%s_richness" % asteroid_resource] =  richness
 	
 	asteroid.mining_time_available = randf_range(
 		asteroid_spawn_min_mining_time_available,

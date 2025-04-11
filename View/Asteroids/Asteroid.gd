@@ -30,6 +30,8 @@ var water_richness: float = 0.0
 var palladium_richness: float = 0.0
 var pyralium_richness: float = 0.0
 
+var max_richness: float = 0.0
+
 var _pressed: bool = false
 var pressed: bool:
 	get():
@@ -59,14 +61,22 @@ func _ready() -> void:
 		color = color.lerp(palladium_ore_color, palladium_richness)
 		color = color.lerp(pyradium_ore_color, pyralium_richness)
 		asteroid_sprite.modulate = color
-		
+	
+	max_richness = [
+		titanium_richness,
+		carbon_richness,
+		water_richness,
+		palladium_richness,
+		pyralium_richness,	
+	].max()
+	
 func _process(delta: float) -> void:
 	if mining_time_available <= 0:
 		screen_exited.emit(self)
 		queue_free()
 		return
 		
-	scale = Vector2.ONE * (mining_time_available / starting_mining_time)
+	scale = Vector2.ONE * max_richness * (mining_time_available / starting_mining_time)
 	
 	if ship.core.speed.isGreaterThan(0.0):
 		position.x -= min(20.0, ship.core.speed.exponent + 1) * speed_factor * delta

@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 [sub_resource type="Resource" id="Resource_hy0ri"]
 script = ExtResource("2_crqov")
 mantissa = 250.0
-exponent = 0
+exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_bpbs8"]

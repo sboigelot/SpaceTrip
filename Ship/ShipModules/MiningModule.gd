@@ -154,22 +154,39 @@ func target_mining_rays():
 	
 	for mining_ray in mining_ray_placeholder.get_children():
 		mining_ray.visible = false
-		
-	var ray_index = 0
-	for targeted_asteroid in player_targeted_asteroids:
-		target_ray_towards(ray_index, targeted_asteroid)
-		ray_index += 1
-		
-	for targeted_asteroid in auto_targeted_asteroids:
-		target_ray_towards(ray_index, targeted_asteroid)
-		ray_index += 1
 	
-func target_ray_towards(ray_index: int, asteroid: Asteroid):
-	while ray_index >= mining_ray_placeholder.get_child_count():
+	var all_tragetted_asteroids: Array[Asteroid]
+	all_tragetted_asteroids.append_array(player_targeted_asteroids)
+	all_tragetted_asteroids.append_array(auto_targeted_asteroids)
+	
+	while mining_ray_placeholder.get_child_count() <= all_tragetted_asteroids.size():
 		spawn_mining_ray()
 		
-	var mining_ray = mining_ray_placeholder.get_child(ray_index)
-	mining_ray.target(asteroid)
+	var available_rays:Array[MiningRay]
+	available_rays.assign(mining_ray_placeholder.get_children())
+	
+	for targeted_asteroid in all_tragetted_asteroids:
+		var selected_mining_ray: MiningRay
+		
+		for mining_ray in available_rays:
+			
+			if (not is_instance_valid(mining_ray.last_targetted_asteroid) or 
+				mining_ray.last_targetted_asteroid.is_queued_for_deletion()):
+				mining_ray.last_targetted_asteroid = null
+					
+			if mining_ray.last_targetted_asteroid == targeted_asteroid:
+				selected_mining_ray = mining_ray
+				break
+				
+			if mining_ray.last_targetted_asteroid == null:
+				selected_mining_ray = mining_ray
+				continue
+				
+		if selected_mining_ray == null:
+			selected_mining_ray = available_rays[0]
+		
+		selected_mining_ray.target(targeted_asteroid)
+		available_rays.erase(selected_mining_ray)
 
 func spawn_mining_ray():
 	var mining_ray_scene: PackedScene

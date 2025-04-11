@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_00mv8"]
 [ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_qr8u3"]
-[ext_resource type="Texture2D" uid="uid://djx32u85qgjbj" path="res://Sprites/Items/titanium.png" id="3_5kknw"]
+[ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/palladium.png" id="3_blqs5"]
 [ext_resource type="Texture2D" uid="uid://b7ixd8btr7w4k" path="res://Sprites/Asteroids/asteroid0.png" id="4_y0jl1"]
 [ext_resource type="Texture2D" uid="uid://bv2lqxyuk4i2j" path="res://Sprites/Ship/engine.png" id="5_ghqvh"]
 [ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="6_8v2ed"]
@@ -15,34 +15,34 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_vsu72"]
 script = ExtResource("2_qr8u3")
-icon = ExtResource("3_5kknw")
+icon = ExtResource("3_blqs5")
 impact_explanation = ""
 ship_module = "mining"
-property_impacted = "titanium"
+property_impacted = "palladium"
 impact_method = 0
-impact_value = 50.0
-impact_exponent = 0
+impact_value = 5.0
+impact_exponent = 3
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
-[sub_resource type="Resource" id="Resource_7idfo"]
+[sub_resource type="Resource" id="Resource_ohlpq"]
 script = ExtResource("2_qr8u3")
 icon = ExtResource("4_y0jl1")
 impact_explanation = ""
 ship_module = "radar"
 property_impacted = "max_asteroids"
 impact_method = 0
-impact_value = 1.0
+impact_value = 5.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
-[sub_resource type="Resource" id="Resource_l15ae"]
+[sub_resource type="Resource" id="Resource_mrvh5"]
 script = ExtResource("2_qr8u3")
 icon = ExtResource("5_ghqvh")
 impact_explanation = ""
 ship_module = "engine"
 property_impacted = "engine_boost"
 impact_method = 1
-impact_value = 1.05
+impact_value = 1.25
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bbtusqochkd0x"
 
@@ -59,5 +59,5 @@ goal_module = "mining"
 goal_property = "palladium"
 goal_target_value = SubResource("Resource_blqs5")
 auto_complete = false
-rewards = Array[ExtResource("2_qr8u3")]([SubResource("Resource_vsu72"), SubResource("Resource_7idfo"), SubResource("Resource_l15ae")])
+rewards = Array[ExtResource("2_qr8u3")]([SubResource("Resource_vsu72"), SubResource("Resource_ohlpq"), SubResource("Resource_mrvh5")])
 metadata/_custom_type_script = "uid://dwx7xej5040qf"
