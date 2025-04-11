@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Mission" load_steps=7 format=3 uid="uid://fiq5vxjokh50"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_uhfq1"]
+[ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_yjs7y"]
+[ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="3_ujo05"]
+[ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="6_5l141"]
+
+[sub_resource type="Resource" id="Resource_ny4is"]
+script = ExtResource("1_uhfq1")
+mantissa = 1.0
+exponent = 12
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_x68fn"]
+script = ExtResource("2_yjs7y")
+icon = ExtResource("3_ujo05")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "pyralium"
+impact_method = 0
+impact_value = 1.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[resource]
+script = ExtResource("6_5l141")
+lore_descripton = ""
+start_trigger_module = ""
+start_trigger_property = ""
+parent_missions = Array[String](["Reach 10Gms speed"])
+parent_purchases = Array[String]([])
+goal_show_progress = true
+goal_text = "Reach 1 Tm/s speed"
+goal_module = "core"
+goal_property = "speed"
+goal_target_value = SubResource("Resource_ny4is")
+auto_complete = false
+rewards = Array[ExtResource("2_yjs7y")]([SubResource("Resource_x68fn")])
+metadata/_custom_type_script = "uid://dwx7xej5040qf"

@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_ny4is"]
 script = ExtResource("1_dwgws")
-mantissa = 1.0
+mantissa = 1000.0
 exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 

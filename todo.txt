@@ -1,6 +1,8 @@
 Main Menu
 	save settings, allow option sound volume + fullscreen on /off
 	add "check out our other games"
+	
+	save pins
 
 Bugs / refinement:
 	

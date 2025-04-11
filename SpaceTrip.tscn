@@ -36,7 +36,7 @@
 [ext_resource type="Material" uid="uid://2oytawmobjpl" path="res://Shaders/speed_lines_shader_material.tres" id="8_5366v"]
 [ext_resource type="Texture2D" uid="uid://cwqmimjkf8ubh" path="res://Sprites/Items/hydrogen.png" id="8_segi0"]
 [ext_resource type="Material" uid="uid://dibchw3oboxt2" path="res://Shaders/smoke_shader_material.tres" id="8_su33w"]
-[ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/rare_ore.png" id="9_b1kpa"]
+[ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/palladium.png" id="9_b1kpa"]
 [ext_resource type="Material" uid="uid://cxdkgla1n5r7t" path="res://Shaders/transition_shader_material.tres" id="9_vkh00"]
 [ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_ejfde"]
 [ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="11_7aab3"]
@@ -1193,7 +1193,6 @@ theme_override_icons/unchecked = ExtResource("4_sbeg1")
 button_pressed = true
 script = ExtResource("5_sbeg1")
 target = NodePath("../../MissionContainer")
-override_method = null
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="MissionContainer" type="BoxContainer" parent="UILayer/GameHUDContainer/MissionHUD/BoxContainer"]
@@ -1228,7 +1227,6 @@ theme_override_icons/unchecked = ExtResource("4_sbeg1")
 button_pressed = true
 script = ExtResource("5_sbeg1")
 target = NodePath("../../LaserBoxContainer")
-override_method = null
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="MiningLaserLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/MiningHUD/BoxContainer2/BoxContainer"]
@@ -1303,7 +1301,6 @@ theme_override_icons/unchecked = ExtResource("4_sbeg1")
 button_pressed = true
 script = ExtResource("5_sbeg1")
 target = NodePath("../../ProcessBoxContainer")
-override_method = null
 metadata/_custom_type_script = "uid://bdvfbm07hftq3"
 
 [node name="RefineryTitleLabel" type="Label" parent="UILayer/GameHUDContainer/MiningHUD/RefineryHUD/BoxContainer/BoxContainer"]

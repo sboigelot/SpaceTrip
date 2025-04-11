@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="Mission" load_steps=11 format=3 uid="uid://c3jvkt1sk2ojk"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_ojjhy"]
+[ext_resource type="Script" uid="uid://bbtusqochkd0x" path="res://Data/Missions/MissionReward.gd" id="2_8itja"]
+[ext_resource type="Texture2D" uid="uid://cwqmimjkf8ubh" path="res://Sprites/Items/hydrogen.png" id="3_bw58m"]
+[ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/palladium.png" id="4_neanj"]
+[ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="5_3vvgk"]
+[ext_resource type="Script" uid="uid://dwx7xej5040qf" path="res://Data/Missions/Mission.gd" id="6_qa76g"]
+
+[sub_resource type="Resource" id="Resource_ny4is"]
+script = ExtResource("1_ojjhy")
+mantissa = 10.0
+exponent = 9
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_umhnq"]
+script = ExtResource("2_8itja")
+icon = ExtResource("3_bw58m")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "hydrogen"
+impact_method = 0
+impact_value = 10.0
+impact_exponent = 6
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[sub_resource type="Resource" id="Resource_rw2h4"]
+script = ExtResource("2_8itja")
+icon = ExtResource("4_neanj")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "palladium"
+impact_method = 0
+impact_value = 1.0
+impact_exponent = 6
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[sub_resource type="Resource" id="Resource_jb6bo"]
+script = ExtResource("2_8itja")
+icon = ExtResource("5_3vvgk")
+impact_explanation = ""
+ship_module = "refinery"
+property_impacted = "electronic"
+impact_method = 0
+impact_value = 25.0
+impact_exponent = 3
+metadata/_custom_type_script = "uid://bbtusqochkd0x"
+
+[resource]
+script = ExtResource("6_qa76g")
+lore_descripton = ""
+start_trigger_module = ""
+start_trigger_property = ""
+parent_missions = Array[String](["Reach 1000kms speed"])
+parent_purchases = Array[String]([])
+goal_show_progress = true
+goal_text = "Reach 10 Gm/s speed"
+goal_module = "core"
+goal_property = "speed"
+goal_target_value = SubResource("Resource_ny4is")
+auto_complete = false
+rewards = Array[ExtResource("2_8itja")]([SubResource("Resource_umhnq"), SubResource("Resource_rw2h4"), SubResource("Resource_jb6bo")])
+metadata/_custom_type_script = "uid://dwx7xej5040qf"

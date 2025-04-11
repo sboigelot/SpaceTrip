@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_wugt7"]
 script = ExtResource("1_hamw0")
-mantissa = 15.0
+mantissa = 5.0
 exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 

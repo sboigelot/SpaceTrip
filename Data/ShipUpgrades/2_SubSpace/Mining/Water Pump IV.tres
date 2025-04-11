@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=8 format=3 uid="uid://c75qdy7oye8bt"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_43kok"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_x0q3n"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_isi07"]
+
+[sub_resource type="Resource" id="Resource_fiwc5"]
+script = ExtResource("1_43kok")
+mantissa = 10.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_43kok"]
+script = ExtResource("2_x0q3n")
+impact_explanation = ""
+ship_module = "mining"
+property_impacted = "water_per_second_factor"
+impact_method = 1
+impact_value = 100.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_x0q3n"]
+script = ExtResource("1_43kok")
+mantissa = 10.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_2cy6b"]
+script = ExtResource("1_43kok")
+mantissa = 100.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_isi07")
+debug_hook = false
+lore_descripton = "Imrpove our mining techniques"
+parent_purchases = Array[String](["Water Pump III"])
+parent_missions = Array[String]([])
+plate_cost = SubResource("Resource_x0q3n")
+carbon_cost = SubResource("Resource_fiwc5")
+water_cost = SubResource("Resource_2cy6b")
+impacts = Array[ExtResource("2_x0q3n")]([SubResource("Resource_43kok")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

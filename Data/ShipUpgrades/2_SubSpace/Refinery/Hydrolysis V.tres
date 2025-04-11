@@ -1,65 +1,65 @@
-[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=10 format=3 uid="uid://dm742n3ixbush"]
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=10 format=3 uid="uid://cm2mlrgp1jnkn"]
 
-[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_e27nv"]
-[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_qb7f3"]
-[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_ksyld"]
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_vxw34"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_pxbc3"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_g7wtk"]
 
 [sub_resource type="Resource" id="Resource_e27nv"]
-script = ExtResource("1_e27nv")
-mantissa = 2.0
-exponent = 0
+script = ExtResource("1_vxw34")
+mantissa = 20.0
+exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
-[sub_resource type="Resource" id="Resource_qb7f3"]
-script = ExtResource("2_qb7f3")
+[sub_resource type="Resource" id="Resource_pg8c0"]
+script = ExtResource("2_pxbc3")
 impact_explanation = ""
 ship_module = "refinery"
 property_impacted = "hydrogen_refining_duration"
 impact_method = 4
-impact_value = 25.0
+impact_value = 10.0
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
-[sub_resource type="Resource" id="Resource_ksyld"]
-script = ExtResource("2_qb7f3")
+[sub_resource type="Resource" id="Resource_gf176"]
+script = ExtResource("2_pxbc3")
 impact_explanation = ""
 ship_module = "refinery"
 property_impacted = "hydrogen_refining_input_water"
 impact_method = 4
-impact_value = 100.0
-impact_exponent = 0
+impact_value = 1.0
+impact_exponent = 5
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
-[sub_resource type="Resource" id="Resource_ytgou"]
-script = ExtResource("2_qb7f3")
+[sub_resource type="Resource" id="Resource_xt102"]
+script = ExtResource("2_pxbc3")
 impact_explanation = ""
 ship_module = "refinery"
 property_impacted = "hydrogen_refining_output_efficiency"
 impact_method = 4
-impact_value = 0.2
+impact_value = 0.5
 impact_exponent = 0
 metadata/_custom_type_script = "uid://bpmbd62jur6if"
 
 [sub_resource type="Resource" id="Resource_q8isv"]
-script = ExtResource("1_e27nv")
-mantissa = 1.0
+script = ExtResource("1_vxw34")
+mantissa = 100.0
 exponent = 3
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_r5ms3"]
-script = ExtResource("1_e27nv")
-mantissa = 25.0
-exponent = 3
+script = ExtResource("1_vxw34")
+mantissa = 1.0
+exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [resource]
-script = ExtResource("3_ksyld")
+script = ExtResource("3_g7wtk")
 debug_hook = false
 lore_descripton = ""
-parent_purchases = Array[String](["Hydrolysis I"])
+parent_purchases = Array[String](["Enter Subspace", "Hydrolysis IV"])
 parent_missions = Array[String]([])
 plate_cost = SubResource("Resource_r5ms3")
 liquid_fuel_cost = SubResource("Resource_q8isv")
 hydrogen_cost = SubResource("Resource_e27nv")
-impacts = Array[ExtResource("2_qb7f3")]([SubResource("Resource_qb7f3"), SubResource("Resource_ksyld"), SubResource("Resource_ytgou")])
+impacts = Array[ExtResource("2_pxbc3")]([SubResource("Resource_pg8c0"), SubResource("Resource_gf176"), SubResource("Resource_xt102")])
 metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

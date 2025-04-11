@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://3i0hubt1jsm1" path="res://Sprites/Items/liquid-fuel.png" id="5_2hx8k"]
 [ext_resource type="Texture2D" uid="uid://duc4xdlobempm" path="res://Sprites/Items/water.png" id="6_hxcaf"]
 [ext_resource type="Texture2D" uid="uid://cwqmimjkf8ubh" path="res://Sprites/Items/hydrogen.png" id="7_trqc2"]
-[ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/rare_ore.png" id="8_erw57"]
+[ext_resource type="Texture2D" uid="uid://curtldgf2481x" path="res://Sprites/Items/palladium.png" id="8_erw57"]
 [ext_resource type="Texture2D" uid="uid://bon4ms4k74lsu" path="res://Sprites/Items/electronic.png" id="9_d2plb"]
 [ext_resource type="Texture2D" uid="uid://ch0tvw8e38b6x" path="res://Sprites/Items/pyralium.png" id="10_3g3lu"]
 

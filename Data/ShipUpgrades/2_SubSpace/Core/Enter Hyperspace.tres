@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="ShipUpgrade" load_steps=10 format=3 uid="uid://dqnr7ptc7fp0g"]
+
+[ext_resource type="Script" uid="uid://chute42pgpdvt" path="res://Data/Big.gd" id="1_fj6vm"]
+[ext_resource type="Script" uid="uid://bpmbd62jur6if" path="res://Data/ShipUpgrades/ShipUpgradeImpact.gd" id="2_3y15n"]
+[ext_resource type="Script" uid="uid://b6tu1v3loa5eq" path="res://Data/ShipUpgrades/ShipUpgrade.gd" id="3_tcm3c"]
+
+[sub_resource type="Resource" id="Resource_f5s1g"]
+script = ExtResource("1_fj6vm")
+mantissa = 10.0
+exponent = 3
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_6tmg8"]
+script = ExtResource("2_3y15n")
+impact_explanation = "Enter Wrap Speed"
+ship_module = "core"
+property_impacted = "dimension_index"
+impact_method = 4
+impact_value = 2.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_7l27x"]
+script = ExtResource("2_3y15n")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "base_acceleration"
+impact_method = 1
+impact_value = 1.0
+impact_exponent = 3
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_0jlrs"]
+script = ExtResource("2_3y15n")
+impact_explanation = ""
+ship_module = "engine"
+property_impacted = "engine_boost"
+impact_method = 1
+impact_value = 500.0
+impact_exponent = 0
+metadata/_custom_type_script = "uid://bpmbd62jur6if"
+
+[sub_resource type="Resource" id="Resource_gsnj5"]
+script = ExtResource("1_fj6vm")
+mantissa = 1.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[sub_resource type="Resource" id="Resource_fuvnh"]
+script = ExtResource("1_fj6vm")
+mantissa = 100.0
+exponent = 6
+metadata/_custom_type_script = "uid://chute42pgpdvt"
+
+[resource]
+script = ExtResource("3_tcm3c")
+debug_hook = false
+lore_descripton = ""
+parent_purchases = Array[String](["Enter Subspace"])
+parent_missions = Array[String](["Reach 1Tms speed"])
+titanium_cost = SubResource("Resource_fuvnh")
+liquid_fuel_cost = SubResource("Resource_gsnj5")
+hydrogen_cost = SubResource("Resource_f5s1g")
+impacts = Array[ExtResource("2_3y15n")]([SubResource("Resource_6tmg8"), SubResource("Resource_7l27x"), SubResource("Resource_0jlrs")])
+metadata/_custom_type_script = "uid://b6tu1v3loa5eq"

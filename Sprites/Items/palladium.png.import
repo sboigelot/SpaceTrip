@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://curtldgf2481x"
-path="res://.godot/imported/rare_ore.png-2491934799b8f8e5952ac9becd4077ab.ctex"
+path="res://.godot/imported/palladium.png-3ac86ed705c50792cfe391a9858a0371.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/rare_ore.png"
-dest_files=["res://.godot/imported/rare_ore.png-2491934799b8f8e5952ac9becd4077ab.ctex"]
+source_file="res://Sprites/Items/palladium.png"
+dest_files=["res://.godot/imported/palladium.png-3ac86ed705c50792cfe391a9858a0371.ctex"]
 
 [params]
 
