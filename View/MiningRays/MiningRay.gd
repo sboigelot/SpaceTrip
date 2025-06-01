@@ -9,6 +9,10 @@ var last_targetted_asteroid:Asteroid
 func _process(delta: float) -> void:
 	update_ui()
 	
+func stop():
+	last_targetted_asteroid = null
+	visible = false
+	
 func update_ui():
 	if visible and not mining_particules.emitting:
 		mining_particules.restart()

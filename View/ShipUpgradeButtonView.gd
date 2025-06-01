@@ -108,8 +108,13 @@ func check_availability(force_check:bool):
 	
 func _process(delta: float) -> void:
 	
-	if ship.dev_tweak_mode  and Input.is_action_just_pressed("refresh_shop"):
-		check_availability(true)
+	if ship.dev_tweak_mode:
+		if Input.is_action_just_pressed("refresh_shop"):
+			check_availability(true)
+		
+		Engine.time_scale = 1	
+		if Input.is_action_pressed("ui_accept"):
+			Engine.time_scale = 10
 		
 	if ship.dev_tweak_mode or Input.is_action_just_pressed("refresh_shop"):
 		first_update_ui()

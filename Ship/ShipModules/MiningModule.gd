@@ -152,14 +152,11 @@ func target_mining_rays():
 		player_targeted_asteroids.clear()
 		auto_targeted_asteroids.clear()
 	
-	for mining_ray in mining_ray_placeholder.get_children():
-		mining_ray.visible = false
-	
 	var all_tragetted_asteroids: Array[Asteroid]
 	all_tragetted_asteroids.append_array(player_targeted_asteroids)
 	all_tragetted_asteroids.append_array(auto_targeted_asteroids)
 	
-	while mining_ray_placeholder.get_child_count() <= all_tragetted_asteroids.size():
+	while mining_ray_placeholder.get_child_count() < all_tragetted_asteroids.size():
 		spawn_mining_ray()
 		
 	var available_rays:Array[MiningRay]
@@ -180,7 +177,7 @@ func target_mining_rays():
 				
 			if mining_ray.last_targetted_asteroid == null:
 				selected_mining_ray = mining_ray
-				continue
+				break
 				
 		if selected_mining_ray == null:
 			selected_mining_ray = available_rays[0]
@@ -188,6 +185,10 @@ func target_mining_rays():
 		selected_mining_ray.target(targeted_asteroid)
 		available_rays.erase(selected_mining_ray)
 
+	for mining_ray in available_rays:
+		if mining_ray.visible: 
+			mining_ray.stop()
+	
 func spawn_mining_ray():
 	var mining_ray_scene: PackedScene
 	for dictionary_key in mining_ray_scenes_per_global_mining_speed.keys():
@@ -197,7 +198,7 @@ func spawn_mining_ray():
 	
 	var mining_ray = mining_ray_scene.instantiate()
 	laser_color_index = mining_ray.laser_color_index
-	mining_ray.visible = false
+	mining_ray.stop()
 	mining_ray_placeholder.add_child(mining_ray)
 	
 func on_asteroid_screen_exited(asteroid:Asteroid) -> void:

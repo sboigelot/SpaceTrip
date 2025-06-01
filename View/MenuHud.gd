@@ -36,12 +36,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle()
-		
-	if Input.is_action_just_pressed("ui_accept"):
-		if Engine.time_scale == 1:
-			Engine.time_scale = 10
-		else:
-			Engine.time_scale = 1
 
 func toggle():
 	if visible:

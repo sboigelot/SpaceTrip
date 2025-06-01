@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_ny4is"]
 script = ExtResource("1_dwgws")
-mantissa = 1000.0
+mantissa = 1.0
 exponent = 6
 metadata/_custom_type_script = "uid://chute42pgpdvt"
 
@@ -54,7 +54,7 @@ start_trigger_property = ""
 parent_missions = Array[String](["Reach 5kms speed"])
 parent_purchases = Array[String]([])
 goal_show_progress = true
-goal_text = "Reach 1000 km/s speed"
+goal_text = "Reach 1 Mm/s speed"
 goal_module = "core"
 goal_property = "speed"
 goal_target_value = SubResource("Resource_ny4is")
