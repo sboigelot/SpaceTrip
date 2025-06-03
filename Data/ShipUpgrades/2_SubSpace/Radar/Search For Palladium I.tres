@@ -35,7 +35,7 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 [resource]
 script = ExtResource("3_cxa5i")
 debug_hook = false
-lore_descripton = "We need a more advance material, tweak the radar to search for carbon asteroids"
+lore_descripton = "We need a more advance material, tweak the radar to search for palladium asteroids"
 parent_purchases = Array[String](["Enter Subspace"])
 parent_missions = Array[String]([])
 titanium_cost = SubResource("Resource_bih2g")

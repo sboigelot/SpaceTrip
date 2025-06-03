@@ -35,7 +35,7 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 [resource]
 script = ExtResource("3_oal3y")
 debug_hook = false
-lore_descripton = "We need a more advance material, tweak the radar to search for carbon asteroids"
+lore_descripton = "We need a more advance material, tweak the radar to search for water asteroids"
 parent_purchases = Array[String](["Hydrolysis IV", "Plate Refining VI", "Carbon Liquefaction V"])
 parent_missions = Array[String]([])
 plate_cost = SubResource("Resource_2y6tk")

@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://chute42pgpdvt"
 
 [sub_resource type="Resource" id="Resource_c65fe"]
 script = ExtResource("2_hx7wn")
-impact_explanation = "Enter Wrap Speed"
+impact_explanation = "Enter Warp Speed"
 ship_module = "core"
 property_impacted = "dimension_index"
 impact_method = 4
